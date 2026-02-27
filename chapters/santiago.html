@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santiago, Chile — Chapter 5</title>
+  <meta name="description" content="Moved without knowing Spanish. Found a second mother. Interned at Watgen, a climate tech startup." />
+  <link rel="stylesheet" href="chapter.css" />
+</head>
+<body>
+
+  <!-- Star background -->
+  <div id="stars-container" aria-hidden="true"></div>
+
+  <div class="chapter-page">
+
+    <!-- ── BACK BUTTON ── -->
+    <a href="../index.html" class="back-btn">
+      <span class="arrow">←</span>
+      Back to the Globe
+    </a>
+
+    <!-- ── CHAPTER HEADER ── -->
+    <header class="chapter-header">
+      <span class="chapter-emoji-large" aria-hidden="true">🌶️</span>
+      <h1 class="chapter-title">Santiago, Chile</h1>
+      <div class="chapter-meta">
+        <span class="chapter-location">📍 Santiago, Chile</span>
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <!-- REPLACE: Add exact dates when known -->
+        <span class="chapter-year">Chile Chapter</span>
+      </div>
+      <p class="chapter-tagline">"Learning to Say Sí"</p>
+    </header>
+
+    <!-- ── TOGGLE BAR ── -->
+    <div class="toggle-bar" role="tablist" aria-label="Section tabs">
+      <button
+        class="toggle-btn active"
+        id="tab-personal"
+        role="tab"
+        aria-selected="true"
+        aria-controls="section-personal"
+        onclick="switchTab('personal')"
+      >
+        🏠 Personal Story
+      </button>
+      <button
+        class="toggle-btn"
+        id="tab-work"
+        role="tab"
+        aria-selected="false"
+        aria-controls="section-work"
+        onclick="switchTab('work')"
+      >
+        💼 Work &amp; Projects
+      </button>
+    </div>
+
+    <!-- ── PERSONAL STORY SECTION ── -->
+    <section
+      class="chapter-section active"
+      id="section-personal"
+      role="tabpanel"
+      aria-labelledby="tab-personal"
+    >
+      <div class="story-body">
+        <p>
+          I moved to Santiago without knowing much Spanish, which was either brave or foolish —
+          probably both. The city swallowed me whole in the best way. I found a rhythm in a language
+          I was still learning, and I found a second mother in
+          <!-- REPLACE: Add her name here if you'd like -->
+          someone who made Santiago feel like home.
+          The food, the people, the mountains in the backdrop — Santiago has a piece of my heart.
+        </p>
+      </div>
+
+      <!-- Photo placeholders (Polaroid style) -->
+      <div class="photos-grid">
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo of Santiago skyline or the Andes backdrop -->
+            <span class="photo-comment">REPLACE: Santiago skyline or Andes</span>
+          </div>
+          <p class="photo-caption">Santiago &amp; the Andes</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo from Watgen office or coworking space -->
+            <span class="photo-comment">REPLACE: Watgen office or team photo</span>
+          </div>
+          <p class="photo-caption">Watgen HQ</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo of food, markets, or city exploration -->
+            <span class="photo-comment">REPLACE: Food, markets, or city life</span>
+          </div>
+          <p class="photo-caption">La vida chilena</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add a personal moment — host family, friends, weekend trip -->
+            <span class="photo-comment">REPLACE: Personal moment from Santiago</span>
+          </div>
+          <p class="photo-caption">Finding home</p>
+        </div>
+      </div>
+
+      <!-- Video placeholder -->
+      <div class="video-placeholder" aria-label="Video placeholder">
+        <span class="video-icon" aria-hidden="true">🎬</span>
+        <span class="video-text">Add a vlog or travel reel from Santiago here</span>
+        <!-- REPLACE: Swap this div for an <iframe> YouTube embed -->
+        <span class="video-comment">REPLACE: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID"&gt;&lt;/iframe&gt;</span>
+      </div>
+
+    </section>
+
+    <!-- ── WORK & PROJECTS SECTION ── -->
+    <section
+      class="chapter-section"
+      id="section-work"
+      role="tabpanel"
+      aria-labelledby="tab-work"
+    >
+      <div class="work-card">
+        <div class="work-card-header">
+          <div>
+            <!-- REPLACE: Add your exact role title at Watgen -->
+            <div class="work-role">Intern</div>
+            <div class="work-company">Watgen — Climate Tech Startup</div>
+          </div>
+          <!-- REPLACE: Add exact dates of your internship -->
+          <span class="work-duration">Dates TBD</span>
+        </div>
+
+        <ul class="work-bullets">
+          <!-- REPLACE: These bullets are critical for your portfolio — be specific! -->
+          <li><!-- REPLACE: What was Watgen's mission and your role within it? --></li>
+          <li><!-- REPLACE: What did you build, research, or contribute to? --></li>
+          <li><!-- REPLACE: What impact did your work have — metrics, outcomes, feedback? --></li>
+          <li><!-- REPLACE: What skills or tools did you use daily? --></li>
+          <li><!-- REPLACE: Any cross-functional work, client interactions, or presentations? --></li>
+        </ul>
+
+        <div class="skills-label">Skills</div>
+        <div class="skills-pills">
+          <!-- REPLACE: Update with actual skills you used at Watgen -->
+          <span class="skill-pill">Climate Tech</span>
+          <span class="skill-pill">Startup Operations</span>
+          <span class="skill-pill">Spanish (working level)</span>
+          <span class="skill-pill">Cross-cultural Teamwork</span>
+          <span class="skill-pill">Impact Measurement</span>
+        </div>
+
+        <!-- REPLACE: Add a link to Watgen's website or any published work -->
+        <a href="#" class="work-link" target="_blank" rel="noopener">
+          🔗 Watgen — placeholder link
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ── CHAPTER NAVIGATION ── -->
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <a href="london-scotland.html" class="chapter-nav-btn" aria-label="Previous chapter: London & Scotland">
+        <span class="chapter-nav-arrow" aria-hidden="true">←</span>
+        <div>
+          <span class="chapter-nav-label">Previous Chapter</span>
+          <span class="chapter-nav-title">London &amp; Scotland 🏰</span>
+        </div>
+      </a>
+      <span></span><!-- No next chapter yet — more adventures coming -->
+    </nav>
+
+  </div><!-- /.chapter-page -->
+
+  <script src="chapter-shared.js"></script>
+</body>
+</html>

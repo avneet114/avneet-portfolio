@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punjab, India — Chapter 1</title>
+  <meta name="description" content="Where it all began. Born in 2005, raised for 18 years in Punjab, India." />
+  <link rel="stylesheet" href="chapter.css" />
+</head>
+<body>
+
+  <!-- Star background -->
+  <div id="stars-container" aria-hidden="true"></div>
+
+  <div class="chapter-page">
+
+    <!-- ── BACK BUTTON ── -->
+    <a href="../index.html" class="back-btn">
+      <span class="arrow">←</span>
+      Back to the Globe
+    </a>
+
+    <!-- ── CHAPTER HEADER ── -->
+    <header class="chapter-header">
+      <span class="chapter-emoji-large" aria-hidden="true">🌱</span>
+      <h1 class="chapter-title">Punjab, India</h1>
+      <div class="chapter-meta">
+        <span class="chapter-location">📍 Punjab, India</span>
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <span class="chapter-year">2005 – 2023</span>
+      </div>
+      <p class="chapter-tagline">"Where roots grow deep"</p>
+    </header>
+
+    <!-- ── TOGGLE BAR ── -->
+    <div class="toggle-bar" role="tablist" aria-label="Section tabs">
+      <button
+        class="toggle-btn active"
+        id="tab-personal"
+        role="tab"
+        aria-selected="true"
+        aria-controls="section-personal"
+        onclick="switchTab('personal')"
+      >
+        🏠 Personal Story
+      </button>
+      <button
+        class="toggle-btn"
+        id="tab-work"
+        role="tab"
+        aria-selected="false"
+        aria-controls="section-work"
+        onclick="switchTab('work')"
+      >
+        💼 Work &amp; Projects
+      </button>
+    </div>
+
+    <!-- ── PERSONAL STORY SECTION ── -->
+    <section
+      class="chapter-section active"
+      id="section-personal"
+      role="tabpanel"
+      aria-labelledby="tab-personal"
+    >
+      <div class="story-body">
+        <p>
+          Born in 2005 into a warm, loud, loving Punjabi family. My sister was already 9 years old
+          when I arrived — she became my first best friend and my biggest critic (in the best way).
+          I spent 18 years in Punjab, shaped by its culture, food, festivals, and the kind of
+          community that always has your back. After finishing school, I took a gap year — a pause
+          before a leap — and had no idea it would change everything.
+        </p>
+      </div>
+
+      <!-- Photo placeholders (Polaroid style) -->
+      <div class="photos-grid">
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add family photo from Punjab here -->
+            <span class="photo-comment">REPLACE: Family photo from home</span>
+          </div>
+          <p class="photo-caption">Home, Punjab</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add festival / cultural photo here -->
+            <span class="photo-comment">REPLACE: Festival or cultural moment</span>
+          </div>
+          <p class="photo-caption">Festival vibes</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add school / friends photo here -->
+            <span class="photo-comment">REPLACE: School days or friends</span>
+          </div>
+          <p class="photo-caption">School days</p>
+        </div>
+      </div>
+
+      <!-- Video placeholder -->
+      <div class="video-placeholder" aria-label="Video placeholder">
+        <span class="video-icon" aria-hidden="true">🎬</span>
+        <span class="video-text">Add a video about your Punjab chapter here</span>
+        <!-- REPLACE: Swap this div for an <iframe> YouTube embed -->
+        <span class="video-comment">REPLACE: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID"&gt;&lt;/iframe&gt;</span>
+      </div>
+
+    </section>
+
+    <!-- ── WORK & PROJECTS SECTION ── -->
+    <section
+      class="chapter-section"
+      id="section-work"
+      role="tabpanel"
+      aria-labelledby="tab-work"
+    >
+      <div class="work-placeholder-note">
+        <span class="note-icon" aria-hidden="true">🛠️</span>
+        <p>
+          Add your early coding experiences, school projects, or any freelance work from this chapter.
+          <br /><br />
+          <strong style="color: var(--accent-gold);">Ideas:</strong>
+          first websites you built, competitions you entered, extracurriculars,
+          or skills you started developing before leaving India.
+        </p>
+      </div>
+
+      <!-- Example work card template — duplicate and fill in as needed -->
+      <div class="work-card">
+        <div class="work-card-header">
+          <div>
+            <div class="work-role">Early Projects &amp; Foundations</div>
+            <div class="work-company">Self-taught</div>
+          </div>
+          <span class="work-duration">2021 – 2023</span>
+        </div>
+
+        <ul class="work-bullets">
+          <li><!-- REPLACE: Add bullet point about early coding or projects --></li>
+          <li><!-- REPLACE: Add bullet point about skills learned --></li>
+          <li><!-- REPLACE: Add bullet point about school achievements --></li>
+        </ul>
+
+        <div class="skills-label">Skills</div>
+        <div class="skills-pills">
+          <!-- REPLACE: Update skill tags to match your actual experience -->
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">JavaScript</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── CHAPTER NAVIGATION ── -->
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <span></span><!-- No previous chapter -->
+      <a href="cape-town.html" class="chapter-nav-btn next" aria-label="Next chapter: Cape Town">
+        <div>
+          <span class="chapter-nav-label">Next Chapter</span>
+          <span class="chapter-nav-title">Cape Town, South Africa 🌍</span>
+        </div>
+        <span class="chapter-nav-arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+  </div><!-- /.chapter-page -->
+
+  <script src="chapter-shared.js"></script>
+</body>
+</html>

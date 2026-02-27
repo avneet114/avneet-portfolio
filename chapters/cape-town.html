@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cape Town, South Africa — Chapter 2</title>
+  <meta name="description" content="March 2024 — lived with 52 people from 28 countries. Interned at Cape Town TV. Life changed forever." />
+  <link rel="stylesheet" href="chapter.css" />
+</head>
+<body>
+
+  <!-- Star background -->
+  <div id="stars-container" aria-hidden="true"></div>
+
+  <div class="chapter-page">
+
+    <!-- ── BACK BUTTON ── -->
+    <a href="../index.html" class="back-btn">
+      <span class="arrow">←</span>
+      Back to the Globe
+    </a>
+
+    <!-- ── CHAPTER HEADER ── -->
+    <header class="chapter-header">
+      <span class="chapter-emoji-large" aria-hidden="true">🌍</span>
+      <h1 class="chapter-title">Cape Town, South Africa</h1>
+      <div class="chapter-meta">
+        <span class="chapter-location">📍 Cape Town, South Africa</span>
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <span class="chapter-year">March – June 2024</span>
+      </div>
+      <p class="chapter-tagline">"The World in One City"</p>
+    </header>
+
+    <!-- ── TOGGLE BAR ── -->
+    <div class="toggle-bar" role="tablist" aria-label="Section tabs">
+      <button
+        class="toggle-btn active"
+        id="tab-personal"
+        role="tab"
+        aria-selected="true"
+        aria-controls="section-personal"
+        onclick="switchTab('personal')"
+      >
+        🏠 Personal Story
+      </button>
+      <button
+        class="toggle-btn"
+        id="tab-work"
+        role="tab"
+        aria-selected="false"
+        aria-controls="section-work"
+        onclick="switchTab('work')"
+      >
+        💼 Work &amp; Projects
+      </button>
+    </div>
+
+    <!-- ── PERSONAL STORY SECTION ── -->
+    <section
+      class="chapter-section active"
+      id="section-personal"
+      role="tabpanel"
+      aria-labelledby="tab-personal"
+    >
+      <div class="story-body">
+        <p>
+          I landed in Cape Town not knowing what to expect and left a completely different person.
+          I lived in a co-living space with 52 individuals from 28 different countries — we shared
+          meals, stories, heartbreaks, and adventures. The diversity was overwhelming in the best way.
+          Table Mountain, the Atlantic Ocean, and the warmth of the people there permanently rewired
+          something in me.
+        </p>
+      </div>
+
+      <!-- Photo placeholders (Polaroid style) -->
+      <div class="photos-grid">
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo of Table Mountain or Cape Town waterfront -->
+            <span class="photo-comment">REPLACE: Table Mountain or waterfront</span>
+          </div>
+          <p class="photo-caption">Table Mountain</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add group photo from the co-living space -->
+            <span class="photo-comment">REPLACE: Co-living house group photo</span>
+          </div>
+          <p class="photo-caption">52 people, 28 countries</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo from Cape Town TV or city exploration -->
+            <span class="photo-comment">REPLACE: Cape Town TV or city exploration</span>
+          </div>
+          <p class="photo-caption">Cape Town adventures</p>
+        </div>
+
+        <div class="photo-placeholder">
+          <div class="photo-area">
+            <span class="photo-icon" aria-hidden="true">📸</span>
+            <!-- REPLACE: Add photo of the Atlantic Ocean or any travel moment -->
+            <span class="photo-comment">REPLACE: Ocean or travel moment</span>
+          </div>
+          <p class="photo-caption">Atlantic Ocean</p>
+        </div>
+      </div>
+
+      <!-- Video placeholder -->
+      <div class="video-placeholder" aria-label="Video placeholder">
+        <span class="video-icon" aria-hidden="true">🎬</span>
+        <span class="video-text">Add a vlog or highlights reel from Cape Town here</span>
+        <!-- REPLACE: Swap this div for an <iframe> YouTube embed -->
+        <span class="video-comment">REPLACE: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID"&gt;&lt;/iframe&gt;</span>
+      </div>
+
+    </section>
+
+    <!-- ── WORK & PROJECTS SECTION ── -->
+    <section
+      class="chapter-section"
+      id="section-work"
+      role="tabpanel"
+      aria-labelledby="tab-work"
+    >
+      <div class="work-card">
+        <div class="work-card-header">
+          <div>
+            <div class="work-role">Media Production Intern</div>
+            <div class="work-company">Cape Town TV</div>
+          </div>
+          <span class="work-duration">March – June 2024</span>
+        </div>
+
+        <ul class="work-bullets">
+          <li>
+            Got hands-on experience in media production and community broadcasting at
+            Cape Town TV, a local broadcaster serving underrepresented communities.
+          </li>
+          <li>
+            Worked on storytelling projects that highlighted stories mainstream media overlooks,
+            learning how journalism can serve as a tool for social impact.
+          </li>
+          <li>
+            <!-- REPLACE: Add a specific project or piece you worked on -->
+            Confirmed that impact-driven work is central to my professional values.
+          </li>
+          <li><!-- REPLACE: Add more specific responsibilities or achievements here --></li>
+        </ul>
+
+        <div class="skills-label">Skills</div>
+        <div class="skills-pills">
+          <span class="skill-pill">Media Production</span>
+          <span class="skill-pill">Storytelling</span>
+          <span class="skill-pill">Community Journalism</span>
+          <span class="skill-pill">Video Editing</span>
+          <!-- REPLACE: Add or remove skill tags as needed -->
+        </div>
+
+        <!-- REPLACE: Add a link to any published work or the station's website -->
+        <a href="#" class="work-link" target="_blank" rel="noopener">
+          🔗 Cape Town TV — placeholder link
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ── CHAPTER NAVIGATION ── -->
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <a href="punjab.html" class="chapter-nav-btn" aria-label="Previous chapter: Punjab">
+        <span class="chapter-nav-arrow" aria-hidden="true">←</span>
+        <div>
+          <span class="chapter-nav-label">Previous Chapter</span>
+          <span class="chapter-nav-title">Punjab, India 🌱</span>
+        </div>
+      </a>
+      <a href="bethlehem.html" class="chapter-nav-btn next" aria-label="Next chapter: Bethlehem">
+        <div>
+          <span class="chapter-nav-label">Next Chapter</span>
+          <span class="chapter-nav-title">Bethlehem, Pennsylvania 🎓</span>
+        </div>
+        <span class="chapter-nav-arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+  </div><!-- /.chapter-page -->
+
+  <script src="chapter-shared.js"></script>
+</body>
+</html>

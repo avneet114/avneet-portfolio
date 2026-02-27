@@ -1,0 +1,384 @@
+/* ===================================================
+   GLOBAL STYLES — Personal Portfolio
+   Dark space aesthetic with warm gold/amber accents
+   =================================================== */
+
+/* --- Google Fonts import --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* --- CSS Custom Properties --- */
+:root {
+  --bg-dark: #080818;
+  --bg-card: #0f0f2d;
+  --bg-card-hover: #171740;
+  --accent-gold: #f4a261;
+  --accent-warm: #e76f51;
+  --highlight: #ffd166;
+  --text-primary: #ffffff;
+  --text-secondary: #8888aa;
+  --border: rgba(244, 162, 97, 0.2);
+  --border-hover: rgba(244, 162, 97, 0.55);
+  --glow: rgba(244, 162, 97, 0.3);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  /* Larger radii for the cartoonish, rounded look */
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-pill: 50px;
+  --transition: 0.2s ease;
+  /* Cartoon-style offset shadow used on cards */
+  --cartoon-shadow: 5px 5px 0 rgba(244, 162, 97, 0.18);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ===================================================
+   STAR BACKGROUND ANIMATION
+   Tiny white dots that gently twinkle across the page
+   =================================================== */
+
+/* Stars are generated via JS in script.js and attached to #stars-container */
+#stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50%       { opacity: var(--max-opacity, 0.7); transform: scale(1); }
+}
+
+/* ===================================================
+   GLOBE SECTION — full-viewport container.
+   The hero text is absolutely positioned on top of the
+   globe canvas so there is one seamless background.
+   =================================================== */
+
+#globe-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hero text — left-side panel floating over the globe */
+#hero {
+  position: absolute;
+  /* Vertically centred on the left edge */
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+  text-align: left;
+  padding: 48px 64px 48px 48px;
+  max-width: 460px;
+  /* Mouse/touch passes through so globe drag still works */
+  pointer-events: none;
+  /* Gradient: dark on the left, fades out toward the globe */
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 26, 0.88) 55%,
+    transparent 100%
+  );
+}
+
+#hero h1 {
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  /* Cartoon-style offset shadow: warm amber layer + dark depth */
+  text-shadow:
+    3px 3px 0 rgba(244, 162, 97, 0.35),
+    0 6px 24px rgba(0, 0, 0, 0.85);
+}
+
+#hero h1 .emoji {
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-8px) rotate(3deg); }
+}
+
+/* Decorative gold accent line under the h1 */
+#hero h1::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--accent-gold), var(--accent-warm));
+}
+
+#hero .subtitle {
+  margin-top: 20px;
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+#hero .subtitle span {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* Globe canvas — fills the full section */
+#globe-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+#globe-container:active {
+  cursor: grabbing;
+}
+
+/* ===================================================
+   GLOBE PIN MARKERS
+   Static country-flag pins — no pulse, no rotation.
+   Hover scales the flag and shows the tooltip.
+   =================================================== */
+
+.globe-pin {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Offset so the flag centre sits on the coordinate point */
+  transform: translate(-50%, -50%);
+  /* Globe.gl's HTML layer container has pointer-events:none so drag still
+     works on the canvas. Each pin must explicitly opt back in. */
+  pointer-events: auto;
+}
+
+.pin-flag {
+  font-size: 26px;
+  line-height: 1;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+  transition: transform 0.18s ease, filter 0.18s ease;
+  pointer-events: auto;
+  /* No animation — static by default */
+}
+
+.globe-pin:hover .pin-flag {
+  transform: scale(1.45);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+/* ===================================================
+   TOOLTIP CARD
+   Appears near hovered pin, positioned to avoid off-screen
+   =================================================== */
+
+#globe-tooltip {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  max-width: 200px;
+  min-width: 160px;
+}
+
+#globe-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.tooltip-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-hover);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  box-shadow: var(--cartoon-shadow), var(--shadow), 0 0 18px var(--glow);
+  backdrop-filter: blur(10px);
+}
+
+.tooltip-emoji {
+  font-size: 1.4rem;
+  display: inline;
+  margin-right: 6px;
+}
+
+.tooltip-location {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  display: inline;
+}
+
+.tooltip-year {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin: 4px 0 6px;
+  letter-spacing: 0.04em;
+}
+
+.tooltip-blurb {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.tooltip-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 7px 12px;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-warm));
+  color: var(--bg-dark);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.tooltip-btn:hover {
+  opacity: 0.92;
+  transform: scale(1.04);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+/* ===================================================
+   UTILITY ANIMATIONS
+   =================================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* ===================================================
+   MOBILE RESPONSIVENESS
+   =================================================== */
+
+@media (max-width: 768px) {
+  /* On mobile, hero moves to top-centre over the globe */
+  #hero {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    text-align: center;
+    padding: 32px 24px 0;
+    max-width: 100%;
+    background: linear-gradient(to bottom, rgba(10, 10, 26, 0.82) 0%, transparent 100%);
+  }
+
+  #hero h1::after {
+    margin: 10px auto 0;
+  }
+}
+
+  /* On mobile, tooltip appears at the bottom of the globe area,
+     not floating near the pin (handled in JS) */
+  #globe-tooltip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+    width: calc(100vw - 32px);
+  }
+
+  #globe-tooltip.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .social-btn {
+    padding: 16px 20px;
+    min-width: 80px;
+  }
+
+  .newsletter-form,
+  .game-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter-form input,
+  .game-form input {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .contact-inner {
+    gap: 48px;
+  }
+}

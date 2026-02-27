@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My World — Personal Portfolio</title>
+  <meta name="description" content="A personal portfolio told through an interactive 3D globe. Spin the globe, explore my story." />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Globe.gl via CDN -->
+  <script src="https://unpkg.com/globe.gl"></script>
+
+
+</head>
+<body>
+
+  <!-- ============================================================
+       STAR BACKGROUND — filled by JS in script.js
+       ============================================================ -->
+  <div id="stars-container" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       GLOBE SECTION — full viewport.
+       Hero text is overlaid on top of the globe; the globe
+       canvas fills 100% of this container.
+       ============================================================ -->
+  <section id="globe-section" aria-label="Interactive 3D globe showing my journey">
+
+    <!-- Hero text sits above the globe via absolute positioning -->
+    <div id="hero">
+      <h1>
+        <span class="emoji" aria-hidden="true">✈️</span>
+        Welcome to My World
+      </h1>
+      <p class="subtitle">
+        Spin the globe. <span>Explore my story.</span>
+      </p>
+    </div>
+
+    <!-- Globe renders here — fills the full section -->
+    <div id="globe-container"></div>
+
+  </section>
+
+  <!-- ============================================================
+       GLOBE TOOLTIP CARD
+       Absolutely positioned, shown on pin hover.
+       Content is populated by JavaScript.
+       ============================================================ -->
+  <div id="globe-tooltip" role="tooltip" aria-live="polite">
+    <div class="tooltip-card">
+      <span class="tooltip-emoji" id="tt-emoji"></span>
+      <div class="tooltip-location" id="tt-location"></div>
+      <div class="tooltip-year" id="tt-year"></div>
+      <div class="tooltip-blurb" id="tt-blurb"></div>
+      <a class="tooltip-btn" id="tt-link" href="#">Explore This Chapter →</a>
+    </div>
+  </div>
+
+  <!-- Main script — globe, pins, tooltips, stars -->
+  <script src="script.js"></script>
+
+</body>
+</html>

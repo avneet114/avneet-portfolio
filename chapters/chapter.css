@@ -1,0 +1,641 @@
+/* ===================================================
+   CHAPTER PAGE STYLES — Shared across all 5 chapters
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-dark: #080818;
+  --bg-card: #0f0f2d;
+  --bg-card-hover: #171740;
+  --accent-gold: #f4a261;
+  --accent-warm: #e76f51;
+  --highlight: #ffd166;
+  --text-primary: #ffffff;
+  --text-secondary: #8888aa;
+  --border: rgba(244, 162, 97, 0.2);
+  --border-hover: rgba(244, 162, 97, 0.5);
+  --glow: rgba(244, 162, 97, 0.3);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-pill: 50px;
+  --transition: 0.2s ease;
+  --cartoon-shadow: 5px 5px 0 rgba(244, 162, 97, 0.18);
+  --content-width: 720px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ===================================================
+   STAR BACKGROUND
+   =================================================== */
+
+#stars-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: var(--max-opacity, 0.6); }
+}
+
+/* ===================================================
+   CHAPTER LAYOUT WRAPPER
+   =================================================== */
+
+.chapter-page {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ===================================================
+   BACK BUTTON
+   =================================================== */
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  margin: 24px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: var(--accent-gold);
+}
+
+.back-btn .arrow {
+  transition: transform var(--transition);
+}
+
+.back-btn:hover .arrow {
+  transform: translateX(-4px);
+}
+
+/* ===================================================
+   CHAPTER HEADER
+   =================================================== */
+
+.chapter-header {
+  text-align: center;
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.chapter-emoji-large {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 16px;
+  animation: floatEmoji 4s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-10px) rotate(3deg); }
+}
+
+.chapter-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.chapter-location {
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.chapter-year {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.chapter-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-hover);
+}
+
+.chapter-tagline {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.5;
+}
+
+/* ===================================================
+   TOGGLE BAR
+   Two pill-shaped buttons: Personal Story / Work & Projects
+   =================================================== */
+
+.toggle-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toggle-btn {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  color: var(--text-secondary);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-warm));
+  color: var(--bg-dark);
+  box-shadow: 0 2px 16px var(--glow);
+  font-weight: 600;
+}
+
+.toggle-btn:not(.active):hover {
+  color: var(--accent-gold);
+  background: rgba(244, 162, 97, 0.08);
+}
+
+/* ===================================================
+   CONTENT SECTIONS — Personal Story & Work
+   Cross-fade transition between tabs
+   =================================================== */
+
+.chapter-section {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none;
+  pointer-events: none;
+}
+
+.chapter-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: sectionIn 0.3s ease forwards;
+}
+
+@keyframes sectionIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================
+   PERSONAL STORY SECTION
+   =================================================== */
+
+.story-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.story-body p {
+  margin-bottom: 24px;
+}
+
+.story-body p:first-child {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.7;
+}
+
+/* --- Photo Placeholders (Polaroid style) --- */
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.photo-placeholder {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 12px 32px;
+  /* Polaroid bottom padding */
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-placeholder:hover {
+  transform: rotate(1deg) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.photo-placeholder:nth-child(even):hover {
+  transform: rotate(-1deg) translateY(-4px);
+}
+
+.photo-placeholder .photo-area {
+  background: linear-gradient(135deg, #1a1a38, #0f0f25);
+  border-radius: 4px;
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.photo-placeholder .photo-icon {
+  font-size: 2rem;
+  opacity: 0.4;
+}
+
+.photo-placeholder .photo-comment {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  padding: 0 8px;
+  line-height: 1.4;
+}
+
+.photo-placeholder .photo-caption {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* --- Video Placeholder --- */
+
+.video-placeholder {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a38, #0a0a1a);
+}
+
+.video-placeholder .video-icon {
+  font-size: 3rem;
+  position: relative;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.video-placeholder .video-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.video-placeholder .video-comment {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================================================
+   WORK & PROJECTS SECTION
+   =================================================== */
+
+.work-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.work-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.work-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.work-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.work-company {
+  font-size: 1rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.work-duration {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: rgba(244, 162, 97, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.work-bullets {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.work-bullets li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.work-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+  top: 7px;
+}
+
+/* --- Skill Pills --- */
+
+.skills-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-pill {
+  padding: 4px 14px;
+  background: rgba(244, 162, 97, 0.1);
+  border: 1px solid rgba(244, 162, 97, 0.25);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.skill-pill:hover {
+  background: rgba(244, 162, 97, 0.2);
+  border-color: var(--accent-gold);
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.work-link:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* Work placeholder callout */
+.work-placeholder-note {
+  background: linear-gradient(135deg, rgba(244, 162, 97, 0.05), rgba(231, 111, 81, 0.05));
+  border: 1px dashed rgba(244, 162, 97, 0.3);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.work-placeholder-note .note-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ===================================================
+   CHAPTER NAVIGATION (prev/next)
+   =================================================== */
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.chapter-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  flex: 1;
+  min-width: 160px;
+  max-width: 280px;
+}
+
+.chapter-nav-btn:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.chapter-nav-btn.next {
+  margin-left: auto;
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.chapter-nav-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.chapter-nav-title {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.chapter-nav-arrow {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ===================================================
+   MOBILE RESPONSIVENESS
+   =================================================== */
+
+@media (max-width: 768px) {
+  .chapter-page {
+    padding: 0 16px 64px;
+  }
+
+  .toggle-bar {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .toggle-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+  }
+
+  .chapter-title {
+    font-size: 1.8rem;
+  }
+
+  .photos-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .work-card-header {
+    flex-direction: column;
+  }
+
+  .chapter-nav {
+    flex-direction: column;
+  }
+
+  .chapter-nav-btn {
+    max-width: 100%;
+  }
+
+  .chapter-nav-btn.next {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .photos-grid {
+    grid-template-columns: 1fr;
+  }
+}
