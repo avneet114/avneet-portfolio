@@ -234,8 +234,9 @@ button {
   visibility: hidden;
   transform: translateY(8px);
   transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-  max-width: 200px;
-  min-width: 160px;
+  max-width: 280px;
+  min-width: 200px;
+  width: max-content;
 }
 
 #globe-tooltip.visible {
@@ -284,9 +285,8 @@ button {
 
 .tooltip-btn {
   display: inline-block;
-  width: 100%;
-  text-align: center;
-  padding: 7px 12px;
+  width: auto;
+  padding: 6px 14px;
   background: linear-gradient(135deg, var(--accent-gold), var(--accent-warm));
   color: var(--bg-dark);
   border-radius: var(--radius-pill);
@@ -337,7 +337,6 @@ button {
   #hero h1::after {
     margin: 10px auto 0;
   }
-}
 
   /* On mobile, tooltip appears at the bottom of the globe area,
      not floating near the pin (handled in JS) */
