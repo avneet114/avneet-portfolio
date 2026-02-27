@@ -159,7 +159,7 @@ function positionTooltipNearPin(pinEl) {
   const rect        = pinEl.getBoundingClientRect();
   const vw          = window.innerWidth;
   const vh          = window.innerHeight;
-  const TT_W        = 260; // approximate tooltip width
+  const TT_W        = 280; // approximate tooltip width
   const TT_H        = 220; // approximate tooltip height
   const OFFSET      = 16;  // gap between pin and tooltip
 
@@ -346,10 +346,7 @@ function initGlobe() {
    ===================================================== */
 
 /**
- * Creates a static country-flag pin DOM element for a given location.
- * No pulse, no bubble rotation — just the flag emoji with a hover scale.
- * Called by Globe.gl's htmlElement accessor for each data item.
- *
+ * Creates a flag pin DOM element for a given location.
  * @param {Object} d - Location data from LOCATIONS array
  * @returns {HTMLElement}
  */
@@ -361,7 +358,6 @@ function createPinElement(d) {
   wrapper.setAttribute('tabindex', '0');
   wrapper.setAttribute('aria-label', `${d.name} — ${d.year}. Click to explore.`);
 
-  // Flag emoji only — no rotating bubble, no pulse ring
   const flag = document.createElement('span');
   flag.classList.add('pin-flag');
   flag.setAttribute('aria-hidden', 'true');
