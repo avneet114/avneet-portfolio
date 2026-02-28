@@ -279,10 +279,10 @@ button {
 
 .tooltip-card {
   background: var(--bg-card);
-  border: 2px solid var(--border-hover);
+  border: 2px solid rgba(124, 143, 247, 0.5);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
-  box-shadow: var(--cartoon-shadow), var(--shadow), 0 0 18px var(--glow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 18px rgba(184, 169, 247, 0.15);
   backdrop-filter: blur(10px);
 }
 
@@ -296,7 +296,7 @@ button {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--accent-gold);
+  color: #ffffff;
   display: inline;
 }
 
@@ -318,8 +318,8 @@ button {
   display: inline-block;
   width: auto;
   padding: 6px 14px;
-  background: linear-gradient(135deg, var(--accent-gold), var(--accent-warm));
-  color: var(--bg-dark);
+  background: linear-gradient(135deg, #7c8ff7, #b8a9f7);
+  color: #ffffff;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 700;

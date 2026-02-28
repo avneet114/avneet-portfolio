@@ -55,8 +55,8 @@ const LOCATIONS = [
     lng: 75.3412,
     flag: '🇮🇳',
     emoji: '🌱', // used in tooltip card
-    year: '2005 – 2023',
-    blurb: 'Where it all began. Born in 2005, raised for 18 years surrounded by family and culture.',
+    year: '2005 – ∞',
+    blurb: 'Born in 2005. Punjab is where I grew up, messed up, learned a lot, and slowly started dreaming bigger.',
     url: 'chapters/punjab.html'
   },
   {

@@ -3,9 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Punjab, India — Chapter 1</title>
-  <meta name="description" content="Where it all began. Born in 2005, raised for 18 years in Punjab, India." />
+  <title>Chapter 1 — Punjab, India</title>
+  <meta name="description" content="This is where it all began. I was born in 2005 and grew up surrounded by family, chaos, and a lot of learning (some of it the hard way)." />
   <link rel="stylesheet" href="chapter.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* === ESSAY OVERRIDES === */
+    body {
+      background: #000000;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .chapter-page {
+      max-width: none;
+      padding: 0 6vw 80px;
+    }
+
+    .essay-header {
+      padding: 80px 0 48px;
+    }
+
+    .essay-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .essay-header .subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #c8d0e8;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    /* === ESSAY BODY === */
+    .essay-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #c8c8d4;
+    }
+
+    .essay-body p {
+      margin-bottom: 28px;
+    }
+
+    /* === FLOAT VIDEO === */
+    .video-float {
+      float: right;
+      width: 480px;
+      min-width: 480px;
+      margin: 0 0 2rem 3rem;
+    }
+
+    .video-float iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      border: 1px solid rgba(244, 162, 97, 0.2);
+    }
+
+    .video-float .video-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .video-float .video-label a {
+      color: var(--accent-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* === HOVER TRIGGER PHRASES === */
+    .hover-trigger {
+      color: var(--accent-gold);
+      border-bottom: 1px dashed var(--accent-gold);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .hover-trigger:hover {
+      color: var(--highlight);
+    }
+
+    /* === HOVER POPUP === */
+    .hover-popup {
+      position: fixed;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .hover-popup.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Image popup */
+    .hover-popup.image-popup img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid rgba(244, 162, 97, 0.4);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Artistholic popup */
+    .hover-popup.insta-popup .insta-card {
+      width: 250px;
+      background: #0f0f2d;
+      border: 1px solid rgba(244, 162, 97, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .insta-card img {
+      width: 250px;
+      display: block;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .insta-card .insta-link {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.82rem;
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .insta-card .insta-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Video popup */
+    .hover-popup.video-popup .video-card {
+      width: 340px;
+      background: #0f0f2d;
+      border: 1px solid rgba(244, 162, 97, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .hover-popup.video-popup iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+
+    .hover-popup.video-popup .video-card-label {
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .hover-popup.video-popup .video-card-label a {
+      font-size: 0.82rem;
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hover-popup.video-popup .video-card-label a:hover {
+      text-decoration: underline;
+    }
+
+    /* Instagram embed popup */
+    .hover-popup.insta-embed-popup .insta-embed-card {
+      width: 340px;
+      background: #0f0f2d;
+      border: 1px solid rgba(244, 162, 97, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .hover-popup.insta-embed-popup iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label {
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label a {
+      font-size: 0.82rem;
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label a:hover {
+      text-decoration: underline;
+    }
+
+    /* === CHAPTER NAV === */
+    .next-chapter {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(244, 162, 97, 0.15);
+      text-align: right;
+    }
+
+    .next-chapter a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .next-chapter a:hover {
+      color: var(--accent-gold);
+    }
+
+    .next-chapter .next-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      color: var(--text-secondary);
+    }
+
+    .next-chapter .next-title {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      .video-float {
+        float: none;
+        width: 100%;
+        min-width: 0;
+        margin: 0 0 2rem 0;
+      }
+
+      .hover-popup.video-popup .video-card {
+        width: 280px;
+      }
+
+      .essay-header {
+        padding: 48px 0 32px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -14,164 +276,241 @@
 
   <div class="chapter-page">
 
-    <!-- ── BACK BUTTON ── -->
+    <!-- BACK BUTTON -->
     <a href="../index.html" class="back-btn">
       <span class="arrow">←</span>
       Back to the Globe
     </a>
 
-    <!-- ── CHAPTER HEADER ── -->
-    <header class="chapter-header">
-      <span class="chapter-emoji-large" aria-hidden="true">🌱</span>
-      <h1 class="chapter-title">Punjab, India</h1>
-      <div class="chapter-meta">
-        <span class="chapter-location">📍 Punjab, India</span>
-        <span class="chapter-dot" aria-hidden="true"></span>
-        <span class="chapter-year">2005 – 2023</span>
-      </div>
-      <p class="chapter-tagline">"Where roots grow deep"</p>
+    <!-- CHAPTER HEADER -->
+    <header class="essay-header">
+      <h1>🇮🇳 Punjab, India</h1>
+      <p class="subtitle">2005 – ∞</p>
     </header>
 
-    <!-- ── TOGGLE BAR ── -->
-    <div class="toggle-bar" role="tablist" aria-label="Section tabs">
-      <button
-        class="toggle-btn active"
-        id="tab-personal"
-        role="tab"
-        aria-selected="true"
-        aria-controls="section-personal"
-        onclick="switchTab('personal')"
-      >
-        🏠 Personal Story
-      </button>
-      <button
-        class="toggle-btn"
-        id="tab-work"
-        role="tab"
-        aria-selected="false"
-        aria-controls="section-work"
-        onclick="switchTab('work')"
-      >
-        💼 Work &amp; Projects
-      </button>
+    <!-- ESSAY BODY -->
+    <div class="essay-body">
+
+      <!-- VIDEO FLOATED RIGHT -->
+      <div class="video-float">
+        <iframe
+          src="https://www.youtube.com/embed/GGGcBXcXQn4"
+          title="Avneet's Punjab Chapter"
+          frameborder="0"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <p class="video-label">
+          <a href="https://youtu.be/GGGcBXcXQn4?si=CXMJdPMdOq_Q_eCA" target="_blank" rel="noopener"></a>
+        </p>
+      </div>
+
+      <p>
+        I was born on March 15, 2005, into a <span class="hover-trigger" data-popup="family">Punjabi household</span> that was loving, loud, and honestly kind of messy in the way most families are. I'm the second child, and my sister is nine years older, which basically makes her my second mom. She was in third grade when I was born… and she named me. If you ask me what my name means, I still couldn't tell you with confidence. Google says it means "one who is well-guided" or "someone who upholds moral values," but honestly, I doubt a nine-year-old was thinking that deeply. She probably just liked how it sounded, and lowkey, I respect that.
+      </p>
+
+      <p>
+        My mom wanted a son, so when she found out I was a girl, she cried. That stuck with me more than I realized at the time. I think that's why I grew up trying to never disappoint her, to prove that daughters aren't burdens and that girls can carry families forward just as much as sons can. My dad, on the other hand, was really happy when I was born.
+      </p>
+
+      <p>
+        Growing up wasn't easy. My dad had been diagnosed with a nervous illness even before I was born. He struggled with alcoholism and had severe mood swings. Money was always tight, and my mom became the main provider in our family. She carried the responsibility of two kids and a household that didn't always feel safe emotionally. Looking back, I think I grew up faster than I should have.
+      </p>
+
+      <p>
+        I learned early that my "job" was to do well in school. Not because I loved competition, but because education felt like our only way out. I was a good student. I liked studying. I liked being first in class. My school didn't offer much beyond academics, so most of my time went into studying.
+      </p>
+
+      <p>
+        I also didn't grow up speaking much English. Everyone around me spoke Punjabi or Hindi, including my teachers. I could read English and understand it, but speaking it felt uncomfortable and unnatural. At that time, I didn't realize how much that would matter later.
+      </p>
+      <p>
+        Money was always a concern in my house, and even as a kid, I wanted to help my mom out somehow. Since I couldn't legally work, I searched online for ways to make money. That's how I ended up starting a YouTube channel when I was around 12. My first videos were really bad. Bad camera, bad editing, bad everything. I barely got any views and eventually stopped.
+      </p>
+
+      <p>
+        But I liked creating things. I used to make handmade gifts for my sister every year. Scrapbooks, cards, small DIY projects I learned from YouTube. When her friends saw them, they asked if I could make similar gifts for them. That's how I started my first small business, <span class="hover-trigger" data-popup="artistholic">Artistholic</span>. I sold handmade scrapbooks, explosion boxes, Spotify plaques, and paintings. I didn't have a lot of customers, but it was the first time I realized that something I made could have value to other people.
+      </p>
+
+      <p>
+        In 2019, things changed. My sister got a job in Gurgaon and realized how sheltered my school environment was. She pushed me to move to a better high school in the city for 9th and 10th grade. That decision ended up changing me a lot. For the first time, I wasn't the smartest person in the room. People around me spoke fluent English. They were more confident and more exposed to the world. Academically I was fine, but socially, it was hard. I felt out of place at first, but over time, I learned how to talk to people, how to be more confident, and how to exist in spaces where I wasn't automatically comfortable.
+      </p>
+
+      <p>
+        This is also when I started posting on YouTube again, more seriously. I realized that if I wanted to improve my English, I needed to speak it more. Since I couldn't really do that at home, I did it in my videos. I spent a lot of time learning how editing works, how algorithms work, and what makes people want to watch something. I learned everything from YouTube itself. I treated it like a full-time job, and my channel started growing. It was the first time I felt like I was building a skill that could actually turn into something real.
+      </p>
+
+      <p>
+        In 12th grade, I had to slow down content creation because I was applying to universities abroad and preparing for board exams. I applied to 43 universities across different countries. My main requirement was financial aid because my family couldn't afford international tuition, and I didn't want to take a loan. I didn't even know what I wanted to study. I just knew I wanted more exposure, independence, and a different kind of life than what I could access in the system I grew up in.
+      </p>
+
+      <p>
+        <span class="hover-trigger" data-popup="rejections">I got a lot of rejections.</span> I got a few acceptances and scholarships too, but nothing that made studying abroad financially possible. I also realized I had started way too late with applications. People around the world had been preparing since 9th grade, and I was figuring this out in the summer of 12th grade. So I decided to take a <span class="hover-trigger" data-popup="gapyear">gap year</span> and try again. It was risky, but I felt like if I didn't take that chance, I'd always wonder what could've happened.
+      </p>
+
+      <p>
+        That gap year ended up changing the direction of my life. It was the first time I worked real jobs, made my own money, and saw how teams and companies actually function. It helped me understand what kind of work environments I enjoy and what I definitely don't. It also made me more independent and confident in my ability to figure things out on my own.
+      </p>
     </div>
 
-    <!-- ── PERSONAL STORY SECTION ── -->
-    <section
-      class="chapter-section active"
-      id="section-personal"
-      role="tabpanel"
-      aria-labelledby="tab-personal"
-    >
-      <div class="story-body">
-        <p>
-          Born in 2005 into a warm, loud, loving Punjabi family. My sister was already 9 years old
-          when I arrived — she became my first best friend and my biggest critic (in the best way).
-          I spent 18 years in Punjab, shaped by its culture, food, festivals, and the kind of
-          community that always has your back. After finishing school, I took a gap year — a pause
-          before a leap — and had no idea it would change everything.
-        </p>
-      </div>
-
-      <!-- Photo placeholders (Polaroid style) -->
-      <div class="photos-grid">
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add family photo from Punjab here -->
-            <span class="photo-comment">REPLACE: Family photo from home</span>
-          </div>
-          <p class="photo-caption">Home, Punjab</p>
-        </div>
-
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add festival / cultural photo here -->
-            <span class="photo-comment">REPLACE: Festival or cultural moment</span>
-          </div>
-          <p class="photo-caption">Festival vibes</p>
-        </div>
-
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add school / friends photo here -->
-            <span class="photo-comment">REPLACE: School days or friends</span>
-          </div>
-          <p class="photo-caption">School days</p>
-        </div>
-      </div>
-
-      <!-- Video placeholder -->
-      <div class="video-placeholder" aria-label="Video placeholder">
-        <span class="video-icon" aria-hidden="true">🎬</span>
-        <span class="video-text">Add a video about your Punjab chapter here</span>
-        <!-- REPLACE: Swap this div for an <iframe> YouTube embed -->
-        <span class="video-comment">REPLACE: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID"&gt;&lt;/iframe&gt;</span>
-      </div>
-
-    </section>
-
-    <!-- ── WORK & PROJECTS SECTION ── -->
-    <section
-      class="chapter-section"
-      id="section-work"
-      role="tabpanel"
-      aria-labelledby="tab-work"
-    >
-      <div class="work-placeholder-note">
-        <span class="note-icon" aria-hidden="true">🛠️</span>
-        <p>
-          Add your early coding experiences, school projects, or any freelance work from this chapter.
-          <br /><br />
-          <strong style="color: var(--accent-gold);">Ideas:</strong>
-          first websites you built, competitions you entered, extracurriculars,
-          or skills you started developing before leaving India.
-        </p>
-      </div>
-
-      <!-- Example work card template — duplicate and fill in as needed -->
-      <div class="work-card">
-        <div class="work-card-header">
-          <div>
-            <div class="work-role">Early Projects &amp; Foundations</div>
-            <div class="work-company">Self-taught</div>
-          </div>
-          <span class="work-duration">2021 – 2023</span>
-        </div>
-
-        <ul class="work-bullets">
-          <li><!-- REPLACE: Add bullet point about early coding or projects --></li>
-          <li><!-- REPLACE: Add bullet point about skills learned --></li>
-          <li><!-- REPLACE: Add bullet point about school achievements --></li>
-        </ul>
-
-        <div class="skills-label">Skills</div>
-        <div class="skills-pills">
-          <!-- REPLACE: Update skill tags to match your actual experience -->
-          <span class="skill-pill">HTML</span>
-          <span class="skill-pill">CSS</span>
-          <span class="skill-pill">JavaScript</span>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ── CHAPTER NAVIGATION ── -->
-    <nav class="chapter-nav" aria-label="Chapter navigation">
-      <span></span><!-- No previous chapter -->
-      <a href="cape-town.html" class="chapter-nav-btn next" aria-label="Next chapter: Cape Town">
+    <!-- NEXT CHAPTER -->
+    <div class="next-chapter">
+      <a href="cape-town.html">
         <div>
-          <span class="chapter-nav-label">Next Chapter</span>
-          <span class="chapter-nav-title">Cape Town, South Africa 🌍</span>
+          <span class="next-label">Next Chapter</span>
+          <span class="next-title">Cape Town, South Africa 🌍</span>
         </div>
-        <span class="chapter-nav-arrow" aria-hidden="true">→</span>
+        <span style="font-size: 1.3rem;">→</span>
       </a>
-    </nav>
+    </div>
 
   </div><!-- /.chapter-page -->
 
+  <!-- HOVER POPUPS (hidden by default) -->
+
+  <!-- Family image popup -->
+  <div class="hover-popup image-popup" id="popup-family">
+    <img src="../assets/family.jpeg" alt="Avneet's family in Punjab" />
+  </div>
+
+  <!-- Artistholic popup -->
+  <div class="hover-popup insta-popup" id="popup-artistholic">
+    <div class="insta-card">
+      <img src="../assets/artistholic.png" alt="Artistholic" />
+      <a class="insta-link" href="https://www.instagram.com/artistholic114/" target="_blank" rel="noopener">view on instagram ↗</a>
+    </div>
+  </div>
+
+  <!-- Rejections Instagram popup -->
+  <div class="hover-popup insta-embed-popup" id="popup-rejections">
+    <div class="insta-embed-card">
+      <iframe
+        id="rejections-iframe"
+        src=""
+        title="Rejection post"
+        frameborder="0"
+        scrolling="no"
+        allowtransparency="true"
+      ></iframe>
+      <div class="insta-embed-label">
+        <a href="https://www.instagram.com/p/C2w5Iapy1vG/?hl=en" target="_blank" rel="noopener">view on instagram ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gap year video popup -->
+  <div class="hover-popup video-popup" id="popup-gapyear">
+    <div class="video-card">
+      <iframe
+        id="gapyear-iframe"
+        src=""
+        title="I took a gap year"
+        frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <div class="video-card-label">
+        <a href="https://youtu.be/6sTeZr8IrPM?si=uFL7LHe7Lgb9zE5O" target="_blank" rel="noopener">watch on youtube ↗</a>
+      </div>
+    </div>
+  </div>
+
   <script src="chapter-shared.js"></script>
+  <script>
+    /* =====================================================
+       HOVER POPUP LOGIC
+       ===================================================== */
+
+    const triggers = document.querySelectorAll('.hover-trigger');
+    let showTimeout = null;
+    let hideTimeout = null;
+
+    function showPopup(popup, e) {
+      clearTimeout(hideTimeout);
+      // Hide any other visible popups
+      document.querySelectorAll('.hover-popup.visible').forEach(p => {
+        if (p !== popup) hidePopup(p);
+      });
+      positionPopup(popup, e);
+      popup.classList.add('visible');
+    }
+
+    function hidePopup(popup) {
+      popup.classList.remove('visible');
+      if (popup.id === 'popup-gapyear') {
+        const iframe = document.getElementById('gapyear-iframe');
+        if (iframe) iframe.src = '';
+      }
+      if (popup.id === 'popup-rejections') {
+        const iframe = document.getElementById('rejections-iframe');
+        if (iframe) iframe.src = '';
+      }
+    }
+
+    function positionPopup(popup, e) {
+      const x = e.clientX + 20;
+      const y = e.clientY - 10;
+      const rect = popup.getBoundingClientRect();
+      const maxX = window.innerWidth - (rect.width || 300) - 20;
+      const maxY = window.innerHeight - (rect.height || 300) - 20;
+      popup.style.left = Math.min(x, maxX) + 'px';
+      popup.style.top = Math.max(10, Math.min(y, maxY)) + 'px';
+    }
+
+    triggers.forEach(trigger => {
+      const popupId = 'popup-' + trigger.dataset.popup;
+      const popup = document.getElementById(popupId);
+      if (!popup) return;
+
+      trigger.addEventListener('mouseenter', (e) => {
+        clearTimeout(hideTimeout);
+
+        // Load gap year iframe lazily
+        if (popupId === 'popup-gapyear') {
+          const iframe = document.getElementById('gapyear-iframe');
+          if (iframe && !iframe.src.includes('youtube')) {
+            iframe.src = 'https://www.youtube.com/embed/6sTeZr8IrPM';
+          }
+        }
+
+        // Load rejections Instagram embed lazily
+        if (popupId === 'popup-rejections') {
+          const iframe = document.getElementById('rejections-iframe');
+          if (iframe && !iframe.src.includes('instagram')) {
+            iframe.src = 'https://www.instagram.com/p/C2w5Iapy1vG/embed/';
+          }
+        }
+
+        showTimeout = setTimeout(() => {
+          showPopup(popup, e);
+        }, 150);
+      });
+
+      trigger.addEventListener('mousemove', (e) => {
+        if (popup.classList.contains('visible')) {
+          positionPopup(popup, e);
+        }
+      });
+
+      trigger.addEventListener('mouseleave', () => {
+        clearTimeout(showTimeout);
+        hideTimeout = setTimeout(() => {
+          hidePopup(popup);
+        }, 300);
+      });
+
+      // Keep popup open when cursor moves into it
+      popup.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+      });
+
+      // Hide popup when cursor leaves it
+      popup.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          hidePopup(popup);
+        }, 300);
+      });
+    });
+  </script>
 </body>
 </html>
