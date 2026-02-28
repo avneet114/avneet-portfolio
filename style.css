@@ -94,13 +94,50 @@ button {
 }
 
 /* ===================================================
+   INTRO OVERLAY — text + photos on top of globe
+   =================================================== */
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.intro-word {
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: 400;
+  text-transform: lowercase;
+  line-height: 1;
+}
+
+.intro-photo {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+#intro-scroll-spacer {
+  height: 500px;
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===================================================
    GLOBE SECTION — full-viewport container.
    The hero text is absolutely positioned on top of the
    globe canvas so there is one seamless background.
    =================================================== */
 
 #globe-section {
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -316,6 +353,14 @@ button {
    =================================================== */
 
 @media (max-width: 768px) {
+  .intro-word {
+    font-size: clamp(2rem, 6vw, 4rem);
+  }
+  .intro-photo {
+    width: 80px;
+    height: 80px;
+  }
+
   /* On mobile, hero moves to top-centre over the globe */
   #hero {
     top: 0;
