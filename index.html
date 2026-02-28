@@ -49,17 +49,6 @@
        ============================================================ -->
   <section id="globe-section" aria-label="Interactive 3D globe showing my journey">
 
-    <!-- Hero text sits above the globe via absolute positioning -->
-    <div id="hero">
-      <h1>
-        <span class="emoji" aria-hidden="true">✈️</span>
-        Welcome to My World
-      </h1>
-      <p class="subtitle">
-        Spin the globe. <span>Explore my story.</span>
-      </p>
-    </div>
-
     <!-- Globe renders here — fills the full section -->
     <div id="globe-container"></div>
 
@@ -90,10 +79,7 @@
   <script>
   (function() {
     var overlay = document.getElementById('intro-overlay');
-    var hero = document.getElementById('hero');
     var globeContainer = document.getElementById('globe-container');
-    hero.style.opacity = '0';
-    hero.style.transition = 'opacity 0.5s ease';
 
     // Prevent globe's OrbitControls from capturing wheel events
     // so the page can scroll. Re-enable after intro completes.
@@ -109,8 +95,6 @@
 
       overlay.style.transform = 'translateY(' + (-scrollY * 1.5) + 'px)';
       overlay.style.opacity = 1 - progress;
-
-      hero.style.opacity = progress >= 1 ? '1' : '0';
 
       if (progress >= 1) {
         overlay.style.visibility = 'hidden';
