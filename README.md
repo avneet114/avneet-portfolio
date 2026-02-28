@@ -16,7 +16,7 @@ A globe-based interactive portfolio that tells the story of my life through five
 |---------|----------|-------|
 | 1 | Punjab, India | 2005 – ∞ |
 | 2 | Cape Town, South Africa | 2023 |
-| 3 | Bethlehem, PA — Lehigh University | 2023 – 2027 |
+| 3 | Bethlehem, PA — Lehigh University | 2024 – 2028 |
 | 4 | London & Scotland, UK | 2024 |
 | 5 | Santiago, Chile | 2025 |
 
