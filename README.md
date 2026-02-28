@@ -1,4 +1,4 @@
-# avneet grewal — personal portfolio
+# Personal portfolio
 
 **Live site:** https://avneetgrewal114.com
 
