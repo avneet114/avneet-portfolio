@@ -66,8 +66,8 @@ const LOCATIONS = [
     lng: 18.4241,
     flag: '🇿🇦',
     emoji: '🌍',
-    year: 'March 2024',
-    blurb: 'Lived with 52 people from 28 countries. Interned at Cape Town TV. Life changed forever.',
+    year: 'March 2024 - May 2024',
+    blurb: 'Lived with 52 people from 28 countries. TAL changed the trajectory of my life.',
     url: 'chapters/cape-town.html'
   },
   {
@@ -77,20 +77,20 @@ const LOCATIONS = [
     lng: -75.3705,
     flag: '🇺🇸',
     emoji: '🎓',
-    year: 'August 2024',
-    blurb: 'Moved to the States for college. New chapter, new me.',
+    year: 'August 2024 - ?',
+    blurb: 'Moved here for my bachelors in CS & Business @ Lehigh University.',
     url: 'chapters/bethlehem.html'
   },
   {
     id: 'london-scotland',
-    name: 'London & Scotland, UK',
+    name: 'England & Scotland, UK',
     lat: 51.5074,
     lng: -0.1278,
     flag: '🇬🇧',
     emoji: '🏰',
-    year: 'Study Abroad',
-    blurb: 'A real estate study abroad adventure across the UK.',
-    url: 'chapters/london-scotland.html'
+    year: 'January 2025',
+    blurb: 'A real estate winter study abroad program in London and Edinburgh.',
+    url: 'chapters/london.html'
   },
   {
     id: 'santiago',
@@ -99,8 +99,8 @@ const LOCATIONS = [
     lng: -70.6693,
     flag: '🇨🇱',
     emoji: '🌶️',
-    year: 'Chile Chapter',
-    blurb: 'Moved without knowing Spanish. Found a second mother. Interned at Watgen, a climate tech startup.',
+    year: 'June 2025 - July 2025',
+    blurb: 'Interned @ WatGen, a climate tech startup. Found a chilean mother ❤️',
     url: 'chapters/santiago.html'
   }
 ];

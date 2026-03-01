@@ -3,9 +3,262 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Santiago, Chile — Chapter 5</title>
-  <meta name="description" content="Moved without knowing Spanish. Found a second mother. Interned at Watgen, a climate tech startup." />
+  <title>Chapter 5 — Santiago, Chile</title>
+  <meta name="description" content="2025. First international adventure to Latin America without knowing Spanish." />
   <link rel="stylesheet" href="chapter.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* === ESSAY OVERRIDES === */
+    body {
+      background: #000000;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .chapter-page {
+      max-width: none;
+      padding: 0 6vw 80px;
+    }
+
+    .essay-header {
+      padding: 80px 0 48px;
+    }
+
+    .essay-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .essay-header .subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #c8d0e8;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    /* === ESSAY BODY === */
+    .essay-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #c8c8d4;
+    }
+
+    .essay-body p {
+      margin-bottom: 28px;
+    }
+
+    /* === TAB TOGGLE === */
+    .tab-toggle {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tab-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+      font-weight: 500;
+    }
+
+    .tab-btn:not(.active):hover {
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* === TAB PANELS === */
+    .tab-panel {
+      display: none;
+      opacity: 0;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: panelIn 0.35s ease forwards;
+    }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === TIMELINE === */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin-top: 8px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(124, 143, 247, 0.25);
+    }
+
+    .timeline-card {
+      position: relative;
+      background: #0a0a1f;
+      border: 1px solid rgba(124, 143, 247, 0.2);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .timeline-card.animate-in {
+      animation: cardSlideIn 0.4s ease forwards;
+    }
+
+    @keyframes cardSlideIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .timeline-card:hover {
+      border-color: rgba(124, 143, 247, 0.4);
+      box-shadow: 0 0 20px rgba(124, 143, 247, 0.08);
+    }
+
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 34px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #7c8ff7;
+      border: 2px solid #0a0a1f;
+      box-shadow: 0 0 8px rgba(124, 143, 247, 0.4);
+    }
+
+    .tl-role {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #7c8ff7;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .tl-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #8892b0;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tl-company { color: #8892b0; }
+    .tl-date { color: #8892b0; white-space: nowrap; }
+
+    .tl-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #c8c8d4;
+      margin-bottom: 16px;
+    }
+
+    .tl-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tl-pill {
+      padding: 4px 14px;
+      background: rgba(124, 143, 247, 0.15);
+      border: 1px solid rgba(124, 143, 247, 0.3);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: #c8d0e8;
+      font-weight: 400;
+    }
+
+    .tl-role a,
+    .tl-desc a {
+      color: #7c8ff7;
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+
+    .tl-role a:hover,
+    .tl-desc a:hover {
+      text-decoration: underline;
+    }
+
+    /* === CHAPTER NAV === */
+    .next-chapter {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(244, 162, 97, 0.15);
+      text-align: right;
+    }
+
+    .next-chapter .next-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      color: var(--text-secondary);
+    }
+
+    .next-chapter .next-title {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      .essay-header {
+        padding: 48px 0 32px;
+      }
+
+      .tab-toggle {
+        flex-wrap: wrap;
+      }
+
+      .timeline {
+        padding-left: 24px;
+      }
+
+      .timeline-card {
+        padding: 20px;
+      }
+
+      .timeline-card::before {
+        left: -30px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -14,175 +267,79 @@
 
   <div class="chapter-page">
 
-    <!-- ── BACK BUTTON ── -->
+    <!-- BACK BUTTON -->
     <a href="../index.html" class="back-btn">
       <span class="arrow">←</span>
       Back to the Globe
     </a>
 
-    <!-- ── CHAPTER HEADER ── -->
-    <header class="chapter-header">
-      <span class="chapter-emoji-large" aria-hidden="true">🌶️</span>
-      <h1 class="chapter-title">Santiago, Chile</h1>
-      <div class="chapter-meta">
-        <span class="chapter-location">📍 Santiago, Chile</span>
-        <span class="chapter-dot" aria-hidden="true"></span>
-        <!-- REPLACE: Add exact dates when known -->
-        <span class="chapter-year">Chile Chapter</span>
+    <!-- CHAPTER HEADER -->
+    <header class="essay-header">
+      <h1>🇨🇱 Santiago, Chile.</h1>
+      <p class="subtitle">2025</p>
+      <div class="tab-toggle">
+        <button class="tab-btn active" data-tab="personal">📖 Personal Story</button>
+        <button class="tab-btn" data-tab="work">💻 Work Experience</button>
       </div>
-      <p class="chapter-tagline">"Learning to Say Sí"</p>
     </header>
 
-    <!-- ── TOGGLE BAR ── -->
-    <div class="toggle-bar" role="tablist" aria-label="Section tabs">
-      <button
-        class="toggle-btn active"
-        id="tab-personal"
-        role="tab"
-        aria-selected="true"
-        aria-controls="section-personal"
-        onclick="switchTab('personal')"
-      >
-        🏠 Personal Story
-      </button>
-      <button
-        class="toggle-btn"
-        id="tab-work"
-        role="tab"
-        aria-selected="false"
-        aria-controls="section-work"
-        onclick="switchTab('work')"
-      >
-        💼 Work &amp; Projects
-      </button>
+    <!-- TAB 1: PERSONAL STORY -->
+    <div class="tab-panel active" id="panel-personal">
+
+    <!-- ESSAY BODY -->
+    <div class="essay-body">
+      <p>This chapter is coming soon.</p>
     </div>
 
-    <!-- ── PERSONAL STORY SECTION ── -->
-    <section
-      class="chapter-section active"
-      id="section-personal"
-      role="tabpanel"
-      aria-labelledby="tab-personal"
-    >
-      <div class="story-body">
-        <p>
-          I moved to Santiago without knowing much Spanish, which was either brave or foolish —
-          probably both. The city swallowed me whole in the best way. I found a rhythm in a language
-          I was still learning, and I found a second mother in
-          <!-- REPLACE: Add her name here if you'd like -->
-          someone who made Santiago feel like home.
-          The food, the people, the mountains in the backdrop — Santiago has a piece of my heart.
-        </p>
-      </div>
+    </div><!-- /panel-personal -->
 
-      <!-- Photo placeholders (Polaroid style) -->
-      <div class="photos-grid">
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add photo of Santiago skyline or the Andes backdrop -->
-            <span class="photo-comment">REPLACE: Santiago skyline or Andes</span>
-          </div>
-          <p class="photo-caption">Santiago &amp; the Andes</p>
+    <!-- TAB 2: WORK & EXPERIENCE -->
+    <div class="tab-panel" id="panel-work">
+      <div class="timeline">
+
+        <div class="timeline-card">
+          <div class="tl-role">More coming soon.</div>
         </div>
 
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add photo from Watgen office or coworking space -->
-            <span class="photo-comment">REPLACE: Watgen office or team photo</span>
-          </div>
-          <p class="photo-caption">Watgen HQ</p>
-        </div>
-
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add photo of food, markets, or city exploration -->
-            <span class="photo-comment">REPLACE: Food, markets, or city life</span>
-          </div>
-          <p class="photo-caption">La vida chilena</p>
-        </div>
-
-        <div class="photo-placeholder">
-          <div class="photo-area">
-            <span class="photo-icon" aria-hidden="true">📸</span>
-            <!-- REPLACE: Add a personal moment — host family, friends, weekend trip -->
-            <span class="photo-comment">REPLACE: Personal moment from Santiago</span>
-          </div>
-          <p class="photo-caption">Finding home</p>
-        </div>
-      </div>
-
-      <!-- Video placeholder -->
-      <div class="video-placeholder" aria-label="Video placeholder">
-        <span class="video-icon" aria-hidden="true">🎬</span>
-        <span class="video-text">Add a vlog or travel reel from Santiago here</span>
-        <!-- REPLACE: Swap this div for an <iframe> YouTube embed -->
-        <span class="video-comment">REPLACE: &lt;iframe src="https://www.youtube.com/embed/YOUR_ID"&gt;&lt;/iframe&gt;</span>
-      </div>
-
-    </section>
-
-    <!-- ── WORK & PROJECTS SECTION ── -->
-    <section
-      class="chapter-section"
-      id="section-work"
-      role="tabpanel"
-      aria-labelledby="tab-work"
-    >
-      <div class="work-card">
-        <div class="work-card-header">
-          <div>
-            <!-- REPLACE: Add your exact role title at Watgen -->
-            <div class="work-role">Intern</div>
-            <div class="work-company">Watgen — Climate Tech Startup</div>
-          </div>
-          <!-- REPLACE: Add exact dates of your internship -->
-          <span class="work-duration">Dates TBD</span>
-        </div>
-
-        <ul class="work-bullets">
-          <!-- REPLACE: These bullets are critical for your portfolio — be specific! -->
-          <li><!-- REPLACE: What was Watgen's mission and your role within it? --></li>
-          <li><!-- REPLACE: What did you build, research, or contribute to? --></li>
-          <li><!-- REPLACE: What impact did your work have — metrics, outcomes, feedback? --></li>
-          <li><!-- REPLACE: What skills or tools did you use daily? --></li>
-          <li><!-- REPLACE: Any cross-functional work, client interactions, or presentations? --></li>
-        </ul>
-
-        <div class="skills-label">Skills</div>
-        <div class="skills-pills">
-          <!-- REPLACE: Update with actual skills you used at Watgen -->
-          <span class="skill-pill">Climate Tech</span>
-          <span class="skill-pill">Startup Operations</span>
-          <span class="skill-pill">Spanish (working level)</span>
-          <span class="skill-pill">Cross-cultural Teamwork</span>
-          <span class="skill-pill">Impact Measurement</span>
-        </div>
-
-        <!-- REPLACE: Add a link to Watgen's website or any published work -->
-        <a href="#" class="work-link" target="_blank" rel="noopener">
-          🔗 Watgen — placeholder link
-        </a>
-      </div>
-
-    </section>
-
-    <!-- ── CHAPTER NAVIGATION ── -->
-    <nav class="chapter-nav" aria-label="Chapter navigation">
-      <a href="london-scotland.html" class="chapter-nav-btn" aria-label="Previous chapter: London & Scotland">
-        <span class="chapter-nav-arrow" aria-hidden="true">←</span>
-        <div>
-          <span class="chapter-nav-label">Previous Chapter</span>
-          <span class="chapter-nav-title">London &amp; Scotland 🏰</span>
-        </div>
-      </a>
-      <span></span><!-- No next chapter yet — more adventures coming -->
-    </nav>
+      </div><!-- /.timeline -->
+    </div><!-- /panel-work -->
 
   </div><!-- /.chapter-page -->
 
   <script src="chapter-shared.js"></script>
+  <script>
+    /* =====================================================
+       TAB SWITCHING
+       ===================================================== */
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+
+        // Toggle button active state
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Toggle panels
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById('panel-' + tab);
+        if (panel) {
+          panel.classList.add('active');
+
+          // Stagger-animate timeline cards
+          if (tab === 'work') {
+            const cards = panel.querySelectorAll('.timeline-card');
+            cards.forEach((card, i) => {
+              card.classList.remove('animate-in');
+              void card.offsetWidth;
+              setTimeout(() => {
+                card.classList.add('animate-in');
+              }, i * 100);
+            });
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
