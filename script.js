@@ -122,6 +122,9 @@ const LOCATIONS = [
    Position is calculated to avoid going off-screen.
    ===================================================== */
 
+const exploreClickSound = new Audio('assets/fahhh.mp3');
+exploreClickSound.preload = 'auto';
+
 const tooltip     = document.getElementById('globe-tooltip');
 const ttEmoji     = document.getElementById('tt-emoji');
 const ttLocation  = document.getElementById('tt-location');
@@ -219,6 +222,17 @@ tooltip.addEventListener('mouseenter', () => {
 
 tooltip.addEventListener('mouseleave', () => {
   hideTooltip();
+});
+
+// Play sound when "Explore This Chapter" is clicked, then navigate
+ttLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  const dest = ttLink.href;
+  exploreClickSound.currentTime = 0;
+  exploreClickSound.play();
+  setTimeout(() => {
+    window.location.href = dest;
+  }, 400);
 });
 
 /* =====================================================
