@@ -56,7 +56,7 @@ const LOCATIONS = [
     flag: '🇮🇳',
     emoji: '🌱', // used in tooltip card
     year: '2005 – ∞',
-    blurb: 'Born in 2005. Punjab is where I grew up, messed up, learned a lot, and slowly started dreaming bigger.',
+    blurb: 'Punjab is where I grew up, messed up, learned a lot, and slowly started dreaming bigger.',
     url: 'chapters/punjab.html'
   },
   {
@@ -77,7 +77,7 @@ const LOCATIONS = [
     lng: -75.3705,
     flag: '🇺🇸',
     emoji: '🎓',
-    year: 'August 2024 - ?',
+    year: 'August 2024 - 2028?',
     blurb: 'Moved here for my bachelors in CS & Business @ Lehigh University.',
     url: 'chapters/bethlehem.html'
   },

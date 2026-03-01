@@ -290,8 +290,8 @@
 
     <!-- CHAPTER HEADER -->
     <header class="essay-header">
-      <h1>🏴󠁧󠁢󠁳󠁣󠁴󠁿 London & Scotland, UK.</h1>
-      <p class="subtitle">2024</p>
+      <h1>🏴󠁧󠁢󠁥󠁮󠁧󠁿 🏴󠁧󠁢󠁳󠁣󠁴󠁿 London & Edinburgh, UK</h1>
+      <p class="subtitle">January 2025</p>
       <div class="tab-toggle">
         <button class="tab-btn active" data-tab="personal">📖 Personal Story</button>
         <button class="tab-btn" data-tab="work">💻 Work Experience</button>
@@ -378,5 +378,29 @@
       });
     });
   </script>
+<script>
+(function() {
+  function playClick() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(800, ctx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.05);
+
+    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+
+    oscillator.start(ctx.currentTime);
+    oscillator.stop(ctx.currentTime + 0.1);
+  }
+
+  document.addEventListener('click', playClick);
+})();
+</script>
 </body>
 </html>
