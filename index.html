@@ -136,5 +136,38 @@
 })();
 </script>
 
+<div id="star-cursor"></div>
+<script>
+(function() {
+  const star = document.getElementById('star-cursor');
+  star.innerHTML = '✦';
+  star.style.color = '#c8d0e8';
+  star.style.fontFamily = 'serif';
+
+  document.addEventListener('mousemove', (e) => {
+    star.style.left = e.clientX + 'px';
+    star.style.top = e.clientY + 'px';
+  });
+
+  document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      star.classList.add('big');
+      star.style.color = '#7c8ff7';
+    });
+    el.addEventListener('mouseleave', () => {
+      star.classList.remove('big');
+      star.style.color = '#c8d0e8';
+    });
+  });
+
+  document.addEventListener('click', () => {
+    star.style.transition = 'transform 0.3s ease';
+    star.style.transform = 'translate(-50%, -50%) rotate(360deg)';
+    setTimeout(() => {
+      star.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+    }, 300);
+  });
+})();
+</script>
 </body>
 </html>

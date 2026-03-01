@@ -589,6 +589,34 @@ h1, h2, h3, h4 {
 }
 
 /* ===================================================
+   CUSTOM STAR CURSOR
+   =================================================== */
+
+* {
+  cursor: none !important;
+}
+
+#star-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+  font-size: 20px;
+  line-height: 1;
+  user-select: none;
+}
+
+#star-cursor.big {
+  font-size: 28px;
+  transform: translate(-50%, -50%) rotate(20deg);
+}
+
+/* ===================================================
    MOBILE RESPONSIVENESS
    =================================================== */
 
