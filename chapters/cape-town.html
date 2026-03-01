@@ -274,6 +274,39 @@
       text-decoration: underline;
     }
 
+    /* Instagram embed popup */
+    .hover-popup.insta-embed-popup .insta-embed-card {
+      width: 340px;
+      background: #0f0f2d;
+      border: 1px solid rgba(124, 143, 247, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .hover-popup.insta-embed-popup iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label {
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label a {
+      font-size: 0.82rem;
+      color: #7c8ff7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hover-popup.insta-embed-popup .insta-embed-label a:hover {
+      text-decoration: underline;
+    }
+
     /* === CHAPTER NAV === */
     .next-chapter {
       margin-top: 80px;
@@ -368,7 +401,7 @@
     <!-- ESSAY BODY -->
     <div class="essay-body">
       <p>
-        I always joke that Cape Town is my Roman Empire, and honestly, it kind of is. That's where I first lived independently, far from my family, surrounded by people from all over the world. It was intense, messy, emotional, confusing, beautiful, exhausting, and unforgettable.
+        I always joke that Cape Town is my <span class="hover-trigger" data-popup="romanempire">Roman Empire</span>, and honestly, it kind of is. That's where I first lived independently, far from my family, surrounded by people from all over the world. It was intense, messy, emotional, confusing, beautiful, exhausting, and unforgettable.
       </p>
 
       <p>
@@ -376,7 +409,7 @@
       </p>
 
       <p>
-        Our cohort had 52 people from 28 countries, all living together, learning together, and trying to figure out life together. For many of us, it was the first time we had lived abroad and taken care of ourselves without family. I lived in what we called the Red House, 17 of us, each with our own room but shared bathrooms and kitchen. I cooked for myself for the first time. I learned to budget. I learned to handle conflict with people I didn't grow up with. I learned how to clean dishes without screaming.
+        Our cohort had <span class="hover-trigger" data-popup="cohort">52 people from 28 countries</span>, all living together, learning together, and trying to figure out life together. For many of us, it was the first time we had lived abroad and taken care of ourselves without family. I lived in what we called the Red House, 17 of us, each with our own room but shared bathrooms and kitchen. I cooked for myself for the first time. I learned to budget. I learned to handle conflict with people I didn't grow up with. I learned how to clean dishes without screaming.
       </p>
 
       <p>
@@ -459,6 +492,40 @@
 
   </div><!-- /.chapter-page -->
 
+  <!-- Roman Empire Instagram popup -->
+  <div class="hover-popup insta-embed-popup" id="popup-romanempire">
+    <div class="insta-embed-card">
+      <iframe
+        id="romanempire-iframe"
+        src=""
+        title="Cape Town Roman Empire"
+        frameborder="0"
+        scrolling="no"
+        allowtransparency="true"
+      ></iframe>
+      <div class="insta-embed-label">
+        <a href="https://www.instagram.com/p/C99Vwd2PQzF/?hl=en&img_index=2" target="_blank" rel="noopener">view on instagram ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cohort Instagram popup -->
+  <div class="hover-popup insta-embed-popup" id="popup-cohort">
+    <div class="insta-embed-card">
+      <iframe
+        id="cohort-iframe"
+        src=""
+        title="52 people from 28 countries"
+        frameborder="0"
+        scrolling="no"
+        allowtransparency="true"
+      ></iframe>
+      <div class="insta-embed-label">
+        <a href="https://www.instagram.com/p/DD3s7KaOqTc/?hl=en&img_index=2" target="_blank" rel="noopener">view on instagram ↗</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Documentary video popup -->
   <div class="hover-popup video-popup" id="popup-documentary">
     <div class="video-card">
@@ -534,6 +601,14 @@
         const iframe = document.getElementById('documentary-iframe');
         if (iframe) iframe.src = '';
       }
+      if (popup.id === 'popup-romanempire') {
+        const iframe = document.getElementById('romanempire-iframe');
+        if (iframe) iframe.src = '';
+      }
+      if (popup.id === 'popup-cohort') {
+        const iframe = document.getElementById('cohort-iframe');
+        if (iframe) iframe.src = '';
+      }
     }
 
     function positionPopup(popup, e) {
@@ -558,6 +633,20 @@
           const iframe = document.getElementById('documentary-iframe');
           if (iframe && !iframe.src.includes('youtube')) {
             iframe.src = 'https://www.youtube.com/embed/YPoWKWtGFQ0';
+          }
+        }
+
+        if (popupId === 'popup-romanempire') {
+          const iframe = document.getElementById('romanempire-iframe');
+          if (iframe && !iframe.src.includes('instagram')) {
+            iframe.src = 'https://www.instagram.com/p/C99Vwd2PQzF/embed/';
+          }
+        }
+
+        if (popupId === 'popup-cohort') {
+          const iframe = document.getElementById('cohort-iframe');
+          if (iframe && !iframe.src.includes('instagram')) {
+            iframe.src = 'https://www.instagram.com/p/DD3s7KaOqTc/embed/';
           }
         }
 
