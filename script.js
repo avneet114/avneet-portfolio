@@ -102,6 +102,17 @@ const LOCATIONS = [
     year: 'June 2025 - July 2025',
     blurb: 'Interned @ WatGen, a climate tech startup. Found a chilean mother ❤️',
     url: 'chapters/santiago.html'
+  },
+  {
+    id: 'canada',
+    name: 'Montreal & Toronto, Canada',
+    lat: 43.6532,
+    lng: -79.3832,
+    flag: '🇨🇦',
+    emoji: '🍁',
+    year: '2025 - 2026',
+    blurb: 'Visited Montreal with school in summer for 5 days, then returned solo to visit cousins for 2 weeks.',
+    url: 'chapters/canada.html'
   }
 ];
 
