@@ -21,7 +21,7 @@ A globe-based interactive portfolio that tells the story of my life through five
 | 5 | Santiago, Chile | 2025 |
 
 ## tech stack
-- Globe.gl — 3D globe rendering: https://github.com/vasturiano/react-globe.gl?tab=readme-ov-file
+- Globe.gl — 3D globe rendering
 - Vanilla JS — scroll animations, interactions
 - HTML/CSS — layout and design
 - Netlify — hosting + auto-deploy from GitHub
