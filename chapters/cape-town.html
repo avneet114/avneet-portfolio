@@ -214,6 +214,66 @@
       text-decoration: underline;
     }
 
+    /* === HOVER TRIGGER === */
+    .hover-trigger {
+      color: #7c8ff7;
+      border-bottom: 1px dashed #7c8ff7;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .hover-trigger:hover {
+      color: #b8a9f7;
+    }
+
+    /* === HOVER POPUP === */
+    .hover-popup {
+      position: fixed;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .hover-popup.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Video popup */
+    .hover-popup.video-popup .video-card {
+      width: 340px;
+      background: #0f0f2d;
+      border: 1px solid rgba(124, 143, 247, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .hover-popup.video-popup iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+
+    .hover-popup.video-popup .video-card-label {
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .hover-popup.video-popup .video-card-label a {
+      font-size: 0.82rem;
+      color: #7c8ff7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hover-popup.video-popup .video-card-label a:hover {
+      text-decoration: underline;
+    }
+
     /* === CHAPTER NAV === */
     .next-chapter {
       margin-top: 80px;
@@ -272,6 +332,10 @@
       .timeline-card::before {
         left: -30px;
       }
+
+      .hover-popup.video-popup .video-card {
+        width: 280px;
+      }
     }
   </style>
 </head>
@@ -303,7 +367,41 @@
 
     <!-- ESSAY BODY -->
     <div class="essay-body">
-      <p>This chapter is coming soon.</p>
+      <p>
+        I always joke that Cape Town is my Roman Empire, and honestly, it kind of is. That's where I first lived independently, far from my family, surrounded by people from all over the world. It was intense, messy, emotional, confusing, beautiful, exhausting, and unforgettable.
+      </p>
+
+      <p>
+        I went to Cape Town through Take Action Lab, a semester-long cultural immersion program that brings young people together from around the world to live, learn, and work in South Africa. The program is designed to help students understand global issues, think systemically about problems, and contribute meaningfully to work rooted in human rights and not just observe it from the outside.
+      </p>
+
+      <p>
+        Our cohort had 52 people from 28 countries, all living together, learning together, and trying to figure out life together. For many of us, it was the first time we had lived abroad and taken care of ourselves without family. I lived in what we called the Red House, 17 of us, each with our own room but shared bathrooms and kitchen. I cooked for myself for the first time. I learned to budget. I learned to handle conflict with people I didn't grow up with. I learned how to clean dishes without screaming.
+      </p>
+
+      <p>
+        The heart of the program was not tourism or sightseeing. It was immersive learning through work and community engagement. We apprenticed with local organizations focused on human rights, education, youth empowerment, media, and more. The city itself is built on layers of history that make that work feel urgent. Cape Town was central to the anti-apartheid movement, and sites like Robben Island, where Nelson Mandela and many others were imprisoned, stand as powerful reminders of the fight for equality and dignity.
+      </p>
+
+      <p>
+        I was placed at <a href="https://capetowntv.org/" target="_blank" rel="noopener" style="color: #7c8ff7; text-decoration: none; border-bottom: 1px solid rgba(124, 143, 247, 0.4);">Cape Town TV (Eksé)</a>, an alternative media platform that elevates voices often unheard in mainstream outlets. My day-to-day work was real, deadline-driven, collaborative, and impactful. I managed social media, helped craft and edit stories, helped grow the reach of the channel, and even produced and scripted segments exploring local culture. The work pushed me out of my comfort zone, especially interviewing strangers on the street, but I loved it, and I saw how much effort and care goes into telling stories that matter. (And yes, I made a <span class="hover-trigger" data-popup="documentary">30-minute documentary</span> about my time there, which still makes me proud.)
+      </p>
+
+      <p>
+        But the work wasn't the only thing that changed me. What really made the biggest impact were the people — my housemates, my cohort, the South Africans I met, and the mentors who challenged us to think deeper about history, identity, power, and community. I had conversations I'd never had before, about religion, language, inequality, education systems, justice, trauma, and privilege. I listened a lot, and I learned a lot. Some of it was uncomfortable. Some of it made me question things I'd taken for granted. Some of it made me rethink what success means.
+      </p>
+
+      <p>
+        Before Cape Town, I was focused on one big goal of making money and becoming rich. Wait, don't get me wrong. I still want financial independence for myself and my family, BUT now I also think deeply about the purpose behind success. In CPT, I saw how people's access to opportunity can depend heavily on where they're born, what language they speak, who has access to education and resources, and I can't unsee that.
+      </p>
+
+      <p>
+        These three months felt like a fever dream. I didn't want them to end. We all cried SO MUCH the entire last week of the program. I miss my Cape Town people every day. I think about that city constantly. Its mountains, its ocean, the rhythm of everyday life, its history, its food, its laughter, its intensity. A part of me feels like I left a piece of myself there, and honestly, I hope I can go back one day, maybe even buy a house by the Rock and watch the sunset with my girls.
+      </p>
+
+      <p>
+        Enkosi Kukhulu, Cape Town 🩷
+      </p>
     </div>
 
     <!-- NEXT CHAPTER -->
@@ -324,7 +422,25 @@
       <div class="timeline">
 
         <div class="timeline-card">
-          <div class="tl-role">More coming soon.</div>
+          <div class="tl-role">Eksé TV Production Apprentice | <a href="https://capetowntv.org/" target="_blank" rel="noopener">Cape Town TV</a></div>
+          <div class="tl-meta">
+            <span class="tl-company">Cape Town, South Africa</span>
+            <span class="tl-date">Mar 2024 – Jun 2024</span>
+          </div>
+          <ul class="tl-desc" style="padding-left: 18px; list-style: disc;">
+            <li>Managed social media, increasing impressions from ~9,000 to ~34,000 and expanding reach to Pretoria and Johannesburg</li>
+            <li>Produced and scripted the "What's Trending" segment highlighting Cape Town's culture</li>
+            <li>Led a live TV panel for International Workers' Day, amplifying youth voices</li>
+            <li>Conducted street interviews and vox pops that strengthened communication skills</li>
+            <li>Took photos during shows and supported presenters — real on-the-ground media experience</li>
+            <li>As the youngest member of the team and the only Indian intern, learned how to speak up in professional spaces, adapt quickly to new cultural contexts, and collaborate confidently with older, more experienced teammates</li>
+          </ul>
+          <div class="tl-highlights">
+            <span class="tl-pill">9K → 34K impressions</span>
+            <span class="tl-pill">Live TV panel</span>
+            <span class="tl-pill">Street interviews</span>
+            <span class="tl-pill">Content production</span>
+          </div>
         </div>
 
       </div><!-- /.timeline -->
@@ -342,6 +458,23 @@
     </div><!-- /panel-work -->
 
   </div><!-- /.chapter-page -->
+
+  <!-- Documentary video popup -->
+  <div class="hover-popup video-popup" id="popup-documentary">
+    <div class="video-card">
+      <iframe
+        id="documentary-iframe"
+        src=""
+        title="Cape Town Documentary"
+        frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <div class="video-card-label">
+        <a href="https://youtu.be/YPoWKWtGFQ0?si=qsZg-tqmRftJjC5Z" target="_blank" rel="noopener">watch on youtube ↗</a>
+      </div>
+    </div>
+  </div>
 
   <script src="chapter-shared.js"></script>
   <script>
@@ -375,6 +508,85 @@
             });
           }
         }
+      });
+    });
+
+    /* =====================================================
+       HOVER POPUP LOGIC
+       ===================================================== */
+
+    const triggers = document.querySelectorAll('.hover-trigger');
+    let showTimeout = null;
+    let hideTimeout = null;
+
+    function showPopup(popup, e) {
+      clearTimeout(hideTimeout);
+      document.querySelectorAll('.hover-popup.visible').forEach(p => {
+        if (p !== popup) hidePopup(p);
+      });
+      positionPopup(popup, e);
+      popup.classList.add('visible');
+    }
+
+    function hidePopup(popup) {
+      popup.classList.remove('visible');
+      if (popup.id === 'popup-documentary') {
+        const iframe = document.getElementById('documentary-iframe');
+        if (iframe) iframe.src = '';
+      }
+    }
+
+    function positionPopup(popup, e) {
+      const x = e.clientX + 20;
+      const y = e.clientY - 10;
+      const rect = popup.getBoundingClientRect();
+      const maxX = window.innerWidth - (rect.width || 300) - 20;
+      const maxY = window.innerHeight - (rect.height || 300) - 20;
+      popup.style.left = Math.min(x, maxX) + 'px';
+      popup.style.top = Math.max(10, Math.min(y, maxY)) + 'px';
+    }
+
+    triggers.forEach(trigger => {
+      const popupId = 'popup-' + trigger.dataset.popup;
+      const popup = document.getElementById(popupId);
+      if (!popup) return;
+
+      trigger.addEventListener('mouseenter', (e) => {
+        clearTimeout(hideTimeout);
+
+        if (popupId === 'popup-documentary') {
+          const iframe = document.getElementById('documentary-iframe');
+          if (iframe && !iframe.src.includes('youtube')) {
+            iframe.src = 'https://www.youtube.com/embed/YPoWKWtGFQ0';
+          }
+        }
+
+        showTimeout = setTimeout(() => {
+          showPopup(popup, e);
+        }, 150);
+      });
+
+      trigger.addEventListener('mousemove', (e) => {
+        if (popup.classList.contains('visible')) {
+          positionPopup(popup, e);
+        }
+      });
+
+      trigger.addEventListener('mouseleave', () => {
+        clearTimeout(showTimeout);
+        hideTimeout = setTimeout(() => {
+          hidePopup(popup);
+        }, 300);
+      });
+
+      popup.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+      });
+
+      popup.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          hidePopup(popup);
+        }, 300);
       });
     });
   </script>

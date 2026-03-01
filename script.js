@@ -67,7 +67,7 @@ const LOCATIONS = [
     flag: '🇿🇦',
     emoji: '🌍',
     year: 'March 2024 - May 2024',
-    blurb: 'Lived with 52 people from 28 countries. TAL changed the trajectory of my life.',
+    blurb: 'My first living alone. Three months in CPT changed how I see the world AND how I see myself.',
     url: 'chapters/cape-town.html'
   },
   {
