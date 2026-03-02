@@ -36,10 +36,25 @@
     <span class="intro-word" style="left:70%; top:68%">my</span>
     <span class="intro-word" style="left:82%; top:70%">world</span>
 
-    <img class="intro-photo" src="assets/1.png" style="left:5%; top:35%; transform:rotate(-3deg)" alt="">
-    <img class="intro-photo" src="assets/2.jpeg" style="left:16%; top:35%; transform:rotate(2deg)" alt="">
-    <img class="intro-photo" src="assets/3.jpeg" style="left:72%; top:35%; transform:rotate(-2deg)" alt="">
-    <img class="intro-photo" src="assets/4.jpeg" style="left:83%; top:35%; transform:rotate(3deg)" alt="">
+    <!-- Mobile fallback: original scattered photos -->
+    <img class="intro-photo mobile-photo" src="assets/1.png" style="left:5%; top:35%; transform:rotate(-3deg)" alt="">
+    <img class="intro-photo mobile-photo" src="assets/2.jpeg" style="left:16%; top:35%; transform:rotate(2deg)" alt="">
+    <img class="intro-photo mobile-photo" src="assets/3.jpeg" style="left:72%; top:35%; transform:rotate(-2deg)" alt="">
+    <img class="intro-photo mobile-photo" src="assets/4.jpeg" style="left:83%; top:35%; transform:rotate(3deg)" alt="">
+
+    <!-- Desktop: stacked photo deck -->
+    <div id="photo-stack">
+      <img class="intro-photo stack-photo" id="sphoto1" src="assets/1.png" alt="">
+      <img class="intro-photo stack-photo" id="sphoto2" src="assets/2.jpeg" alt="">
+      <img class="intro-photo stack-photo" id="sphoto3" src="assets/3.jpeg" alt="">
+      <img class="intro-photo stack-photo" id="sphoto4" src="assets/4.jpeg" alt="">
+      <img class="intro-photo stack-photo" id="sphoto5" src="assets/5.png" alt="">
+      <img class="intro-photo stack-photo" id="sphoto6" src="assets/6.png" alt="">
+      <img class="intro-photo stack-photo" id="sphoto7" src="assets/7.jpeg" alt="">
+      <img class="intro-photo stack-photo" id="sphoto8" src="assets/8.png" alt="">
+      <img class="intro-photo stack-photo" id="sphoto9" src="assets/9.jpeg" alt="">
+      <img class="intro-photo stack-photo" id="sphoto10" src="assets/10.jpeg" alt="">
+    </div>
   </div>
 
   <!-- ============================================================
@@ -77,10 +92,20 @@
 
 <div id="newsletter-float">
   <a href="https://subscribe-forms.beehiiv.com/f81b2276-3730-4e1c-92ea-a74ae71c46eb"
-     target="_blank" rel="noopener">
+     target="_blank" rel="noopener" id="newsletter-link">
     💌 letters from avneet
   </a>
 </div>
+<script>
+(function() {
+  var followSound = new Audio('assets/follow.mp3');
+  followSound.volume = 0.5;
+  document.getElementById('newsletter-link').addEventListener('click', function() {
+    followSound.currentTime = 0;
+    followSound.play().catch(function(){});
+  });
+})();
+</script>
 
   <!-- Intro overlay scroll-away logic -->
   <script>
@@ -276,5 +301,118 @@
     <span class="social-tooltip">personal</span>
   </a>
 </div>
+
+<script>
+(function() {
+  var stack = document.getElementById('photo-stack');
+  if (!stack) return;
+  var photos = document.querySelectorAll('.stack-photo');
+
+  // Fan positions as viewport percentages (left%, top%)
+  var fanPositions = [
+    { left: 3,  top: 8,  rotate: -8 },
+    { left: 2,  top: 38, rotate: -3 },
+    { left: 8,  top: 68, rotate: 5 },
+    { left: 25, top: 78, rotate: 10 },
+    { left: 50, top: 80, rotate: -5 },
+    { left: 72, top: 70, rotate: 7 },
+    { left: 82, top: 45, rotate: -4 },
+    { left: 78, top: 8,  rotate: 6 },
+    { left: 55, top: 5,  rotate: -7 },
+    { left: 30, top: 3,  rotate: 3 }
+  ];
+
+  var isExpanded = false;
+  var collapseTimer;
+
+  function expand() {
+    clearTimeout(collapseTimer);
+    if (isExpanded) return;
+    isExpanded = true;
+    photos.forEach(function(photo, i) {
+      var pos = fanPositions[i];
+      photo.style.position = 'fixed';
+      photo.style.left = pos.left + 'vw';
+      photo.style.top = pos.top + 'vh';
+      photo.style.transform = 'rotate(' + pos.rotate + 'deg)';
+      photo.style.zIndex = 1000 + i;
+      photo.style.pointerEvents = 'auto';
+    });
+  }
+
+  function collapse() {
+    collapseTimer = setTimeout(function() {
+      isExpanded = false;
+      photos.forEach(function(photo, i) {
+        photo.style.position = 'absolute';
+        photo.style.left = '';
+        photo.style.top = '';
+        photo.style.transform = '';
+        photo.style.zIndex = '';
+        photo.style.pointerEvents = '';
+      });
+    }, 300);
+  }
+
+  stack.addEventListener('mouseenter', expand);
+  stack.addEventListener('mouseleave', function() {
+    // Don't collapse — photos are now fixed outside the container
+  });
+
+  // Hover sound
+  var hoverSound = new Audio('assets/pokemon.mp3');
+  hoverSound.volume = 0.3;
+
+  // Collapse only when mouse leaves a fanned-out photo and doesn't enter another
+  photos.forEach(function(photo) {
+    photo.addEventListener('mouseenter', function() {
+      clearTimeout(collapseTimer);
+      if (!isExpanded) return;
+      photo.classList.add('tilting');
+      if (photo.id === 'sphoto7') {
+        hoverSound.currentTime = 0;
+        hoverSound.play().catch(function(){});
+      }
+    });
+
+    photo.addEventListener('mousemove', function(e) {
+      if (!isExpanded || !photo.classList.contains('tilting')) return;
+      var rect = photo.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width;
+      var y = (e.clientY - rect.top) / rect.height;
+      var tiltX = (0.5 - y) * 30;
+      var tiltY = (x - 0.5) * 30;
+      var fanPos = fanPositions[Array.prototype.indexOf.call(photos, photo)];
+      var baseRotate = fanPos ? fanPos.rotate : 0;
+      photo.style.transform = 'perspective(400px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg) rotate(' + baseRotate + 'deg) scale(1.15)';
+    });
+
+    photo.addEventListener('mouseleave', function() {
+      photo.classList.remove('tilting');
+      // Reset to flat fan position
+      if (isExpanded) {
+        var i = Array.prototype.indexOf.call(photos, photo);
+        var pos = fanPositions[i];
+        if (pos) {
+          photo.style.transform = 'rotate(' + pos.rotate + 'deg)';
+        }
+      }
+      if (!isExpanded) return;
+      collapseTimer = setTimeout(function() {
+        isExpanded = false;
+        photos.forEach(function(p, i) {
+          p.style.position = 'absolute';
+          p.style.left = '';
+          p.style.top = '';
+          p.style.transform = '';
+          p.style.zIndex = '';
+          p.style.pointerEvents = '';
+          p.classList.remove('tilting');
+        });
+      }, 400);
+    });
+  });
+})();
+</script>
 </body>
 </html>
