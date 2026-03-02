@@ -55,7 +55,7 @@ const LOCATIONS = [
     lng: 75.3412,
     flag: '🇮🇳',
     emoji: '🌱', // used in tooltip card
-    year: '2005 – ∞',
+    year: '2005 – 2024',
     blurb: 'Punjab is where I grew up, messed up, learned a lot, and slowly started dreaming bigger.',
     url: 'chapters/punjab.html'
   },
