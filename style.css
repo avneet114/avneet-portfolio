@@ -344,12 +344,14 @@ button {
   right: 2rem;
   bottom: 2rem;
   z-index: 100;
-  width: 240px;
+  width: fit-content;
+  max-width: 100%;
   padding: 1.25rem 1.25rem 0.75rem;
   background: rgba(10, 10, 31, 0.92);
   border: 1px solid rgba(124, 143, 247, 0.3);
   border-radius: 16px;
   backdrop-filter: blur(10px);
+  overflow: hidden;
   opacity: 0;
   transition: opacity 0.6s ease;
   pointer-events: none;
@@ -377,8 +379,18 @@ button {
 }
 
 #newsletter-float iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 150px;
+  border: none;
   border-radius: 20px;
   overflow: hidden;
+}
+
+#newsletter-float a {
+  padding: 0.6rem 1.25rem;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 /* ===================================================
