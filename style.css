@@ -533,6 +533,11 @@ button {
   pointer-events: all;
 }
 
+#social-bar a svg {
+  width: 28px;
+  height: 28px;
+}
+
 #social-bar a:hover {
   color: #7c8ff7;
 }
