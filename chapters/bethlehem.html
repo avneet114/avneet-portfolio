@@ -422,3 +422,11 @@
   });
 })();
 </script>
+<script>
+(function() {
+  if (document.referrer.includes('index') || document.referrer.endsWith('/')) {
+    const americaYeah = new Audio('../assets/america-yeah.mp3');
+    americaYeah.play();
+  }
+})();
+</script>

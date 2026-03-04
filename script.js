@@ -124,6 +124,8 @@ const LOCATIONS = [
 
 const exploreClickSound = new Audio('assets/fahhh.mp3');
 exploreClickSound.preload = 'auto';
+const americaYeahSound = new Audio('assets/america-yeah.mp3');
+americaYeahSound.preload = 'auto';
 
 const tooltip     = document.getElementById('globe-tooltip');
 const ttEmoji     = document.getElementById('tt-emoji');
@@ -228,8 +230,9 @@ tooltip.addEventListener('mouseleave', () => {
 ttLink.addEventListener('click', (e) => {
   e.preventDefault();
   const dest = ttLink.href;
-  exploreClickSound.currentTime = 0;
-  exploreClickSound.play();
+  const sound = dest.includes('bethlehem') ? americaYeahSound : exploreClickSound;
+  sound.currentTime = 0;
+  sound.play();
   setTimeout(() => {
     window.location.href = dest;
   }, 400);
