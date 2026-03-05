@@ -390,6 +390,7 @@ function createPinElement(d) {
   flag.classList.add('pin-flag');
   flag.setAttribute('aria-hidden', 'true');
   flag.textContent = d.flag;
+  if (typeof twemoji !== 'undefined') twemoji.parse(flag, { folder: 'svg', ext: '.svg' });
   wrapper.appendChild(flag);
 
   /* Desktop: hover to show tooltip */

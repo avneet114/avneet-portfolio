@@ -3,6 +3,15 @@
    Dark space aesthetic with warm gold/amber accents
    =================================================== */
 
+/* --- Twemoji emoji images --- */
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em;
+  vertical-align: -0.1em;
+  display: inline;
+}
+
 /* --- Google Fonts import --- */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 

@@ -13,6 +13,8 @@
   <!-- Globe.gl via CDN -->
   <script src="https://unpkg.com/globe.gl"></script>
 
+  <!-- Twemoji — renders flag emojis on Windows -->
+  <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -414,5 +416,6 @@
   });
 })();
 </script>
+<script>twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });</script>
 </body>
 </html>

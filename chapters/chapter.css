@@ -4,6 +4,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+/* Twemoji emoji images */
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em;
+  vertical-align: -0.1em;
+  display: inline;
+}
+
 :root {
   --bg-dark: #080818;
   --bg-card: #0f0f2d;
