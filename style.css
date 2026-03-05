@@ -498,8 +498,24 @@ button {
     width: 80px;
     height: 80px;
   }
-  .mobile-photo { display: block; }
-  #photo-stack { display: none; }
+  .mobile-photo { display: none; }
+  #photo-stack {
+    display: block;
+    left: 35%;
+    top: 10%;
+    bottom: auto;
+    width: 90px;
+    height: 90px;
+    transform: translateX(-50%);
+  }
+  .stack-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Reposition "avneet" and "world" on mobile */
+  .intro-word:nth-child(4) { left: 60% !important; top: 16% !important; }
+  .intro-word:nth-child(8) { left: 65% !important; top: 74% !important; }
 
   /* On mobile, hero moves to top-centre over the globe */
   #hero {

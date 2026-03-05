@@ -120,7 +120,12 @@
     function blockGlobeWheel(e) {
       e.stopPropagation();
     }
+    function blockGlobeTouch(e) {
+      e.stopPropagation();
+    }
     globeContainer.addEventListener('wheel', blockGlobeWheel, true);
+    globeContainer.addEventListener('touchstart', blockGlobeTouch, true);
+    globeContainer.addEventListener('touchmove', blockGlobeTouch, true);
 
     window.addEventListener('scroll', function() {
       var scrollY = window.scrollY;
@@ -134,6 +139,8 @@
         overlay.style.visibility = 'hidden';
         // Re-enable globe zoom after intro is done
         globeContainer.removeEventListener('wheel', blockGlobeWheel, true);
+        globeContainer.removeEventListener('touchstart', blockGlobeTouch, true);
+        globeContainer.removeEventListener('touchmove', blockGlobeTouch, true);
         newsletterBtn.classList.add('visible');
         startFloatingIcons();
       } else {
@@ -310,7 +317,9 @@
   if (!stack) return;
   var photos = document.querySelectorAll('.stack-photo');
 
-  // Fan positions as viewport percentages (left%, top%)
+  function isMobile() { return window.innerWidth <= 768; }
+
+  // Desktop fan positions
   var fanPositions = [
     { left: 3,  top: 8,  rotate: -8 },
     { left: 2,  top: 38, rotate: -3 },
@@ -324,6 +333,24 @@
     { left: 30, top: 3,  rotate: 3 }
   ];
 
+  // Mobile fan positions — scattered across full screen (max left ~50vw for 80px photos)
+  var mobileFanPositions = [
+    { left: 5,  top: 3,  rotate: -6 },
+    { left: 48, top: 2,  rotate: 4 },
+    { left: 2,  top: 20, rotate: 3 },
+    { left: 45, top: 18, rotate: -5 },
+    { left: 20, top: 36, rotate: 7 },
+    { left: 50, top: 38, rotate: -3 },
+    { left: 3,  top: 54, rotate: -4 },
+    { left: 45, top: 56, rotate: 6 },
+    { left: 8,  top: 72, rotate: 2 },
+    { left: 48, top: 74, rotate: -7 }
+  ];
+
+  function getPositions() {
+    return isMobile() ? mobileFanPositions : fanPositions;
+  }
+
   var isExpanded = false;
   var collapseTimer;
 
@@ -331,8 +358,9 @@
     clearTimeout(collapseTimer);
     if (isExpanded) return;
     isExpanded = true;
+    var positions = getPositions();
     photos.forEach(function(photo, i) {
-      var pos = fanPositions[i];
+      var pos = positions[i];
       photo.style.position = 'fixed';
       photo.style.left = pos.left + 'vw';
       photo.style.top = pos.top + 'vh';
@@ -342,34 +370,68 @@
     });
   }
 
-  function collapse() {
+  function collapse(immediate) {
+    clearTimeout(collapseTimer);
+    var delay = immediate ? 0 : 300;
     collapseTimer = setTimeout(function() {
       isExpanded = false;
-      photos.forEach(function(photo, i) {
+      photos.forEach(function(photo) {
         photo.style.position = 'absolute';
         photo.style.left = '';
         photo.style.top = '';
         photo.style.transform = '';
         photo.style.zIndex = '';
         photo.style.pointerEvents = '';
+        photo.classList.remove('tilting');
       });
-    }, 300);
+    }, delay);
   }
 
+  // Desktop: hover to expand
   stack.addEventListener('mouseenter', expand);
   stack.addEventListener('mouseleave', function() {
     // Don't collapse — photos are now fixed outside the container
   });
 
-  // Hover sound
+  // Mobile: tap stack to toggle
+  stack.addEventListener('click', function(e) {
+    if (!isMobile()) return;
+    e.stopPropagation();
+    if (isExpanded) {
+      collapse(true);
+    } else {
+      expand();
+    }
+  });
+
+  // Mobile: tap outside photos to collapse
+  document.addEventListener('click', function(e) {
+    if (!isMobile() || !isExpanded) return;
+    if (e.target.closest('#photo-stack') || e.target.classList.contains('stack-photo')) return;
+    collapse(true);
+  });
+
+  // Re-position on resize/orientation change
+  window.addEventListener('resize', function() {
+    if (!isExpanded) return;
+    var positions = getPositions();
+    photos.forEach(function(photo, i) {
+      var pos = positions[i];
+      photo.style.left = pos.left + 'vw';
+      photo.style.top = pos.top + 'vh';
+      photo.style.transform = 'rotate(' + pos.rotate + 'deg)';
+    });
+  });
+
+  // Hover sound (desktop only)
   var hoverSound = new Audio('assets/pokemon.mp3');
   hoverSound.volume = 0.3;
 
-  // Collapse only when mouse leaves a fanned-out photo and doesn't enter another
+  // Per-photo hover effects (desktop only) + collapse on leave
   photos.forEach(function(photo) {
     photo.addEventListener('mouseenter', function() {
       clearTimeout(collapseTimer);
-      if (!isExpanded) return;
+      if (!isExpanded || isMobile()) return;
       photo.classList.add('tilting');
       if (photo.id === 'sphoto7') {
         hoverSound.currentTime = 0;
@@ -378,23 +440,63 @@
     });
 
     photo.addEventListener('mousemove', function(e) {
+      if (isMobile()) return;
       if (!isExpanded || !photo.classList.contains('tilting')) return;
       var rect = photo.getBoundingClientRect();
       var x = (e.clientX - rect.left) / rect.width;
       var y = (e.clientY - rect.top) / rect.height;
       var tiltX = (0.5 - y) * 30;
       var tiltY = (x - 0.5) * 30;
-      var fanPos = fanPositions[Array.prototype.indexOf.call(photos, photo)];
+      var positions = getPositions();
+      var fanPos = positions[Array.prototype.indexOf.call(photos, photo)];
       var baseRotate = fanPos ? fanPos.rotate : 0;
       photo.style.transform = 'perspective(400px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg) rotate(' + baseRotate + 'deg) scale(1.15)';
     });
 
-    photo.addEventListener('mouseleave', function() {
+    // Mobile: 3D tilt via touch
+    photo.addEventListener('touchstart', function(e) {
+      if (!isMobile() || !isExpanded) return;
+      photo.classList.add('tilting');
+      if (photo.id === 'sphoto7') {
+        hoverSound.currentTime = 0;
+        hoverSound.play().catch(function(){});
+      }
+    }, { passive: true });
+
+    photo.addEventListener('touchmove', function(e) {
+      if (!isMobile() || !isExpanded || !photo.classList.contains('tilting')) return;
+      var touch = e.touches[0];
+      var rect = photo.getBoundingClientRect();
+      var x = (touch.clientX - rect.left) / rect.width;
+      var y = (touch.clientY - rect.top) / rect.height;
+      var tiltX = (0.5 - y) * 25;
+      var tiltY = (x - 0.5) * 25;
+      var positions = getPositions();
+      var fanPos = positions[Array.prototype.indexOf.call(photos, photo)];
+      var baseRotate = fanPos ? fanPos.rotate : 0;
+      photo.style.transform = 'perspective(400px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg) rotate(' + baseRotate + 'deg) scale(1.15)';
+    }, { passive: true });
+
+    photo.addEventListener('touchend', function() {
+      if (!isMobile()) return;
       photo.classList.remove('tilting');
-      // Reset to flat fan position
       if (isExpanded) {
         var i = Array.prototype.indexOf.call(photos, photo);
-        var pos = fanPositions[i];
+        var positions = getPositions();
+        var pos = positions[i];
+        if (pos) {
+          photo.style.transform = 'rotate(' + pos.rotate + 'deg)';
+        }
+      }
+    });
+
+    photo.addEventListener('mouseleave', function() {
+      if (isMobile()) return;
+      photo.classList.remove('tilting');
+      if (isExpanded) {
+        var i = Array.prototype.indexOf.call(photos, photo);
+        var positions = getPositions();
+        var pos = positions[i];
         if (pos) {
           photo.style.transform = 'rotate(' + pos.rotate + 'deg)';
         }
@@ -402,7 +504,7 @@
       if (!isExpanded) return;
       collapseTimer = setTimeout(function() {
         isExpanded = false;
-        photos.forEach(function(p, i) {
+        photos.forEach(function(p) {
           p.style.position = 'absolute';
           p.style.left = '';
           p.style.top = '';
