@@ -92,6 +92,18 @@
   <!-- Main script — globe, pins, tooltips, stars -->
   <script src="script.js"></script>
 
+  <!-- Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<div id="guess-game">
+  <div class="guess-header">guess where i'm going next ✈️</div>
+  <div class="guess-input-row">
+    <input type="text" id="guess-input" placeholder="type a country..." autocomplete="off" />
+    <button id="guess-btn">go</button>
+  </div>
+  <div id="guess-feedback"></div>
+</div>
+
 <div id="newsletter-float">
   <a href="https://subscribe-forms.beehiiv.com/f81b2276-3730-4e1c-92ea-a74ae71c46eb"
      target="_blank" rel="noopener" id="newsletter-link">
@@ -109,12 +121,93 @@
 })();
 </script>
 
+<!-- Guess the Destination game logic -->
+<script>
+(function() {
+  var guessGame = document.getElementById('guess-game');
+  var guessInput = document.getElementById('guess-input');
+  var guessBtn = document.getElementById('guess-btn');
+  var feedback = document.getElementById('guess-feedback');
+  var confettiSound = new Audio('assets/confetti-pop.mp3');
+  confettiSound.volume = 0.7;
+
+  var wrongMessages = [
+    "Nope! But good guess \u{1F92A}",
+    "I wish",
+    "Not even close... or are you? \u{1F440}",
+    "Interesting guess! Try again \u2708\uFE0F"
+  ];
+
+  var hints = [
+    "Hint: it's in Europe \u{1F30D}",
+    "Hint: famous for beer & pretzels \u{1F37A}",
+    "Hint: think Oktoberfest \u{1F3B6}",
+    "Hint: starts with a G..."
+  ];
+
+  var wrongCount = 0;
+
+  function checkGuess() {
+    var val = guessInput.value.trim().toLowerCase();
+    if (!val) return;
+
+    if (val === 'germany' || val === 'deutschland') {
+      // Correct!
+      guessGame.classList.add('correct');
+      feedback.innerHTML = '\u{1F389} YOU GOT IT!<br>Deutschland, here I come! \u{1F1E9}\u{1F1EA}';
+
+      confettiSound.currentTime = 0;
+      confettiSound.play().catch(function(){});
+
+      // Fire confetti
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { x: 0.15, y: 0.85 }
+      });
+      setTimeout(function() {
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { x: 0.2, y: 0.7 }
+        });
+      }, 300);
+
+      // Parse emojis
+      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
+    } else {
+      // Wrong guess
+      var msg = wrongMessages[wrongCount % wrongMessages.length];
+
+      // Show a hint after every 2 wrong guesses
+      if (wrongCount > 0 && wrongCount % 2 === 1) {
+        var hintIdx = Math.min(Math.floor(wrongCount / 2), hints.length - 1);
+        msg += '<br><span style="color:#8892b0;font-size:0.72rem">' + hints[hintIdx] + '</span>';
+      }
+
+      feedback.innerHTML = msg;
+      wrongCount++;
+      guessInput.value = '';
+      guessInput.focus();
+
+      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
+    }
+  }
+
+  guessBtn.addEventListener('click', checkGuess);
+  guessInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGuess();
+  });
+})();
+</script>
+
   <!-- Intro overlay scroll-away logic -->
   <script>
   (function() {
     var overlay = document.getElementById('intro-overlay');
     var globeContainer = document.getElementById('globe-container');
     var newsletterBtn = document.getElementById('newsletter-float');
+    var guessGame = document.getElementById('guess-game');
     // Prevent globe's OrbitControls from capturing wheel events
     // so the page can scroll. Re-enable after intro completes.
     function blockGlobeWheel(e) {
@@ -142,10 +235,12 @@
         globeContainer.removeEventListener('touchstart', blockGlobeTouch, true);
         globeContainer.removeEventListener('touchmove', blockGlobeTouch, true);
         newsletterBtn.classList.add('visible');
+        guessGame.classList.add('visible');
         startFloatingIcons();
       } else {
         overlay.style.visibility = 'visible';
         newsletterBtn.classList.remove('visible');
+        guessGame.classList.remove('visible');
         stopFloatingIcons();
       }
     });

@@ -388,6 +388,115 @@ button {
 
 
 /* ===================================================
+   GUESS THE DESTINATION GAME
+   =================================================== */
+
+#guess-game {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 100;
+  width: 260px;
+  padding: 1.1rem 1.2rem;
+  background: rgba(10, 10, 31, 0.92);
+  border: 1px solid rgba(124, 143, 247, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+#guess-game.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.guess-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.guess-input-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+#guess-input {
+  flex: 1;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(124, 143, 247, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#guess-input:focus {
+  border-color: #7c8ff7;
+}
+
+#guess-input::placeholder {
+  color: #8892b0;
+}
+
+#guess-btn {
+  padding: 0.45rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: #7c8ff7;
+  color: #000;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: none !important;
+  transition: background 0.3s ease;
+}
+
+#guess-btn:hover {
+  background: #b8a9f7;
+}
+
+#guess-feedback {
+  margin-top: 0.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  color: #b8a9f7;
+  min-height: 1.2em;
+  transition: opacity 0.3s ease;
+}
+
+#guess-game.correct .guess-header {
+  color: #7c8ff7;
+}
+
+#guess-game.correct #guess-input,
+#guess-game.correct #guess-btn {
+  display: none;
+}
+
+#guess-game.correct #guess-feedback {
+  font-size: 0.9rem;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  #guess-game {
+    left: 1rem;
+    bottom: 1rem;
+    width: 220px;
+    padding: 0.9rem 1rem;
+  }
+}
+
+/* ===================================================
    NEWSLETTER FLOATING CARD
    =================================================== */
 
