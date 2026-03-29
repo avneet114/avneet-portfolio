@@ -379,17 +379,6 @@
       });
     });
   </script>
-<script>
-(function() {
-  const clickSound = new Audio('../assets/applepay.mp3');
-  clickSound.preload = 'auto';
-
-  document.addEventListener('click', function() {
-    clickSound.currentTime = 0;
-    clickSound.play();
-  });
-})();
-</script>
 <div id="star-cursor"></div>
 <script>
 (function() {
@@ -420,6 +409,16 @@
     setTimeout(() => {
       star.style.transform = 'translate(-50%, -50%) rotate(0deg)';
     }, 300);
+  });
+})();
+</script>
+<script>
+(function() {
+  const clickSound = new Audio('../assets/click.mp3');
+  clickSound.preload = 'auto';
+  document.addEventListener('click', function() {
+    clickSound.currentTime = 0;
+    clickSound.play();
   });
 })();
 </script>

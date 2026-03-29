@@ -334,14 +334,21 @@
 
 <script>
 (function() {
-  const clickSound = new Audio('assets/applepay.mp3');
+  const applePaySound = new Audio('assets/applepay.mp3');
+  applePaySound.preload = 'auto';
+  const clickSound = new Audio('assets/click.mp3');
   clickSound.preload = 'auto';
 
   document.addEventListener('click', function(e) {
-    // Only play sound when clicking a globe pin/flag
-    if (!e.target.closest('.globe-pin')) return;
-    clickSound.currentTime = 0;
-    clickSound.play();
+    // Skip for "Explore This Chapter" link — it has its own sound
+    if (e.target.closest('#tt-link')) return;
+    if (e.target.closest('#globe-section')) {
+      applePaySound.currentTime = 0;
+      applePaySound.play();
+    } else {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
   });
 })();
 </script>
