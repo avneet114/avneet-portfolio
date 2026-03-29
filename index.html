@@ -338,8 +338,8 @@
   clickSound.preload = 'auto';
 
   document.addEventListener('click', function(e) {
-    // Skip for "Explore This Chapter" link — it has its own sound
-    if (e.target.closest('#tt-link')) return;
+    // Only play sound when clicking a globe pin/flag
+    if (!e.target.closest('.globe-pin')) return;
     clickSound.currentTime = 0;
     clickSound.play();
   });
