@@ -196,74 +196,6 @@ button {
   z-index: 1;
 }
 
-/* Hero text — left-side panel floating over the globe */
-#hero {
-  position: absolute;
-  /* Vertically centred on the left edge */
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  z-index: 10;
-  text-align: left;
-  padding: 48px 64px 48px 48px;
-  max-width: 460px;
-  /* Mouse/touch passes through so globe drag still works */
-  pointer-events: none;
-  /* Gradient: dark on the left, fades out toward the globe */
-  background: linear-gradient(
-    to right,
-    rgba(10, 10, 26, 0.88) 55%,
-    transparent 100%
-  );
-}
-
-#hero h1 {
-  font-size: clamp(2.4rem, 4.5vw, 4rem);
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.15;
-  /* Cartoon-style offset shadow: warm amber layer + dark depth */
-  text-shadow:
-    3px 3px 0 rgba(244, 162, 97, 0.35),
-    0 6px 24px rgba(0, 0, 0, 0.85);
-}
-
-#hero h1 .emoji {
-  display: inline-block;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50%       { transform: translateY(-8px) rotate(3deg); }
-}
-
-/* Decorative gold accent line under the h1 */
-#hero h1::after {
-  content: '';
-  display: block;
-  width: 56px;
-  height: 4px;
-  margin-top: 14px;
-  border-radius: 4px;
-  background: linear-gradient(to right, var(--accent-gold), var(--accent-warm));
-}
-
-#hero .subtitle {
-  margin-top: 20px;
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-  color: var(--text-secondary);
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
-  line-height: 1.6;
-}
-
-#hero .subtitle span {
-  color: var(--accent-gold);
-  font-weight: 600;
-}
-
 /* Globe canvas — fills the full section */
 #globe-container {
   position: absolute;
@@ -532,31 +464,6 @@ button {
   pointer-events: all;
 }
 
-.nf-header {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.3rem;
-}
-
-.nf-sub {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  color: #8892b0;
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
-}
-
-#newsletter-float iframe {
-  width: 100%;
-  max-width: 100%;
-  height: 150px;
-  border: none;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
 #newsletter-float a {
   padding: 0.6rem 1.25rem;
   white-space: nowrap;
@@ -635,22 +542,6 @@ button {
   .intro-word:nth-child(4) { left: 60% !important; top: 16% !important; }
   .intro-word:nth-child(8) { left: 65% !important; top: 74% !important; }
 
-  /* On mobile, hero moves to top-centre over the globe */
-  #hero {
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    text-align: center;
-    padding: 32px 24px 0;
-    max-width: 100%;
-    background: linear-gradient(to bottom, rgba(10, 10, 26, 0.82) 0%, transparent 100%);
-  }
-
-  #hero h1::after {
-    margin: 10px auto 0;
-  }
-
   /* On mobile, tooltip appears at the bottom of the globe area,
      not floating near the pin (handled in JS) */
   #globe-tooltip {
@@ -667,32 +558,6 @@ button {
     transform: translateX(-50%) translateY(0);
   }
 
-  .social-btn {
-    padding: 16px 20px;
-    min-width: 80px;
-  }
-
-  .newsletter-form,
-  .game-form {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .newsletter-form input,
-  .game-form input {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  #hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .contact-inner {
-    gap: 48px;
-  }
 }
 
 /* ===================================================
@@ -728,10 +593,6 @@ button {
 
 #social-bar a:hover {
   color: #7c8ff7;
-}
-
-.social-line {
-  display: none;
 }
 
 .social-tooltip {
