@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chapter 6 — Canada</title>
-  <meta name="description" content="2025. Visited Montreal with school, then returned solo to visit cousins in Toronto." />
+  <title>Euro Summer — Avneet Kaur</title>
+  <meta name="description" content="Travel stops across Europe — Belgium, Netherlands, France, Switzerland, and Italy." />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="../assets/favicon.png" sizes="72x72" type="image/png" />
   <link rel="apple-touch-icon" href="../assets/favicon.png" />
@@ -38,6 +38,14 @@
       color: var(--theme-ink);
       line-height: 1.1;
       margin-bottom: 12px;
+    }
+
+    /* Five flags at full title size overwhelm the text — scale them
+       down to read as an accent strip instead. */
+    .essay-header h1 .flag-strip {
+      font-size: 0.4em;
+      letter-spacing: -0.05em;
+      vertical-align: middle;
     }
 
     .essay-header .subtitle {
@@ -225,57 +233,6 @@
       text-decoration: underline;
     }
 
-    /* === CHAPTER NAV === */
-    .next-chapter {
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 2px solid var(--theme-structural);
-      text-align: right;
-    }
-
-    /* Same offset-shadow button family as RESUME/Quick recap/Back to
-       the Globe/tab buttons — chapter nav is a real CTA now. */
-    .next-chapter a {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 22px;
-      background: var(--theme-resume-bg);
-      color: var(--theme-resume-ink);
-      border: 2px solid var(--theme-resume-ink);
-      border-radius: 3px;
-      box-shadow: 4px 4px 0 var(--theme-structural);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
-    }
-
-    .next-chapter a:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0 var(--theme-structural);
-    }
-
-    .next-chapter a:active {
-      transform: translate(4px, 4px);
-      box-shadow: 0 0 0 var(--theme-structural);
-    }
-
-    .next-chapter .next-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      display: block;
-      color: var(--theme-resume-ink);
-      opacity: 0.65;
-    }
-
-    .next-chapter .next-title {
-      font-size: 1rem;
-      color: var(--theme-resume-ink);
-      font-weight: 700;
-    }
-
     /* === MOBILE === */
     @media (max-width: 768px) {
       .essay-header {
@@ -344,8 +301,8 @@
 
     <!-- CHAPTER HEADER -->
     <header class="essay-header">
-      <h1>🇨🇦 Canada</h1>
-      <p class="subtitle">2025 - 2026</p>
+      <h1><span class="flag-strip">🇧🇪🇳🇱🇫🇷🇨🇭🇮🇹</span> Euro Summer</h1>
+      <p class="subtitle">June 2026 – July 2026</p>
       <div class="tab-toggle">
         <button class="tab-btn active" data-tab="personal">📖 Personal Story</button>
         <button class="tab-btn" data-tab="work">💻 Work Experience</button>
@@ -364,17 +321,6 @@
       <p>This chapter is coming soon.</p>
     </div>
 
-    <!-- NEXT CHAPTER -->
-    <div class="next-chapter">
-      <a href="germany.html">
-        <div>
-          <span class="next-label">Next Chapter</span>
-          <span class="next-title">Germany 🇩🇪</span>
-        </div>
-        <span style="font-size: 1.3rem;">→</span>
-      </a>
-    </div>
-
     </div><!-- /panel-personal -->
 
     <!-- TAB 2: WORK & EXPERIENCE -->
@@ -386,17 +332,6 @@
         </div>
 
       </div><!-- /.timeline -->
-
-      <!-- NEXT CHAPTER -->
-      <div class="next-chapter">
-        <a href="germany.html">
-          <div>
-            <span class="next-label">Next Chapter</span>
-            <span class="next-title">Germany 🇩🇪</span>
-          </div>
-          <span style="font-size: 1.3rem;">→</span>
-        </a>
-      </div>
     </div><!-- /panel-work -->
 
   </div><!-- /.chapter-page -->

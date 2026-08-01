@@ -233,18 +233,47 @@
       text-align: right;
     }
 
+    /* Same offset-shadow button family as RESUME/Quick recap/Back to
+       the Globe/tab buttons — chapter nav is a real CTA now. */
+    .next-chapter a {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 22px;
+      background: var(--theme-resume-bg);
+      color: var(--theme-resume-ink);
+      border: 2px solid var(--theme-resume-ink);
+      border-radius: 3px;
+      box-shadow: 4px 4px 0 var(--theme-structural);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .next-chapter a:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--theme-structural);
+    }
+
+    .next-chapter a:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 var(--theme-structural);
+    }
+
     .next-chapter .next-label {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       display: block;
-      color: var(--theme-ink-secondary);
+      color: var(--theme-resume-ink);
+      opacity: 0.65;
     }
 
     .next-chapter .next-title {
       font-size: 1rem;
-      color: var(--theme-ink);
-      font-weight: 500;
+      color: var(--theme-resume-ink);
+      font-weight: 700;
     }
 
     /* === MOBILE === */
@@ -335,6 +364,17 @@
       <p>This chapter is coming soon.</p>
     </div>
 
+    <!-- NEXT CHAPTER -->
+    <div class="next-chapter">
+      <a href="canada.html">
+        <div>
+          <span class="next-label">Next Chapter</span>
+          <span class="next-title">Canada 🍁</span>
+        </div>
+        <span style="font-size: 1.3rem;">→</span>
+      </a>
+    </div>
+
     </div><!-- /panel-personal -->
 
     <!-- TAB 2: WORK & EXPERIENCE -->
@@ -346,6 +386,17 @@
         </div>
 
       </div><!-- /.timeline -->
+
+      <!-- NEXT CHAPTER -->
+      <div class="next-chapter">
+        <a href="canada.html">
+          <div>
+            <span class="next-label">Next Chapter</span>
+            <span class="next-title">Canada 🍁</span>
+          </div>
+          <span style="font-size: 1.3rem;">→</span>
+        </a>
+      </div>
     </div><!-- /panel-work -->
 
   </div><!-- /.chapter-page -->

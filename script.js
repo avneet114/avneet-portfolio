@@ -113,6 +113,36 @@ const LOCATIONS = [
     year: '2025 - 2026',
     blurb: 'Visited Montreal with school in summer for 5 days, then returned solo to visit cousins for 2 weeks.',
     url: 'chapters/canada.html'
+  },
+  {
+    // Task 1.6 — appended pin, approved Aug 2026. Coordinates are Essen,
+    // Germany, matching the same 51.4556°N 7.0116°E already published on
+    // recap.html's "Currently" line.
+    id: 'germany',
+    name: 'Essen, Germany',
+    lat: 51.4556,
+    lng: 7.0116,
+    flag: '🇩🇪',
+    emoji: '🥨',
+    year: 'June 2026 - July 2026',
+    blurb: 'Software Engineer / PM Intern at Place Beyond Bytes, University of Duisburg-Essen.',
+    url: 'chapters/germany.html'
+  },
+  {
+    // Task 1.7 — appended pin, approved Aug 2026. ONE combined pin for the
+    // Europe trip rather than five separate country pins, per the existing
+    // pre-decision in claude.md (avoids unreadable pin clustering in
+    // Western Europe at this altitude). Coordinates are Brussels, Belgium
+    // as a reasonably central point for the group.
+    id: 'europe-trip',
+    name: "Euro Summer",
+    lat: 50.8503,
+    lng: 4.3517,
+    flag: '🇪🇺',
+    emoji: '🇧🇪🇳🇱🇫🇷🇨🇭🇮🇹',
+    year: 'June 2026 - July 2026',
+    blurb: 'Backpacked across Europe every weekend.',
+    url: 'chapters/passport.html'
   }
 ];
 
