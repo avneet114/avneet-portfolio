@@ -238,6 +238,135 @@ button {
 }
 
 /* ===================================================
+   HERO INTRO — Aug 2026
+   Full-stage overlay, sits above the tour panel (z-index 50) so it's
+   the first thing visible on load. Dismissing removes .intro-active
+   from <body>, which fades this out and un-blurs the globe via the
+   filter transition above.
+   =================================================== */
+#hero-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+body:not(.intro-active) #hero-intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* sphere.mp4 — a sphere of Avneet's own photos, looping behind the
+   bubble at full brightness. No dimming scrim — legibility comes from
+   the bubble's own solid card background instead. */
+#hero-intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* One line at a time, chat-bubble styled — rounder than the site's
+   usual sharp neobrutalist cards on purpose, to read as a bubble.
+   Same dark charcoal + cobalt look on every step including the CTA —
+   no light/dark flip between lines. Advances on click or automatically
+   every 2s (see the inline script in index.html); the last line is
+   the CTA and its own click handler dismisses instead of advancing. */
+.hero-intro-bubble {
+  position: relative;
+  z-index: 2;
+  max-width: 340px;
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-structural);
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 4px 4px 0 var(--theme-structural);
+  cursor: pointer;
+  text-align: center;
+}
+
+#hero-intro-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  /* Bio lines read a touch dimmer than the greeting/CTA bookends below,
+     so those two moments pop instead of everything being flat white. */
+  color: var(--theme-ink-secondary);
+}
+
+/* Headline + CTA are the two "bookend" moments — whole button goes
+   white (same off-white fill + dark ink as RESUME/Explore elsewhere
+   on the site), not just white text, so it reads as a real button
+   rather than plain text on the dark bubble the bio lines use. */
+.hero-intro-bubble.headline,
+.hero-intro-bubble.cta {
+  background: var(--theme-resume-bg);
+  border-color: var(--theme-resume-ink);
+}
+
+/* Playfair Display + Outfit — same pairing as every chapter page's
+   h1/essay-body, not the header's Unbounded (that's UI chrome, this
+   is narrative text). */
+.hero-intro-bubble.headline #hero-intro-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  color: var(--theme-resume-ink);
+}
+
+.hero-intro-bubble.cta {
+  /* Wider than the default bubble so "Wanna learn more about my
+     journey? Follow along ;)" stays on one line instead of wrapping. */
+  max-width: 460px;
+}
+
+.hero-intro-bubble.cta #hero-intro-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  color: var(--theme-resume-ink);
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.hero-intro-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.hero-intro-hint,
+.hero-intro-skip {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--theme-structural);
+}
+
+.hero-intro-skip {
+  color: var(--theme-ink-secondary);
+  cursor: pointer;
+}
+
+.hero-intro-skip:hover {
+  color: var(--theme-accent);
+}
+
+/* ===================================================
    GUIDED TOUR PANEL — Aug 2026
    Floats over the bottom of the globe stage. Positioned relative to
    #globe-section (sticky, so it establishes the containing block) —

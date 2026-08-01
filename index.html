@@ -28,7 +28,7 @@
   <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="intro-active">
 
   <!-- ============================================================
        SITE HEADER — Layer 1. Plain HTML, no JavaScript.
@@ -106,7 +106,7 @@
          does not touch globe init, textures, pin data, or tooltip logic.
          Populated by JS from the same LOCATIONS array as the pins.
          ============================================================ -->
-    <div id="tour-panel">
+    <div id="tour-panel" class="hidden">
       <button type="button" id="tour-close" aria-label="Close guided tour">×</button>
       <div class="tour-progress" id="tour-progress"></div>
       <div class="tour-location">
@@ -122,7 +122,28 @@
       </div>
     </div>
 
-    <button type="button" id="tour-reopen" aria-label="Open guided tour" hidden>🧭</button>
+    <button type="button" id="tour-reopen" aria-label="Open guided tour">🧭</button>
+
+    <!-- ============================================================
+         HERO INTRO — Aug 2026
+         Replaces the scattered-words intro removed Aug 1 (archived as
+         PIECE 1). Full-brightness looping video backdrop (sphere.mp4 —
+         a sphere of Avneet's own photos), no dimming scrim — the bio
+         reveals one line at a time in a bubble instead of one big
+         block, auto-advancing every 2s or on click. Click the final
+         (CTA) bubble to dismiss — fades out, reveals the globe + tour
+         panel already sitting underneath, untouched the whole time.
+         ============================================================ -->
+    <div id="hero-intro" role="button" tabindex="0" aria-label="Advance intro, or dismiss on the last line">
+      <video id="hero-intro-video" src="sphere.mp4" autoplay muted loop playsinline></video>
+      <div class="hero-intro-bubble" id="hero-intro-bubble">
+        <p id="hero-intro-text"></p>
+        <div class="hero-intro-footer">
+          <span class="hero-intro-hint" id="hero-intro-hint"></span>
+          <span class="hero-intro-skip" id="hero-intro-skip">Skip ✕</span>
+        </div>
+      </div>
+    </div>
 
   </section>
 
@@ -157,6 +178,92 @@
     });
   </script>
 
+  <!-- Hero intro bubble sequence — one line at a time, auto-advancing
+       every 2s or on click/Enter/Space. The last line is the CTA;
+       advancing past it removes .intro-active from <body>, which
+       drives the whole overlay's fade in style.css. -->
+  <script>
+    (function() {
+      const intro   = document.getElementById('hero-intro');
+      const bubble  = document.getElementById('hero-intro-bubble');
+      const textEl  = document.getElementById('hero-intro-text');
+      const hintEl  = document.getElementById('hero-intro-hint');
+      const skipEl  = document.getElementById('hero-intro-skip');
+
+      const LINES = [
+        { text: "hi, i'm avneet", type: 'headline' },
+        { text: "welcome to my world.", type: 'headline' },
+        { text: "Avneet is a creative soul who can't sit still." },
+        { text: "She taught herself video production at 12 and started her first business at 13." },
+        { text: "Since then, she's worked with startups across three continents in roles spanning software engineering, product, creative, and everything in between." },
+        { text: "Among the million things she's done since then, she's currently studying Computer Science and Business at Lehigh University while building AI products." },
+        { text: "She's also exploring how technology can reshape the future of education." },
+        { text: "A generalist at heart, she loves tackling messy problems, learning new things, and turning ideas into reality." },
+        { text: "Wanna learn more about my journey? Follow along ;)", type: 'cta' }
+      ];
+
+      let step = 0;
+      let autoTimer = null;
+
+      function render() {
+        const line = LINES[step];
+        const isLast = step === LINES.length - 1;
+        textEl.textContent = line.text;
+        bubble.className = 'hero-intro-bubble' + (line.type ? ' ' + line.type : '');
+        hintEl.textContent = isLast ? '' : 'Next ›';
+        skipEl.textContent = isLast ? "Let's go" : 'Skip ✕';
+      }
+
+      // Longer lines get more reading time — 2s floor, 4s ceiling,
+      // scaled by word count in between.
+      function durationFor(text) {
+        const words = text.split(/\s+/).length;
+        return Math.min(4000, Math.max(2000, 1400 + words * 110));
+      }
+
+      function scheduleAuto() {
+        clearTimeout(autoTimer);
+        if (step < LINES.length - 1) {
+          autoTimer = setTimeout(advance, durationFor(LINES[step].text));
+        }
+      }
+
+      function dismiss() {
+        clearTimeout(autoTimer);
+        document.body.classList.remove('intro-active');
+      }
+
+      function advance() {
+        if (step < LINES.length - 1) {
+          step += 1;
+          render();
+          scheduleAuto();
+        } else {
+          dismiss();
+        }
+      }
+
+      intro.addEventListener('click', advance);
+      intro.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          advance();
+        }
+      });
+
+      // Own handler, stops propagation so it doesn't also fire the
+      // parent's advance-on-click — skipping should jump straight to
+      // dismiss regardless of which line is currently showing.
+      skipEl.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dismiss();
+      });
+
+      render();
+      scheduleAuto();
+    })();
+  </script>
+
   <!-- Confetti CDN removed Aug 1, 2026 with the guess game.
        Restore from _archive/removed-intro-2026-08-01.html PIECE 4a. -->
 
@@ -179,19 +286,27 @@
   const clickSound = new Audio('assets/click.mp3');
   clickSound.preload = 'auto';
 
+  // Capture phase — pin clicks call e.stopPropagation() inside script.js
+  // (part of the tooltip logic that's off-limits to touch), which blocks
+  // normal bubble-phase listeners like this one from ever seeing the
+  // click. Capture fires on the way DOWN, before that stopPropagation
+  // runs, so this still sees every click including pins.
   document.addEventListener('click', function(e) {
     // Skip for "Explore This Chapter" link — it has its own sound
     if (e.target.closest('#tt-link')) return;
     // Header is Layer 1 — keep it silent so RESUME/email never make noise
     if (e.target.closest('#site-header')) return;
-    if (e.target.closest('#globe-section')) {
+    // Apple Pay chime is reserved for actually clicking a country pin —
+    // everything else (tour panel, hero intro bubble, reopen button,
+    // any other button on the page) gets the lowkey click sound instead.
+    if (e.target.closest('.globe-pin')) {
       applePaySound.currentTime = 0;
       applePaySound.play();
     } else {
       clickSound.currentTime = 0;
       clickSound.play();
     }
-  });
+  }, true);
 })();
 </script>
 
