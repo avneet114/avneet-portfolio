@@ -754,27 +754,38 @@ button {
 
 /* Secondary CTA — outlined, so it reads as a real button without competing
    with the solid cream RESUME block beside it. */
+/* Same solid offset-shadow treatment as .header-resume below — Quick
+   recap is a real second CTA now, not an outlined secondary link. */
 .header-recap {
   font-family: 'Unbounded', sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--theme-ink);
-  padding: 6px 13px;
-  border: 2px solid var(--theme-structural);
+  color: var(--theme-resume-ink);
+  text-decoration: none;
+  background: var(--theme-resume-bg);
+  padding: 7px 16px;
+  border: 2px solid var(--theme-resume-ink);
   border-radius: 3px;
+  box-shadow: 3px 3px 0 var(--theme-structural);
   white-space: nowrap;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .header-recap:hover {
-  background: var(--theme-structural);
-  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--theme-structural);
+}
+
+.header-recap:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--theme-structural);
 }
 
 .header-recap.is-current {
   background: var(--theme-structural);
   color: #fff;
+  border-color: var(--theme-structural);
 }
 
 .header-icon {
