@@ -301,13 +301,15 @@ button {
   pointer-events: auto;
 }
 
+/* Neobrutalist pin tooltip (Aug 2026) — flat charcoal, hard cobalt
+   border + offset shadow, no blur/glow/gradient. Matches the header +
+   globe-stage frame language instead of the legacy periwinkle glass card. */
 .tooltip-card {
-  background: var(--bg-card);
-  border: 2px solid rgba(124, 143, 247, 0.5);
-  border-radius: var(--radius-sm);
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
   padding: 12px 14px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 18px rgba(184, 169, 247, 0.15);
-  backdrop-filter: blur(10px);
+  box-shadow: 4px 4px 0 var(--theme-structural);
 }
 
 .tooltip-emoji {
@@ -317,23 +319,23 @@ button {
 }
 
 .tooltip-location {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--theme-ink);
   display: inline;
 }
 
 .tooltip-year {
   font-size: 0.7rem;
-  color: var(--text-secondary);
+  color: var(--theme-ink-secondary);
   margin: 4px 0 6px;
   letter-spacing: 0.04em;
 }
 
 .tooltip-blurb {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: var(--theme-ink-secondary);
   line-height: 1.45;
   margin-bottom: 10px;
 }
@@ -342,20 +344,22 @@ button {
   display: inline-block;
   width: auto;
   padding: 6px 14px;
-  background: linear-gradient(135deg, #7c8ff7, #b8a9f7);
-  color: #ffffff;
-  border-radius: var(--radius-pill);
-  font-size: 0.75rem;
+  background: var(--theme-resume-bg);
+  color: var(--theme-resume-ink);
+  border: 2px solid var(--theme-resume-ink);
+  border-radius: 3px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
   text-decoration: none;
+  box-shadow: 2px 2px 0 var(--theme-structural);
 }
 
 .tooltip-btn:hover {
-  opacity: 0.92;
-  transform: scale(1.04);
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--theme-structural);
 }
 
 

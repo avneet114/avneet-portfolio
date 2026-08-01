@@ -15,7 +15,7 @@
   <style>
     /* === ESSAY OVERRIDES === */
     body {
-      background: #000000;
+      background: var(--theme-bg);
       font-family: 'Outfit', sans-serif;
     }
 
@@ -35,7 +35,7 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.8rem, 6vw, 4.5rem);
       font-weight: 400;
-      color: #ffffff;
+      color: var(--theme-ink);
       line-height: 1.1;
       margin-bottom: 12px;
     }
@@ -43,7 +43,7 @@
     .essay-header .subtitle {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(1.5rem, 3vw, 2.5rem);
-      color: #c8d0e8;
+      color: var(--theme-ink-secondary);
       font-weight: 300;
       letter-spacing: 0.03em;
     }
@@ -63,32 +63,36 @@
     /* === TAB TOGGLE === */
     .tab-toggle {
       display: flex;
+      align-items: center;
       gap: 12px;
       margin-top: 20px;
     }
 
+    /* Same offset-shadow button family as the header/nav CTAs. */
     .tab-btn {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      padding: 10px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 9px 20px;
+      border-radius: 3px;
+      border: 2px solid var(--theme-structural);
       background: transparent;
-      color: #ffffff;
+      color: var(--theme-ink);
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease, color 0.15s ease;
     }
 
     .tab-btn.active {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-      font-weight: 500;
+      background: var(--theme-resume-bg);
+      color: var(--theme-resume-ink);
+      border-color: var(--theme-resume-ink);
+      box-shadow: 3px 3px 0 var(--theme-structural);
     }
 
     .tab-btn:not(.active):hover {
-      border-color: rgba(255, 255, 255, 0.6);
+      background: var(--theme-structural);
+      color: #fff;
     }
 
     /* === TAB PANELS === */
@@ -121,17 +125,17 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: rgba(124, 143, 247, 0.25);
+      background: var(--theme-structural);
     }
 
     .timeline-card {
       position: relative;
-      background: #0a0a1f;
-      border: 1px solid rgba(124, 143, 247, 0.2);
-      border-radius: 12px;
+      background: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
       padding: 28px;
       margin-bottom: 24px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
       opacity: 0;
       transform: translateY(16px);
     }
@@ -145,8 +149,8 @@
     }
 
     .timeline-card:hover {
-      border-color: rgba(124, 143, 247, 0.4);
-      box-shadow: 0 0 20px rgba(124, 143, 247, 0.08);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--theme-structural);
     }
 
     .timeline-card::before {
@@ -157,16 +161,15 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #7c8ff7;
-      border: 2px solid #0a0a1f;
-      box-shadow: 0 0 8px rgba(124, 143, 247, 0.4);
+      background: var(--theme-structural);
+      border: 2px solid var(--theme-bg);
     }
 
     .tl-role {
       font-family: 'Outfit', sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
-      color: #7c8ff7;
+      color: var(--theme-structural);
       margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.02em;
@@ -178,13 +181,13 @@
       align-items: baseline;
       gap: 12px;
       font-size: 0.85rem;
-      color: #8892b0;
+      color: var(--theme-ink-secondary);
       margin-bottom: 14px;
       flex-wrap: wrap;
     }
 
-    .tl-company { color: #8892b0; }
-    .tl-date { color: #8892b0; white-space: nowrap; }
+    .tl-company { color: var(--theme-ink-secondary); }
+    .tl-date { color: var(--theme-ink-secondary); white-space: nowrap; }
 
     .tl-desc {
       font-family: 'Outfit', sans-serif;
@@ -202,17 +205,17 @@
 
     .tl-pill {
       padding: 4px 14px;
-      background: rgba(124, 143, 247, 0.15);
-      border: 1px solid rgba(124, 143, 247, 0.3);
-      border-radius: 20px;
+      background: transparent;
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
       font-size: 0.78rem;
-      color: #c8d0e8;
+      color: var(--theme-ink);
       font-weight: 400;
     }
 
     .tl-role a,
     .tl-desc a {
-      color: #7c8ff7;
+      color: var(--theme-structural);
       text-decoration: none;
       transition: text-decoration 0.2s ease;
     }
@@ -224,15 +227,15 @@
 
     /* === HOVER TRIGGER === */
     .hover-trigger {
-      color: #7c8ff7;
-      border-bottom: 1px dashed #7c8ff7;
+      color: var(--theme-structural);
+      border-bottom: 1px dashed var(--theme-structural);
       cursor: pointer;
       position: relative;
       transition: color 0.2s;
     }
 
     .hover-trigger:hover {
-      color: #b8a9f7;
+      color: var(--theme-accent);
     }
 
     /* === HOVER POPUP === */
@@ -252,11 +255,11 @@
     /* Video popup */
     .hover-popup.video-popup .video-card {
       width: 340px;
-      background: #0f0f2d;
-      border: 1px solid rgba(124, 143, 247, 0.3);
-      border-radius: 12px;
+      background: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      box-shadow: 5px 5px 0 var(--theme-structural);
     }
 
     .hover-popup.video-popup iframe {
@@ -273,7 +276,7 @@
 
     .hover-popup.video-popup .video-card-label a {
       font-size: 0.82rem;
-      color: #7c8ff7;
+      color: var(--theme-accent);
       text-decoration: none;
       font-weight: 500;
     }
@@ -285,11 +288,11 @@
     /* Instagram embed popup */
     .hover-popup.insta-embed-popup .insta-embed-card {
       width: 340px;
-      background: #0f0f2d;
-      border: 1px solid rgba(124, 143, 247, 0.3);
-      border-radius: 12px;
+      background: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+      box-shadow: 5px 5px 0 var(--theme-structural);
     }
 
     .hover-popup.insta-embed-popup iframe {
@@ -306,7 +309,7 @@
 
     .hover-popup.insta-embed-popup .insta-embed-label a {
       font-size: 0.82rem;
-      color: #7c8ff7;
+      color: var(--theme-accent);
       text-decoration: none;
       font-weight: 500;
     }
@@ -319,37 +322,51 @@
     .next-chapter {
       margin-top: 80px;
       padding-top: 40px;
-      border-top: 1px solid rgba(244, 162, 97, 0.15);
+      border-top: 2px solid var(--theme-structural);
       text-align: right;
     }
 
+    /* Same offset-shadow button family as RESUME/Quick recap/Back to
+       the Globe/tab buttons — chapter nav is a real CTA now. */
     .next-chapter a {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
+      padding: 12px 22px;
+      background: var(--theme-resume-bg);
+      color: var(--theme-resume-ink);
+      border: 2px solid var(--theme-resume-ink);
+      border-radius: 3px;
+      box-shadow: 4px 4px 0 var(--theme-structural);
       font-family: 'Outfit', sans-serif;
       font-size: 0.95rem;
-      color: var(--text-secondary);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
 
     .next-chapter a:hover {
-      color: var(--accent-gold);
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--theme-structural);
+    }
+
+    .next-chapter a:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 var(--theme-structural);
     }
 
     .next-chapter .next-label {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       display: block;
-      color: var(--text-secondary);
+      color: var(--theme-resume-ink);
+      opacity: 0.65;
     }
 
     .next-chapter .next-title {
       font-size: 1rem;
-      color: #ffffff;
-      font-weight: 500;
+      color: var(--theme-resume-ink);
+      font-weight: 700;
     }
 
     /* === MOBILE === */
@@ -422,12 +439,6 @@
 
   <div class="chapter-page">
 
-    <!-- BACK BUTTON -->
-    <a href="../index.html" class="back-btn">
-      <span class="arrow">←</span>
-      Back to the Globe
-    </a>
-
     <!-- CHAPTER HEADER -->
     <header class="essay-header">
       <h1>🇿🇦 Cape Town, South Africa</h1>
@@ -435,6 +446,10 @@
       <div class="tab-toggle">
         <button class="tab-btn active" data-tab="personal">📖 Personal Story</button>
         <button class="tab-btn" data-tab="work">💻 Work Experience</button>
+        <a href="../index.html" class="back-btn">
+          <span class="arrow">←</span>
+          Back to the Globe
+        </a>
       </div>
     </header>
 
@@ -460,7 +475,7 @@
       </p>
 
       <p>
-        I was placed at <a href="https://capetowntv.org/" target="_blank" rel="noopener" style="color: #7c8ff7; text-decoration: none; border-bottom: 1px solid rgba(124, 143, 247, 0.4);">Cape Town TV (Eksé)</a>, an alternative media platform that elevates voices often unheard in mainstream outlets. My day-to-day work was real, deadline-driven, collaborative, and impactful. I managed social media, helped craft and edit stories, helped grow the reach of the channel, and even produced and scripted segments exploring local culture. The work pushed me out of my comfort zone, especially interviewing strangers on the street, but I loved it, and I saw how much effort and care goes into telling stories that matter. (And yes, I made a <span class="hover-trigger" data-popup="documentary">30-minute documentary</span> about my time there, which still makes me proud.)
+        I was placed at <a href="https://capetowntv.org/" target="_blank" rel="noopener" style="color: var(--theme-structural); text-decoration: none; border-bottom: 1px solid var(--theme-structural);">Cape Town TV (Eksé)</a>, an alternative media platform that elevates voices often unheard in mainstream outlets. My day-to-day work was real, deadline-driven, collaborative, and impactful. I managed social media, helped craft and edit stories, helped grow the reach of the channel, and even produced and scripted segments exploring local culture. The work pushed me out of my comfort zone, especially interviewing strangers on the street, but I loved it, and I saw how much effort and care goes into telling stories that matter. (And yes, I made a <span class="hover-trigger" data-popup="documentary">30-minute documentary</span> about my time there, which still makes me proud.)
       </p>
 
       <p>

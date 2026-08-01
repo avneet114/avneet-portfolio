@@ -100,12 +100,14 @@ h1, h2, h3, h4 {
 
 /* Same solid offset-shadow button family as .header-resume/.header-recap
    (defined further down this file) — the three nav CTAs on a chapter
-   page (RESUME, Quick recap, Back to the Globe) now read as one set. */
+   page (RESUME, Quick recap, Back to the Globe) now read as one set.
+   Lives inline in .tab-toggle now (right-aligned via margin-left:auto),
+   not as a standalone element above the title. */
 .back-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 24px 0 0;
+  margin: 0 0 0 auto;
   padding: 7px 16px;
   color: var(--theme-resume-ink);
   background: var(--theme-resume-bg);
