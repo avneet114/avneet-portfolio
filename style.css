@@ -237,6 +237,180 @@ button {
   cursor: grabbing;
 }
 
+/* ===================================================
+   GUIDED TOUR PANEL — Aug 2026
+   Floats over the bottom of the globe stage. Positioned relative to
+   #globe-section (sticky, so it establishes the containing block) —
+   not #globe-container, since that has overflow:hidden and would clip
+   the panel at the stage edge.
+   =================================================== */
+#tour-panel {
+  position: absolute;
+  bottom: 36px;
+  left: 36px;
+  z-index: 50;
+  width: min(300px, calc(100% - 72px));
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+  box-shadow: 5px 5px 0 var(--theme-structural);
+  padding: 14px 16px;
+}
+
+#tour-panel.hidden {
+  display: none;
+}
+
+.tour-progress {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--theme-structural);
+  margin-bottom: 8px;
+}
+
+.tour-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tour-emoji {
+  font-size: 1.3rem;
+}
+
+.tour-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--theme-ink);
+}
+
+.tour-year {
+  font-size: 0.72rem;
+  color: var(--theme-ink-secondary);
+  margin: 4px 0 8px;
+  letter-spacing: 0.02em;
+}
+
+.tour-blurb {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--theme-ink-secondary);
+  margin-bottom: 12px;
+}
+
+.tour-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.tour-nav-btn {
+  flex: 1;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 7px 10px;
+  background: transparent;
+  color: var(--theme-ink);
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tour-nav-btn:hover:not(:disabled) {
+  background: var(--theme-structural);
+  color: #fff;
+}
+
+.tour-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.tour-explore-btn {
+  order: 3;
+  flex-basis: 100%;
+  text-align: center;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  background: var(--theme-resume-bg);
+  color: var(--theme-resume-ink);
+  border: 2px solid var(--theme-resume-ink);
+  border-radius: 3px;
+  box-shadow: 3px 3px 0 var(--theme-structural);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-top: 2px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tour-explore-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--theme-structural);
+}
+
+#tour-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--theme-ink-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#tour-close:hover {
+  color: var(--theme-accent);
+}
+
+#tour-reopen {
+  position: absolute;
+  bottom: 36px;
+  left: 36px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  background: var(--theme-resume-bg);
+  border: 2px solid var(--theme-resume-ink);
+  box-shadow: 3px 3px 0 var(--theme-structural);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+#tour-reopen:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--theme-structural);
+}
+
+@media (max-width: 640px) {
+  #tour-panel {
+    left: 20px;
+    bottom: 20px;
+    width: min(260px, calc(100% - 40px));
+    padding: 12px 14px;
+  }
+
+  #tour-reopen {
+    left: 20px;
+    bottom: 20px;
+  }
+}
+
 /* Phones: thinner margins, or the stage becomes a postage stamp. */
 @media (max-width: 768px) {
   #globe-container {

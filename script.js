@@ -146,6 +146,15 @@ const LOCATIONS = [
   }
 ];
 
+// Guided tour order — chronological, ending on Euro Summer before the
+// hand-off to recap.html. The full loop is Punjab -> ... -> Germany ->
+// Euro Summer -> Quick Recap -> (back to) Punjab, closed by the "back
+// to the journey" link on recap.html.
+const TOUR_ORDER = [
+  'punjab', 'cape-town', 'bethlehem', 'london-scotland',
+  'santiago', 'canada', 'germany', 'europe-trip'
+];
+
 /* =====================================================
    3. TOOLTIP MANAGEMENT
    A single tooltip div is reused for all pins.
@@ -392,9 +401,18 @@ function initGlobe() {
       .height(container.clientHeight);
   });
 
-  // Point the globe so Asia/Africa/Europe sit in the right half of the
-  // viewport — complementing the left-side hero text
-  globe.pointOfView({ lat: 15, lng: 55, altitude: 2.2 }, 1000);
+  // Opening frame is the guided tour's chapter 1 (Punjab — the origin
+  // story), matching the chronological-first ordering used everywhere
+  // else on the site (LOCATIONS order, chapter-page Next buttons).
+  // Camera-only change, same authorised exception as before.
+  const punjab = LOCATIONS.find(loc => loc.id === 'punjab');
+  globe.pointOfView({ lat: punjab.lat, lng: punjab.lng, altitude: 2.2 }, 1000);
+
+  // Exposes the globe instance + controls to the guided tour (below),
+  // which only ever calls .pointOfView() and toggles autoRotate — same
+  // camera-only surface as the rest of this authorised exception.
+  window.__tourGlobe = globe;
+  window.__tourControls = controls;
 }
 
 /* =====================================================
@@ -454,4 +472,96 @@ document.addEventListener('click', (e) => {
     tooltip.classList.remove('visible');
   }
 });
+
+/* =====================================================
+   6. GUIDED TOUR
+   Additive UI layer, independent of the pin hover tooltip above —
+   doesn't read from or write to it. Only ever calls .pointOfView()
+   and toggles autoRotate on the globe exposed by initGlobe().
+   ===================================================== */
+
+function initTour() {
+  const panel      = document.getElementById('tour-panel');
+  const reopenBtn  = document.getElementById('tour-reopen');
+  const closeBtn   = document.getElementById('tour-close');
+  const prevBtn    = document.getElementById('tour-prev');
+  const nextBtn    = document.getElementById('tour-next');
+  const exploreBtn = document.getElementById('tour-explore');
+  const progressEl = document.getElementById('tour-progress');
+  const emojiEl    = document.getElementById('tour-emoji');
+  const nameEl     = document.getElementById('tour-name');
+  const yearEl     = document.getElementById('tour-year');
+  const blurbEl    = document.getElementById('tour-blurb');
+
+  if (!panel || !window.__tourGlobe) return; // globe failed to init — fail quiet, no tour
+
+  let tourIndex = 0;
+
+  function locationFor(id) {
+    return LOCATIONS.find(loc => loc.id === id);
+  }
+
+  function render(index) {
+    const loc = locationFor(TOUR_ORDER[index]);
+    if (!loc) return;
+
+    progressEl.textContent = `Chapter ${index + 1} of ${TOUR_ORDER.length}`;
+    emojiEl.textContent    = loc.emoji;
+    nameEl.textContent     = loc.name;
+    yearEl.textContent     = loc.year;
+    blurbEl.textContent    = loc.blurb;
+    exploreBtn.href        = loc.url;
+
+    prevBtn.disabled = index === 0;
+
+    const isLast = index === TOUR_ORDER.length - 1;
+    nextBtn.textContent = isLast ? 'Seen enough? →' : 'Next ▸';
+    nextBtn.disabled = false;
+
+    if (typeof twemoji !== 'undefined') twemoji.parse(emojiEl, { folder: 'svg', ext: '.svg' });
+  }
+
+  function flyTo(index) {
+    const loc = locationFor(TOUR_ORDER[index]);
+    if (!loc) return;
+    window.__tourGlobe.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: 2.2 }, 1000);
+    window.__tourControls.autoRotate = false;
+    render(index);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (tourIndex === 0) return;
+    tourIndex -= 1;
+    flyTo(tourIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (tourIndex === TOUR_ORDER.length - 1) {
+      // Last chapter — hand off to the recruiter fast lane instead of
+      // wrapping around, matching the two-audience navigation model.
+      window.location.href = '/recap.html';
+      return;
+    }
+    tourIndex += 1;
+    flyTo(tourIndex);
+  });
+
+  closeBtn.addEventListener('click', () => {
+    panel.classList.add('hidden');
+    reopenBtn.hidden = false;
+    window.__tourControls.autoRotate = true;
+  });
+
+  reopenBtn.addEventListener('click', () => {
+    panel.classList.remove('hidden');
+    reopenBtn.hidden = true;
+    flyTo(tourIndex);
+  });
+
+  // Opening render — globe is already framed on Punjab from initGlobe(),
+  // this just populates the panel text to match.
+  render(tourIndex);
+}
+
+document.addEventListener('DOMContentLoaded', initTour);
 

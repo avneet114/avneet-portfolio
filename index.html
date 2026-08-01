@@ -99,6 +99,31 @@
     <!-- Globe renders here — fills the full section -->
     <div id="globe-container"></div>
 
+    <!-- ============================================================
+         GUIDED TOUR PANEL — Aug 2026
+         Additive UI layer, separate from the pin hover tooltip above.
+         Camera-only (pointOfView) per the authorised globe exception —
+         does not touch globe init, textures, pin data, or tooltip logic.
+         Populated by JS from the same LOCATIONS array as the pins.
+         ============================================================ -->
+    <div id="tour-panel">
+      <button type="button" id="tour-close" aria-label="Close guided tour">×</button>
+      <div class="tour-progress" id="tour-progress"></div>
+      <div class="tour-location">
+        <span class="tour-emoji" id="tour-emoji"></span>
+        <span class="tour-name" id="tour-name"></span>
+      </div>
+      <div class="tour-year" id="tour-year"></div>
+      <div class="tour-blurb" id="tour-blurb"></div>
+      <div class="tour-actions">
+        <button type="button" id="tour-prev" class="tour-nav-btn">◂ Prev</button>
+        <a id="tour-explore" class="tour-explore-btn" href="#">Explore This Chapter →</a>
+        <button type="button" id="tour-next" class="tour-nav-btn">Next ▸</button>
+      </div>
+    </div>
+
+    <button type="button" id="tour-reopen" aria-label="Open guided tour" hidden>🧭</button>
+
   </section>
 
   <!-- Scroll spacer removed Aug 2026 — it existed only to give the intro
