@@ -89,7 +89,9 @@ h1, h2, h3, h4 {
   z-index: 1;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0 24px 80px;
+  /* Top padding clears the 56px fixed #site-header (+ a little breathing
+     room) so it doesn't sit on top of the back button / chapter title. */
+  padding: 76px 24px 80px;
 }
 
 /* ===================================================
@@ -734,5 +736,186 @@ h1, h2, h3, h4 {
 @media (max-width: 768px) {
   #social-bar {
     display: none;
+  }
+}
+
+/* ===================================================
+   SITE HEADER — Task 1.2 rollout to chapter pages (Aug 2026)
+   Duplicated from style.css rather than linking that stylesheet here,
+   since style.css also carries homepage-only rules (star cursor
+   cursor:none, #globe-container, a bare `body{}` background override)
+   that would leak onto this legacy periwinkle surface. Keep this block
+   in sync with style.css's #site-header rules by hand — same drift
+   tradeoff already accepted for the header markup itself.
+   =================================================== */
+
+:root {
+  --theme-bg: #16181d;
+  --theme-ink: #eef0f2;
+  --theme-ink-secondary: #8b93a0;
+  --theme-structural: #3a6ea5;
+  --theme-resume-bg: #eef0f2;
+  --theme-resume-ink: #16181d;
+  --theme-accent: #d7263d;
+}
+
+#site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 1.25rem;
+  background: var(--theme-bg);
+  border-bottom: 2px solid var(--theme-structural);
+}
+
+.header-home {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+
+.header-globe {
+  display: inline-flex;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.header-home:hover .header-globe {
+  transform: rotate(360deg);
+}
+
+.header-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--theme-ink);
+  white-space: nowrap;
+}
+
+.header-identity,
+.header-identity-short {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--theme-ink-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--theme-structural);
+}
+
+.header-sep {
+  color: var(--theme-structural);
+  margin: 0 8px;
+}
+
+.header-identity-short {
+  display: none;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.header-recap {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--theme-ink);
+  text-decoration: none;
+  padding: 6px 13px;
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.header-recap:hover {
+  background: var(--theme-structural);
+  color: #fff;
+}
+
+.header-icon {
+  display: flex;
+  color: var(--theme-ink-secondary);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.header-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.header-icon:hover {
+  color: var(--theme-accent);
+  transform: translateY(-2px);
+}
+
+.header-resume {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--theme-resume-ink);
+  text-decoration: none;
+  background: var(--theme-resume-bg);
+  padding: 7px 16px;
+  border: 2px solid var(--theme-resume-ink);
+  border-radius: 3px;
+  box-shadow: 3px 3px 0 var(--theme-structural);
+  white-space: nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.header-resume:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--theme-structural);
+}
+
+.header-resume:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--theme-structural);
+}
+
+@media (max-width: 1100px) {
+  .header-identity {
+    display: none;
+  }
+
+  .header-identity-short {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  #site-header {
+    gap: 10px;
+    padding: 0 0.9rem;
+  }
+
+  .header-identity,
+  .header-identity-short {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 12px;
   }
 }

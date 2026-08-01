@@ -138,42 +138,55 @@ The site currently runs **two palettes side by side**, mid-migration:
 ### A. Poster palette — NEW, used by the site header + globe stage
 Direction chosen Aug 1: *vintage travel poster + neobrutalism*. Flat colour,
 hard edges, solid offset shadows with no blur, no gradients, no glassmorphism.
+Superseded Aug 2, 2026 — see below.
 ```css
---poster-navy:   #0d1b2a;  /* header bar, ink on light fills */
---poster-cream:  #f4f1de;  /* paper — name, light text */
---poster-teal:   #218380;  /* borders, separators, globe frame */
---poster-mustard:#f4d35e;  /* ⚠️ currently UNUSED — see note below */
---poster-tomato: #e94f37;  /* icon hover only */
+--theme-bg:            #16181d;  /* charcoal — header bar, globe-stage void */
+--theme-ink:           #eef0f2;  /* off-white — name, light text */
+--theme-ink-secondary: #8b93a0;
+--theme-structural:    #3a6ea5;  /* cobalt — borders, separators, globe frame */
+--theme-resume-bg:     #eef0f2;  /* RESUME fill — brightest block on the bar */
+--theme-resume-ink:    #16181d;
+--theme-accent:        #d7263d;  /* crimson — icon hover, cursor hover */
 ```
-Rules learned the hard way:
-- **No saturated yellow anywhere on the night header.** Rejected twice: first
-  as the bottom border, then as the RESUME button fill. Yellow is a near
-  complement of both the navy bar and the teal border, so it fights everything
-  around it. Mustard is currently unused — it may find a home on the light
-  theme (Task 2.5) or the globe stage, but do not reintroduce it to the night
-  header without asking.
-- **RESUME is cream, and stays the brightest block on the bar.** Prominence
-  comes from luminance contrast, not hue. That is how it leads the eye without
-  clashing.
-- **Teal is the structural colour** — border, separators, globe frame, button
-  shadow. Same blue family as the navy bar, so it separates without shouting.
-- **Amber `#f4a261` was tried and rejected** — it is the globe's
-  `atmosphereColor`, but sampling one thin glow ring made the whole bar orange.
-- **Cream backgrounds were tried and rejected** for now: too light against the
-  night globe. Cream becomes the LIGHT theme if the day/night toggle ships
-  (Task 2.5).
+Defined as CSS custom properties in `style.css` `:root`, not inline hex —
+header, globe-stage border/shadow, body background and the star cursor all
+read from these tokens.
+
+**Why it changed from navy/cream/teal/tomato/mustard:** those were picked
+while prototyping a day/night toggle (Task 2.5) — the palette above was
+one of several day/night pairs compared side by side (`N1`–`N4`, `D1`–`D4`,
+built as a throwaway HTML comparison, not committed). Avneet picked the
+`N4` "stark charcoal" night option, then the day/night toggle itself was
+built and then **reverted** (see Task 2.5 note) — but she kept the charcoal
+palette as the permanent night-only look rather than going back to
+navy/teal. Mustard never found a home and isn't in active use anywhere.
+- **RESUME stays the brightest block on the bar** — off-white on charcoal,
+  ~15:1 contrast. Prominence from luminance, not hue.
+- **Cobalt is the structural colour** — border, separators, globe frame,
+  button shadow, hover-fill on the recap pill.
 
 ### B. Legacy periwinkle/lavender — everything not yet migrated
 Still live in the pin tooltip, chapter pages, and `style.css` `:root`. Leave it
 alone until a task explicitly migrates that surface.
 
 ### Fonts
-- **`Space Mono`** (400/700) — the header. This is the *identity* font, the
-  departure-board answer to Zaki's pixel font. Loaded in `index.html`.
+- **`Unbounded`** (500/700/800) — header wordmark, nav, RESUME button.
+  Replaced Space Mono here Aug 2, 2026 — Avneet's pick from a side-by-side
+  comparison (`_font-preview.html`, since deleted), not an agent default.
+  Loaded in `index.html` and `recap.html`.
+- **`Space Mono`** (400/700) — now scoped to the `recap.html` terminal
+  content (`.term`, `.bd-*`) and the `index.html` recap slide-over panel
+  only. Still loaded on both pages for that reason — do not remove the
+  `<link>` without also re-doing that content in another font.
 - **`Playfair Display`** — chapter headings. Still loaded, no longer used in
   the header.
 - **`DM Sans`** — body/UI on legacy surfaces.
 - Sentence case, **not** ALL CAPS, for anything meant to be read.
+- ⚠️ Do not frame a font choice in this file as reflecting who Avneet *is*
+  (an earlier version of this doc called Space Mono "the identity font" —
+  she had never chosen it; an agent had, and written that language in
+  unprompted). Fonts/colours get picked via a visual comparison she looks
+  at, not decided and narrated after the fact.
 
 ### Legacy colours (kept for reference — surfaces not yet migrated)
 ```css
@@ -311,6 +324,14 @@ Kept: ONE Earth, navigation linear and led — not spin-to-explore.
   required (same rule as Task 3.3).
 
 ### Behaviour 3 — `recap.html` = recruiter dossier (category view)
+**Exists now** (built prior to Aug 2, 2026, not just spec) — a terminal/
+boot-log styled dossier (`avneet@world:~$ locate --now`), not a plain resume
+card. Real, crawlable HTML with a "Currently:" block already in place
+(Business & AI Strategy Intern, Place Beyond Bytes, since Jun 2026).
+⚠️ Not fully audited against the checklist below — confirm Projects/Skills/
+Education sections and real `<a>` links to every chapter exist before
+marking Task 1.4 done; don't assume from this note alone.
+
 Where Work / Skills / Education live FLAT, replacing the planets idea. Top to
 bottom:
 1. One-line identity + a **"Currently:"** line (role, grad date, what she
@@ -661,29 +682,45 @@ matters as much.
 
 ---
 
-### 2.5 — Day / night mode 🌍🌓 (Avneet's idea, Aug 1)
-- **Why it earns its place:** most portfolios have a moon icon that means
-  nothing. Earth actually *has* a day side and a night side, so on a globe
-  portfolio the toggle IS the subject matter. It also resolves the cream-vs-
-  navy header argument — cream stops being "too light" once the planet is in
-  daylight. Both palettes get used instead of one being discarded.
-- **Best version:** default to the **visitor's local time** — 9am gets a
-  daylit earth and cream UI, 11pm gets city lights and navy. Roughly three
-  lines beyond a plain toggle, and the default then means something.
-- **Verified feasible:** `earth-night.jpg` exists on the same CDN path already
-  in use (715KB, vs 1.4MB for `earth-blue-marble.jpg`).
-- **⚠️ NEEDS AN EXPLICIT RULE CHANGE FROM AVNEET.** Swapping the texture means
-  touching `globeImageUrl`, and "🌍 THE GLOBE — DO NOT TOUCH" forbids texture
-  changes. The authorised exception currently covers camera position and
-  appending pins ONLY. Do not proceed without her extending it in writing.
-- **Real cost — this is a phase, not an afternoon.** Every colour needs two
-  values, plus a toggle control, `localStorage` persistence, and
-  `prefers-color-scheme` as the first guess. In practice it means restructuring
-  `style.css` around CSS custom properties, i.e. **Task 4.6 arriving early**.
-  Cheaper to do 4.6 first, then this.
-- **Don't forget the star cursor.** It is `#c8d0e8` (pale silver) and vanishes
-  on any light background. `index.html` has a comment marking where this needs
-  to key off the active theme — it bit us once already on the cream header.
+### 2.5 — Day / night mode 🌍🌓 — TRIED AND REVERTED (Aug 2, 2026)
+**⚠️ Built, then explicitly rolled back by Avneet. Don't re-propose this
+without a new reason — read why it came out first.**
+
+What shipped, briefly: CSS custom properties for two themes, a header
+toggle button, `localStorage` + local-time default, `earth-night.jpg` swap
+for night, a CSS sky-gradient behind the globe canvas for day (the WebGL
+canvas itself was left transparent so the gradient could show through).
+
+Why it came back out — two separate problems, in order:
+1. **`earth-night.jpg` looked patchy, not moody.** It's real NASA
+   city-lights data, so brightness follows actual population density —
+   dense coastlines (US/Europe/India/China) glow almost as bright as
+   daylight while deserts/oceans/rural interiors go pure black. Read to
+   Avneet as "some countries are day and some are dark," not as a
+   cohesive night look. A **darkened/tinted `earth-blue-marble.jpg`** (CSS
+   `brightness`/`saturate` filter on the canvas, same map, no photographic
+   patchiness) was proposed as the fix but never built.
+2. **Avneet then decided to drop day/night entirely** rather than keep
+   iterating on it — night-only, permanently, is the actual answer. The
+   `earth-night.jpg` texture was **not** kept either, given (1) was still
+   unresolved; the globe init in `script.js` is back to its pre-toggle
+   state, a single `earth-blue-marble.jpg`, byte-identical to before this
+   was tried.
+
+What was kept from the detour: the CSS custom-property token system
+(`--theme-*` in the palette section above) and the star-cursor
+`var(--cursor-idle/hover)` fix — both are still live and useful with no
+toggle attached. `body.recap-page`'s terminal background was never made
+theme-aware and still isn't.
+
+**If this gets revisited later:** the harder, better-fitting option
+discussed and deferred was a live day/night **shader** in three-globe —
+blends both textures based on the sun's actual position for a real
+terminator line, rather than a hard toggle between two static images.
+Bigger lift (custom globe material, not just swapping `globeImageUrl`),
+same "GLOBE — DO NOT TOUCH" sign-off requirement, but avoids both problems
+above since nothing is a flat static swap. Worth trying before another
+toggle-based attempt.
 
 ---
 
