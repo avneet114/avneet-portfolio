@@ -1,0 +1,430 @@
+<!--
+  ARCHIVE — removed from index.html on Aug 1, 2026
+  ================================================
+  Nothing in this file is live. It exists so the intro can be restored by
+  copy-paste instead of being rewritten.
+
+  Why a separate file rather than commenting it out in place:
+  HTML comments cannot nest. This markup contains its own <!-- --> comments,
+  so wrapping it in an outer comment would end at the FIRST inner "-->" and
+  spill the rest onto the page as broken markup.
+
+  This folder is named with a leading underscore so GitHub Pages/Jekyll does
+  not publish it.
+
+  ------------------------------------------------------------------
+  WHAT IS LEFT ON THE HOMEPAGE after all of this:
+    the star background, the site header, the letterboxed globe, the pin
+    tooltip, and the star cursor. That is everything.
+
+  ARCHIVED HERE (all removed Aug 1, 2026):
+    PIECE 1  intro words + 14 photos       PIECE 4b/4c  guess game
+    PIECE 2  scroll spacer                 PIECE 5      newsletter card
+    PIECE 3  scroll-away script            PIECE 6      reveal-on-load shim
+    PIECE 4a confetti CDN                  PIECE 7      floating icon script
+                                           PIECE 8      social bar markup
+  ------------------------------------------------------------------
+
+  ⚠️ RESTORE ORDER MATTERS. #guess-game, #newsletter-float and #social-bar a
+  all start hidden in style.css (opacity 0 / pointer-events none) and are only
+  shown when something adds .visible / .floating-visible. If you restore any of
+  them WITHOUT also restoring PIECE 3 or PIECE 6, they will be in the DOM but
+  invisible, with no error to explain why.
+
+  ⚠️ PIECE 4c calls confetti() — restore PIECE 4a with it or it throws.
+
+  ALSO STILL IN index.html: the ~200-line photo-stack interaction script
+  (hover to fan out, 3D tilt, pokemon.mp3 on photo 7). It is inert because it
+  starts with `if (!stack) return;`. If PIECE 1 is restored, that script starts
+  working again with no changes. If you want it deleted, archive it here first.
+
+  CSS THESE DEPEND ON — all still present in style.css, currently unused:
+    #intro-overlay, .intro-word, .intro-photo, .mobile-photo,
+    .stack-photo, #sphoto1..#sphoto10, #photo-stack, #intro-scroll-spacer
+  Do not delete those rules while this archive is the restore path.
+-->
+
+
+<!-- ==================================================================
+     PIECE 1 — THE INTRO OVERLAY (words + photos)
+     Was placed immediately after #stars-container in index.html.
+     ================================================================== -->
+
+<div id="intro-overlay" aria-hidden="true">
+  <span class="intro-word" style="left:5%; top:15%">hi</span>
+  <span class="intro-word" style="left:18%; top:22%">i</span>
+  <span class="intro-word" style="left:70%; top:13%">am</span>
+  <span class="intro-word" style="left:79%; top:22%">avneet</span>
+  <span class="intro-word" style="left:5%; top:68%">welcome</span>
+  <span class="intro-word" style="left:27%; top:65%">to</span>
+  <span class="intro-word" style="left:70%; top:68%">my</span>
+  <span class="intro-word" style="left:82%; top:70%">world</span>
+
+  <!-- Mobile fallback: original scattered photos -->
+  <img class="intro-photo mobile-photo" src="assets/1.png" style="left:5%; top:35%; transform:rotate(-3deg)" alt="">
+  <img class="intro-photo mobile-photo" src="assets/2.jpeg" style="left:16%; top:35%; transform:rotate(2deg)" alt="">
+  <img class="intro-photo mobile-photo" src="assets/3.jpeg" style="left:72%; top:35%; transform:rotate(-2deg)" alt="">
+  <img class="intro-photo mobile-photo" src="assets/4.jpeg" style="left:83%; top:35%; transform:rotate(3deg)" alt="">
+
+  <!-- Desktop: stacked photo deck -->
+  <div id="photo-stack">
+    <img class="intro-photo stack-photo" id="sphoto1" src="assets/1.png" alt="">
+    <img class="intro-photo stack-photo" id="sphoto2" src="assets/2.jpeg" alt="">
+    <img class="intro-photo stack-photo" id="sphoto3" src="assets/3.jpeg" alt="">
+    <img class="intro-photo stack-photo" id="sphoto4" src="assets/4.jpeg" alt="">
+    <img class="intro-photo stack-photo" id="sphoto5" src="assets/5.png" alt="">
+    <img class="intro-photo stack-photo" id="sphoto6" src="assets/6.png" alt="">
+    <img class="intro-photo stack-photo" id="sphoto7" src="assets/7.jpeg" alt="">
+    <img class="intro-photo stack-photo" id="sphoto8" src="assets/8.png" alt="">
+    <img class="intro-photo stack-photo" id="sphoto9" src="assets/9.jpeg" alt="">
+    <img class="intro-photo stack-photo" id="sphoto10" src="assets/10.jpeg" alt="">
+  </div>
+</div>
+
+
+<!-- ==================================================================
+     PIECE 2 — THE SCROLL SPACER
+     Was placed immediately after </section> for #globe-section.
+     Gave the page 500px of height to scroll the overlay away.
+     ================================================================== -->
+
+<div id="intro-scroll-spacer"></div>
+
+
+<!-- ==================================================================
+     PIECE 3 — THE SCROLL-AWAY SCRIPT
+     Was placed after the guess-game script in index.html.
+
+     ⚠️ IF YOU RESTORE THIS, DELETE the "reveal on load" script that
+     replaced it, or the two will fight over the .visible class on
+     #newsletter-float and #guess-game.
+
+     Note: it contained a debug console.log firing on every scroll event
+     (plan task 3.4). It is left in below for a faithful copy — delete
+     that line if you restore this.
+     ================================================================== -->
+
+<script>
+(function() {
+  var overlay = document.getElementById('intro-overlay');
+  var globeContainer = document.getElementById('globe-container');
+  var newsletterBtn = document.getElementById('newsletter-float');
+  var guessGame = document.getElementById('guess-game');
+  // Prevent globe's OrbitControls from capturing wheel events
+  // so the page can scroll. Re-enable after intro completes.
+  function blockGlobeWheel(e) {
+    e.stopPropagation();
+  }
+  function blockGlobeTouch(e) {
+    e.stopPropagation();
+  }
+  globeContainer.addEventListener('wheel', blockGlobeWheel, true);
+  globeContainer.addEventListener('touchstart', blockGlobeTouch, true);
+  globeContainer.addEventListener('touchmove', blockGlobeTouch, true);
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY;
+    console.log('scrollY:', scrollY);
+    var progress = Math.min(scrollY / 500, 1);
+
+    overlay.style.transform = 'translateY(' + (-scrollY * 1.5) + 'px)';
+    overlay.style.opacity = 1 - progress;
+
+    if (progress >= 1) {
+      overlay.style.visibility = 'hidden';
+      // Re-enable globe zoom after intro is done
+      globeContainer.removeEventListener('wheel', blockGlobeWheel, true);
+      globeContainer.removeEventListener('touchstart', blockGlobeTouch, true);
+      globeContainer.removeEventListener('touchmove', blockGlobeTouch, true);
+      newsletterBtn.classList.add('visible');
+      guessGame.classList.add('visible');
+      startFloatingIcons();
+    } else {
+      overlay.style.visibility = 'visible';
+      newsletterBtn.classList.remove('visible');
+      guessGame.classList.remove('visible');
+      stopFloatingIcons();
+    }
+  });
+})();
+</script>
+
+
+
+<!-- ==================================================================
+     PIECE 4a - confetti CDN (only the guess game used it)
+     Was index.html lines 131-132 before removal.
+     ================================================================== -->
+
+  <!-- Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- ==================================================================
+     PIECE 4b - guess-the-destination markup
+     Was index.html lines 134-141 before removal.
+     ================================================================== -->
+
+<div id="guess-game">
+  <div class="guess-header">guess where i'm going next ✈️</div>
+  <div class="guess-input-row">
+    <input type="text" id="guess-input" placeholder="type a country..." autocomplete="off" />
+    <button id="guess-btn">go</button>
+  </div>
+  <div id="guess-feedback"></div>
+</div>
+
+<!-- ==================================================================
+     PIECE 5 - newsletter float + follow.mp3 script
+     Was index.html lines 143-158 before removal.
+     ================================================================== -->
+
+<div id="newsletter-float">
+  <a href="https://subscribe-forms.beehiiv.com/f81b2276-3730-4e1c-92ea-a74ae71c46eb"
+     target="_blank" rel="noopener" id="newsletter-link">
+    💌 letters from avneet
+  </a>
+</div>
+<script>
+(function() {
+  var followSound = new Audio('assets/follow.mp3');
+  followSound.volume = 0.5;
+  document.getElementById('newsletter-link').addEventListener('click', function() {
+    followSound.currentTime = 0;
+    followSound.play().catch(function(){});
+  });
+})();
+</script>
+
+<!-- ==================================================================
+     PIECE 4c - guess-the-destination game logic
+     Was index.html lines 160-238 before removal.
+     ================================================================== -->
+
+<!-- Guess the Destination game logic -->
+<script>
+(function() {
+  var guessGame = document.getElementById('guess-game');
+  var guessInput = document.getElementById('guess-input');
+  var guessBtn = document.getElementById('guess-btn');
+  var feedback = document.getElementById('guess-feedback');
+  var confettiSound = new Audio('assets/confetti-pop.mp3');
+  confettiSound.volume = 0.7;
+
+  var wrongMessages = [
+    "Nope! But good guess \u{1F92A}",
+    "I wish",
+    "Not even close... or are you? \u{1F440}",
+    "Interesting guess! Try again \u2708\uFE0F"
+  ];
+
+  var hints = [
+    "Hint: it's in Europe \u{1F30D}",
+    "Hint: famous for beer & pretzels \u{1F37A}",
+    "Hint: think Oktoberfest \u{1F3B6}",
+    "Hint: starts with a G..."
+  ];
+
+  var wrongCount = 0;
+
+  function checkGuess() {
+    var val = guessInput.value.trim().toLowerCase();
+    if (!val) return;
+
+    if (val === 'germany' || val === 'deutschland') {
+      // Correct!
+      guessGame.classList.add('correct');
+      feedback.innerHTML = '\u{1F389} YOU GOT IT!<br>Deutschland, here I come! \u{1F1E9}\u{1F1EA}';
+
+      confettiSound.currentTime = 0;
+      confettiSound.play().catch(function(){});
+
+      // Fire confetti
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { x: 0.15, y: 0.85 }
+      });
+      setTimeout(function() {
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { x: 0.2, y: 0.7 }
+        });
+      }, 300);
+
+      // Parse emojis
+      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
+    } else {
+      // Wrong guess
+      var msg = wrongMessages[wrongCount % wrongMessages.length];
+
+      // Show a hint after every 2 wrong guesses
+      if (wrongCount > 0 && wrongCount % 2 === 1) {
+        var hintIdx = Math.min(Math.floor(wrongCount / 2), hints.length - 1);
+        msg += '<br><span style="color:#8892b0;font-size:0.72rem">' + hints[hintIdx] + '</span>';
+      }
+
+      feedback.innerHTML = msg;
+      wrongCount++;
+      guessInput.value = '';
+      guessInput.focus();
+
+      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
+    }
+  }
+
+  guessBtn.addEventListener('click', checkGuess);
+  guessInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGuess();
+  });
+})();
+</script>
+
+<!-- ==================================================================
+     PIECE 6 - reveal-on-load shim (replaced the scroll handler)
+     Was index.html lines 240-260 before removal.
+     ================================================================== -->
+
+  <!-- Scroll-away intro REMOVED Aug 2026 (intro words + photos are gone, so
+       there was nothing left to scroll past).
+
+       That handler was also the only thing that revealed the newsletter card,
+       the guess game and the floating social icons — they start hidden in CSS
+       and were only shown after scrolling 500px. So it is replaced with a
+       straight reveal on load, or they would never appear at all.
+
+       Also removed with it: the wheel/touch blocking on the globe (which only
+       existed so the page could scroll instead of the globe zooming), and a
+       stray console.log that fired on every scroll event (plan task 3.4). -->
+  <script>
+    window.addEventListener('load', function () {
+      var newsletterBtn = document.getElementById('newsletter-float');
+      var guessGame = document.getElementById('guess-game');
+
+      if (newsletterBtn) newsletterBtn.classList.add('visible');
+      if (guessGame) guessGame.classList.add('visible');
+      if (typeof window.startFloatingIcons === 'function') window.startFloatingIcons();
+    });
+  </script>
+
+<!-- ==================================================================
+     PIECE 7 - floating social icon positioning script
+     Was index.html lines 262-345 before removal.
+     ================================================================== -->
+
+<script>
+(function() {
+  var shuffleTimer = null;
+  var iconsActive = false;
+
+  // Exclusion zones (percentages of viewport)
+  // Globe: center area roughly 25%-75% x, 20%-80% y
+  // Newsletter btn: bottom-right corner
+  var exclusions = [
+    { x1: 25, y1: 20, x2: 75, y2: 80 },   // globe center
+    { x1: 75, y1: 75, x2: 100, y2: 100 }   // newsletter btn area
+  ];
+
+  function isInExclusion(x, y) {
+    for (var i = 0; i < exclusions.length; i++) {
+      var z = exclusions[i];
+      if (x >= z.x1 && x <= z.x2 && y >= z.y1 && y <= z.y2) return true;
+    }
+    return false;
+  }
+
+  function randomPos() {
+    var x, y, attempts = 0;
+    do {
+      x = 5 + Math.random() * 85;
+      y = 5 + Math.random() * 85;
+      attempts++;
+    } while (isInExclusion(x, y) && attempts < 50);
+    return { x: x, y: y };
+  }
+
+  function positionIcons(icons) {
+    for (var i = 0; i < icons.length; i++) {
+      var pos = randomPos();
+      icons[i].style.left = pos.x + 'vw';
+      icons[i].style.top = pos.y + 'vh';
+    }
+  }
+
+  window.startFloatingIcons = function() {
+    if (iconsActive) return;
+    iconsActive = true;
+    var icons = document.querySelectorAll('#social-bar a');
+    if (!icons.length) return;
+
+    // Set initial positions instantly (no transition for first placement)
+    for (var i = 0; i < icons.length; i++) {
+      icons[i].style.transition = 'opacity 0.6s ease';
+    }
+    positionIcons(icons);
+
+    // Stagger fade-in
+    for (var i = 0; i < icons.length; i++) {
+      (function(icon, delay) {
+        setTimeout(function() {
+          icon.classList.add('floating-visible');
+          // Restore full transition after fade-in
+          setTimeout(function() {
+            icon.style.transition = '';
+          }, 700);
+        }, delay);
+      })(icons[i], i * 200);
+    }
+
+    // Shuffle every 5 seconds
+    shuffleTimer = setInterval(function() {
+      positionIcons(icons);
+    }, 5000);
+  };
+
+  window.stopFloatingIcons = function() {
+    if (!iconsActive) return;
+    iconsActive = false;
+    var icons = document.querySelectorAll('#social-bar a');
+    for (var i = 0; i < icons.length; i++) {
+      icons[i].classList.remove('floating-visible');
+    }
+    if (shuffleTimer) {
+      clearInterval(shuffleTimer);
+      shuffleTimer = null;
+    }
+  };
+})();
+</script>
+
+<!-- ==================================================================
+     PIECE 8 - social bar markup (LinkedIn / YouTube / 2x Instagram)
+     Was index.html lines 405-430 before removal.
+     ================================================================== -->
+
+<div id="social-bar">
+  <a href="https://www.linkedin.com/in/avneetkaur777/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+    <span class="social-tooltip">linkedin</span>
+  </a>
+  <a href="https://www.youtube.com/@avneetgrewal114" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+    </svg>
+    <span class="social-tooltip">youtube</span>
+  </a>
+  <a href="https://www.instagram.com/avneeet.mp4/" target="_blank" rel="noopener" aria-label="Work Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </svg>
+    <span class="social-tooltip">work</span>
+  </a>
+  <a href="https://www.instagram.com/avneetgrewal114/" target="_blank" rel="noopener" aria-label="Personal Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </svg>
+    <span class="social-tooltip">personal</span>
+  </a>
+</div>

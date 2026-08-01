@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Font preview — Avneet's header</title>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Big+Shoulders+Stencil:wght@700;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Unbounded:wght@500;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1b2a;
+    font-family: system-ui, sans-serif;
+    padding: 40px 24px 100px;
+  }
+  h1 {
+    color: #f4f1de;
+    font-family: system-ui, sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0.7;
+  }
+  .row {
+    max-width: 760px;
+    margin: 0 auto 36px;
+  }
+  .label {
+    color: #93a7b0;
+    font-family: system-ui, sans-serif;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .label b { color: #f4f1de; font-size: 0.85rem; }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 60px;
+    padding: 0 20px;
+    background: #0d1b2a;
+    border: 2px solid #218380;
+    border-radius: 3px;
+  }
+  .globe { font-size: 1.2rem; }
+  .name {
+    color: #f4f1de;
+    font-size: 1.15rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .id {
+    color: #93a7b0;
+    font-size: 0.8rem;
+    padding-left: 14px;
+    border-left: 2px solid #218380;
+    white-space: nowrap;
+  }
+  .actions { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .recap {
+    color: #f4f1de;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 6px 13px;
+    border: 2px solid #218380;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .resume {
+    color: #0d1b2a;
+    background: #f4f1de;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 7px 16px;
+    border: 2px solid #0d1b2a;
+    border-radius: 3px;
+    box-shadow: 3px 3px 0 #218380;
+    white-space: nowrap;
+  }
+
+  /* --- font assignments per row --- */
+  .f-bungee .name, .f-bungee .id, .f-bungee .recap, .f-bungee .resume { font-family: 'Bungee', cursive; }
+  .f-bungee .id { text-transform: lowercase; letter-spacing: 0; }
+
+  .f-stencil .name, .f-stencil .recap, .f-stencil .resume { font-family: 'Big Shoulders Stencil', sans-serif; font-weight: 900; }
+  .f-stencil .id { font-family: 'Big Shoulders Stencil', sans-serif; font-weight: 700; }
+
+  .f-fraunces .name { font-family: 'Fraunces', serif; font-weight: 600; font-style: italic; }
+  .f-fraunces .id { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+  .f-fraunces .recap, .f-fraunces .resume { font-family: 'Fraunces', serif; font-weight: 500; text-transform: none; letter-spacing: 0; }
+
+  .f-unbounded .name, .f-unbounded .recap, .f-unbounded .resume { font-family: 'Unbounded', cursive; font-weight: 800; }
+  .f-unbounded .id { font-family: 'Unbounded', cursive; font-weight: 500; }
+
+  .f-bricolage .name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; }
+  .f-bricolage .id, .f-bricolage .recap, .f-bricolage .resume { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; }
+
+  .f-shrikhand .name { font-family: 'Shrikhand', cursive; font-size: 1.3rem; }
+  .f-shrikhand .id { font-family: system-ui, sans-serif; }
+  .f-shrikhand .recap, .f-shrikhand .resume { font-family: 'Shrikhand', cursive; font-weight: 400; letter-spacing: 0; }
+
+  .note {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    color: #93a7b0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <h1>same header, six fonts — current site uses none of these yet</h1>
+
+  <div class="row f-bungee">
+    <div class="label"><b>1 — Bungee</b><span>vintage travel signage / highway sign</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">Avneet Kaur</span>
+      <span class="id">cs &amp; business @ lehigh</span>
+      <div class="actions"><span class="recap">Quick recap</span><span class="resume">RESUME</span></div>
+    </div>
+  </div>
+
+  <div class="row f-stencil">
+    <div class="label"><b>2 — Big Shoulders Stencil</b><span>shipping-crate / cargo stencil, industrial travel</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">AVNEET KAUR</span>
+      <span class="id">CS &amp; BUSINESS @ LEHIGH</span>
+      <div class="actions"><span class="recap">QUICK RECAP</span><span class="resume">RESUME</span></div>
+    </div>
+  </div>
+
+  <div class="row f-fraunces">
+    <div class="label"><b>3 — Fraunces (italic)</b><span>wonky editorial serif, travel-magazine masthead</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">Avneet Kaur</span>
+      <span class="id">CS &amp; Business @ Lehigh</span>
+      <div class="actions"><span class="recap">Quick recap</span><span class="resume">Resume</span></div>
+    </div>
+  </div>
+
+  <div class="row f-unbounded">
+    <div class="label"><b>4 — Unbounded</b><span>bold rounded geometric, playful poster energy</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">Avneet Kaur</span>
+      <span class="id">CS & Business @ Lehigh</span>
+      <div class="actions"><span class="recap">Quick recap</span><span class="resume">RESUME</span></div>
+    </div>
+  </div>
+
+  <div class="row f-bricolage">
+    <div class="label"><b>5 — Bricolage Grotesque</b><span>quirky ink-trap grotesk, unique but still clean/professional</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">Avneet Kaur</span>
+      <span class="id">CS & Business @ Lehigh</span>
+      <div class="actions"><span class="recap">Quick recap</span><span class="resume">RESUME</span></div>
+    </div>
+  </div>
+
+  <div class="row f-shrikhand">
+    <div class="label"><b>6 — Shrikhand</b><span>bold rounded display, South Asian design roots — ties to Punjab</span></div>
+    <div class="bar">
+      <span class="globe">🌍</span>
+      <span class="name">Avneet Kaur</span>
+      <span class="id">CS & Business @ Lehigh</span>
+      <div class="actions"><span class="recap">Quick recap</span><span class="resume">RESUME</span></div>
+    </div>
+  </div>
+
+  <p class="note">
+    Open this file directly in your browser (double-click it, or drag into a tab) — it's not part of
+    the site, just a comparison. Nothing in index.html or style.css has been touched. Tell me a number
+    (or mix — e.g. wordmark in one font, nav in another) and I'll show you the real header edit next.
+  </p>
+</body>
+</html>

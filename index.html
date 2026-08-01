@@ -15,6 +15,12 @@
   <!-- Playfair Display for intro overlay -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
 
+  <!-- Unbounded — header wordmark + nav, chosen by Avneet Aug 2026 -->
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Space Mono — terminal type for the recap slide-over panel -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
   <!-- Globe.gl via CDN -->
   <script src="https://unpkg.com/globe.gl"></script>
 
@@ -25,44 +31,63 @@
 <body>
 
   <!-- ============================================================
+       SITE HEADER — Layer 1. Plain HTML, no JavaScript.
+       Name, identity, resume and contact must stay readable even
+       if every script on the page fails. Never make this depend
+       on script.js.
+       ============================================================ -->
+  <header id="site-header">
+    <a class="header-home" href="/" aria-label="Home">
+      <span class="header-globe" aria-hidden="true">🌍</span>
+      <span class="header-name">Avneet Kaur</span>
+    </a>
+
+    <!-- Full identity on wide screens; short version on medium; hidden on
+         phones (Task 1.5 — cut decoration, never the conversion path). -->
+    <span class="header-identity">CS &amp; Business Honors Junior at Lehigh University<span class="header-sep">|</span>Storyteller<span class="header-sep">|</span>Content Creator</span>
+    <span class="header-identity-short">CS &amp; Business @ Lehigh</span>
+
+    <nav class="header-actions" aria-label="Primary">
+      <a class="header-recap" href="/recap.html">Quick recap</a>
+      <a class="header-icon" href="https://github.com/avneet114"
+         target="_blank" rel="noopener" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+        </svg>
+      </a>
+      <a class="header-icon" href="https://www.linkedin.com/in/avneetkaur777/"
+         target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a class="header-icon" href="mailto:avk328@lehigh.edu" aria-label="Email Avneet">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 7 10 7L22 7"/>
+        </svg>
+      </a>
+      <a class="header-resume" href="Kaur_B26_Resume.pdf" target="_blank" rel="noopener">RESUME</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
        STAR BACKGROUND — filled by JS in script.js
        ============================================================ -->
   <div id="stars-container" aria-hidden="true"></div>
 
-  <!-- ============================================================
-       INTRO OVERLAY — text words + photos on top of globe
-       Scrolls away as user scrolls down
-       ============================================================ -->
-  <div id="intro-overlay" aria-hidden="true">
-    <span class="intro-word" style="left:5%; top:15%">hi</span>
-    <span class="intro-word" style="left:18%; top:22%">i</span>
-    <span class="intro-word" style="left:70%; top:13%">am</span>
-    <span class="intro-word" style="left:79%; top:22%">avneet</span>
-    <span class="intro-word" style="left:5%; top:68%">welcome</span>
-    <span class="intro-word" style="left:27%; top:65%">to</span>
-    <span class="intro-word" style="left:70%; top:68%">my</span>
-    <span class="intro-word" style="left:82%; top:70%">world</span>
+  <!-- INTRO OVERLAY REMOVED Aug 1, 2026 — held the intro words ("hi i am
+       avneet welcome to my world") and the 14 photo <img> tags (~10MB from
+       assets/1-10). The site header now carries the name and identity.
 
-    <!-- Mobile fallback: original scattered photos -->
-    <img class="intro-photo mobile-photo" src="assets/1.png" style="left:5%; top:35%; transform:rotate(-3deg)" alt="">
-    <img class="intro-photo mobile-photo" src="assets/2.jpeg" style="left:16%; top:35%; transform:rotate(2deg)" alt="">
-    <img class="intro-photo mobile-photo" src="assets/3.jpeg" style="left:72%; top:35%; transform:rotate(-2deg)" alt="">
-    <img class="intro-photo mobile-photo" src="assets/4.jpeg" style="left:83%; top:35%; transform:rotate(3deg)" alt="">
+       >> FULL MARKUP SAVED: _archive/removed-intro-2026-08-01.html
+          Copy PIECE 1 back here to restore. Nothing needs rewriting.
 
-    <!-- Desktop: stacked photo deck -->
-    <div id="photo-stack">
-      <img class="intro-photo stack-photo" id="sphoto1" src="assets/1.png" alt="">
-      <img class="intro-photo stack-photo" id="sphoto2" src="assets/2.jpeg" alt="">
-      <img class="intro-photo stack-photo" id="sphoto3" src="assets/3.jpeg" alt="">
-      <img class="intro-photo stack-photo" id="sphoto4" src="assets/4.jpeg" alt="">
-      <img class="intro-photo stack-photo" id="sphoto5" src="assets/5.png" alt="">
-      <img class="intro-photo stack-photo" id="sphoto6" src="assets/6.png" alt="">
-      <img class="intro-photo stack-photo" id="sphoto7" src="assets/7.jpeg" alt="">
-      <img class="intro-photo stack-photo" id="sphoto8" src="assets/8.png" alt="">
-      <img class="intro-photo stack-photo" id="sphoto9" src="assets/9.jpeg" alt="">
-      <img class="intro-photo stack-photo" id="sphoto10" src="assets/10.jpeg" alt="">
-    </div>
-  </div>
+       Orphaned but still in style.css (do NOT delete while the archive is
+       the restore path): #intro-overlay, .intro-word, .intro-photo,
+       .mobile-photo, .stack-photo, #photo-stack, #intro-scroll-spacer.
+       The photo-stack script below is inert — it guards `if (!stack) return`. -->
 
   <!-- ============================================================
        GLOBE SECTION — full viewport.
@@ -76,8 +101,8 @@
 
   </section>
 
-  <!-- Scroll spacer — gives room to scroll the intro overlay away -->
-  <div id="intro-scroll-spacer"></div>
+  <!-- Scroll spacer removed Aug 2026 — it existed only to give the intro
+       overlay room to scroll away. The page no longer scrolls. -->
 
   <!-- ============================================================
        GLOBE TOOLTIP CARD
@@ -97,245 +122,30 @@
   <!-- Main script — globe, pins, tooltips, stars -->
   <script src="script.js"></script>
 
-  <!-- Confetti CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<div id="guess-game">
-  <div class="guess-header">guess where i'm going next ✈️</div>
-  <div class="guess-input-row">
-    <input type="text" id="guess-input" placeholder="type a country..." autocomplete="off" />
-    <button id="guess-btn">go</button>
-  </div>
-  <div id="guess-feedback"></div>
-</div>
-
-<div id="newsletter-float">
-  <a href="https://subscribe-forms.beehiiv.com/f81b2276-3730-4e1c-92ea-a74ae71c46eb"
-     target="_blank" rel="noopener" id="newsletter-link">
-    💌 letters from avneet
-  </a>
-</div>
-<script>
-(function() {
-  var followSound = new Audio('assets/follow.mp3');
-  followSound.volume = 0.5;
-  document.getElementById('newsletter-link').addEventListener('click', function() {
-    followSound.currentTime = 0;
-    followSound.play().catch(function(){});
-  });
-})();
-</script>
-
-<!-- Guess the Destination game logic -->
-<script>
-(function() {
-  var guessGame = document.getElementById('guess-game');
-  var guessInput = document.getElementById('guess-input');
-  var guessBtn = document.getElementById('guess-btn');
-  var feedback = document.getElementById('guess-feedback');
-  var confettiSound = new Audio('assets/confetti-pop.mp3');
-  confettiSound.volume = 0.7;
-
-  var wrongMessages = [
-    "Nope! But good guess \u{1F92A}",
-    "I wish",
-    "Not even close... or are you? \u{1F440}",
-    "Interesting guess! Try again \u2708\uFE0F"
-  ];
-
-  var hints = [
-    "Hint: it's in Europe \u{1F30D}",
-    "Hint: famous for beer & pretzels \u{1F37A}",
-    "Hint: think Oktoberfest \u{1F3B6}",
-    "Hint: starts with a G..."
-  ];
-
-  var wrongCount = 0;
-
-  function checkGuess() {
-    var val = guessInput.value.trim().toLowerCase();
-    if (!val) return;
-
-    if (val === 'germany' || val === 'deutschland') {
-      // Correct!
-      guessGame.classList.add('correct');
-      feedback.innerHTML = '\u{1F389} YOU GOT IT!<br>Deutschland, here I come! \u{1F1E9}\u{1F1EA}';
-
-      confettiSound.currentTime = 0;
-      confettiSound.play().catch(function(){});
-
-      // Fire confetti
-      confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { x: 0.15, y: 0.85 }
-      });
-      setTimeout(function() {
-        confetti({
-          particleCount: 80,
-          spread: 60,
-          origin: { x: 0.2, y: 0.7 }
-        });
-      }, 300);
-
-      // Parse emojis
-      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
-    } else {
-      // Wrong guess
-      var msg = wrongMessages[wrongCount % wrongMessages.length];
-
-      // Show a hint after every 2 wrong guesses
-      if (wrongCount > 0 && wrongCount % 2 === 1) {
-        var hintIdx = Math.min(Math.floor(wrongCount / 2), hints.length - 1);
-        msg += '<br><span style="color:#8892b0;font-size:0.72rem">' + hints[hintIdx] + '</span>';
-      }
-
-      feedback.innerHTML = msg;
-      wrongCount++;
-      guessInput.value = '';
-      guessInput.focus();
-
-      if (window.twemoji) twemoji.parse(feedback, { folder: 'svg', ext: '.svg' });
-    }
-  }
-
-  guessBtn.addEventListener('click', checkGuess);
-  guessInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkGuess();
-  });
-})();
-</script>
-
-  <!-- Intro overlay scroll-away logic -->
   <script>
-  (function() {
-    var overlay = document.getElementById('intro-overlay');
-    var globeContainer = document.getElementById('globe-container');
-    var newsletterBtn = document.getElementById('newsletter-float');
-    var guessGame = document.getElementById('guess-game');
-    // Prevent globe's OrbitControls from capturing wheel events
-    // so the page can scroll. Re-enable after intro completes.
-    function blockGlobeWheel(e) {
-      e.stopPropagation();
-    }
-    function blockGlobeTouch(e) {
-      e.stopPropagation();
-    }
-    globeContainer.addEventListener('wheel', blockGlobeWheel, true);
-    globeContainer.addEventListener('touchstart', blockGlobeTouch, true);
-    globeContainer.addEventListener('touchmove', blockGlobeTouch, true);
-
-    window.addEventListener('scroll', function() {
-      var scrollY = window.scrollY;
-      console.log('scrollY:', scrollY);
-      var progress = Math.min(scrollY / 500, 1);
-
-      overlay.style.transform = 'translateY(' + (-scrollY * 1.5) + 'px)';
-      overlay.style.opacity = 1 - progress;
-
-      if (progress >= 1) {
-        overlay.style.visibility = 'hidden';
-        // Re-enable globe zoom after intro is done
-        globeContainer.removeEventListener('wheel', blockGlobeWheel, true);
-        globeContainer.removeEventListener('touchstart', blockGlobeTouch, true);
-        globeContainer.removeEventListener('touchmove', blockGlobeTouch, true);
-        newsletterBtn.classList.add('visible');
-        guessGame.classList.add('visible');
-        startFloatingIcons();
-      } else {
-        overlay.style.visibility = 'visible';
-        newsletterBtn.classList.remove('visible');
-        guessGame.classList.remove('visible');
-        stopFloatingIcons();
-      }
+    // The globe measures #globe-container at DOMContentLoaded. Now that the
+    // container is a letterboxed stage, fire one resize after full load so
+    // it re-measures the settled layout and re-centres in its frame.
+    // Uses the resize handler script.js already registers — no globe code changed.
+    window.addEventListener('load', function () {
+      window.dispatchEvent(new Event('resize'));
     });
-  })();
   </script>
 
-<script>
-(function() {
-  var shuffleTimer = null;
-  var iconsActive = false;
+  <!-- Confetti CDN removed Aug 1, 2026 with the guess game.
+       Restore from _archive/removed-intro-2026-08-01.html PIECE 4a. -->
 
-  // Exclusion zones (percentages of viewport)
-  // Globe: center area roughly 25%-75% x, 20%-80% y
-  // Newsletter btn: bottom-right corner
-  var exclusions = [
-    { x1: 25, y1: 20, x2: 75, y2: 80 },   // globe center
-    { x1: 75, y1: 75, x2: 100, y2: 100 }   // newsletter btn area
-  ];
+  <!-- Guess game removed Aug 1, 2026 -> _archive PIECE 4b (markup) + 4c (logic). -->
 
-  function isInExclusion(x, y) {
-    for (var i = 0; i < exclusions.length; i++) {
-      var z = exclusions[i];
-      if (x >= z.x1 && x <= z.x2 && y >= z.y1 && y <= z.y2) return true;
-    }
-    return false;
-  }
+  <!-- Newsletter card removed Aug 1, 2026 -> _archive PIECE 5. -->
 
-  function randomPos() {
-    var x, y, attempts = 0;
-    do {
-      x = 5 + Math.random() * 85;
-      y = 5 + Math.random() * 85;
-      attempts++;
-    } while (isInExclusion(x, y) && attempts < 50);
-    return { x: x, y: y };
-  }
+  <!-- (guess game logic lived here) -->
 
-  function positionIcons(icons) {
-    for (var i = 0; i < icons.length; i++) {
-      var pos = randomPos();
-      icons[i].style.left = pos.x + 'vw';
-      icons[i].style.top = pos.y + 'vh';
-    }
-  }
+  <!-- Reveal-on-load shim removed Aug 1, 2026: nothing left to reveal.
+       If PIECE 4b/5 or the social bar come back, they need showing again
+       (they start hidden in CSS) -> _archive PIECE 6. -->
 
-  window.startFloatingIcons = function() {
-    if (iconsActive) return;
-    iconsActive = true;
-    var icons = document.querySelectorAll('#social-bar a');
-    if (!icons.length) return;
-
-    // Set initial positions instantly (no transition for first placement)
-    for (var i = 0; i < icons.length; i++) {
-      icons[i].style.transition = 'opacity 0.6s ease';
-    }
-    positionIcons(icons);
-
-    // Stagger fade-in
-    for (var i = 0; i < icons.length; i++) {
-      (function(icon, delay) {
-        setTimeout(function() {
-          icon.classList.add('floating-visible');
-          // Restore full transition after fade-in
-          setTimeout(function() {
-            icon.style.transition = '';
-          }, 700);
-        }, delay);
-      })(icons[i], i * 200);
-    }
-
-    // Shuffle every 5 seconds
-    shuffleTimer = setInterval(function() {
-      positionIcons(icons);
-    }, 5000);
-  };
-
-  window.stopFloatingIcons = function() {
-    if (!iconsActive) return;
-    iconsActive = false;
-    var icons = document.querySelectorAll('#social-bar a');
-    for (var i = 0; i < icons.length; i++) {
-      icons[i].classList.remove('floating-visible');
-    }
-    if (shuffleTimer) {
-      clearInterval(shuffleTimer);
-      shuffleTimer = null;
-    }
-  };
-})();
-</script>
+  <!-- Floating social icon script removed Aug 1, 2026 -> _archive PIECE 7. -->
 
 <script>
 (function() {
@@ -347,6 +157,8 @@
   document.addEventListener('click', function(e) {
     // Skip for "Explore This Chapter" link — it has its own sound
     if (e.target.closest('#tt-link')) return;
+    // Header is Layer 1 — keep it silent so RESUME/email never make noise
+    if (e.target.closest('#site-header')) return;
     if (e.target.closest('#globe-section')) {
       applePaySound.currentTime = 0;
       applePaySound.play();
@@ -363,7 +175,7 @@
 (function() {
   const star = document.getElementById('star-cursor');
   star.innerHTML = '✦';
-  star.style.color = '#c8d0e8';
+  star.style.color = 'var(--cursor-idle)';
   star.style.fontFamily = 'serif';
 
   document.addEventListener('mousemove', (e) => {
@@ -374,11 +186,11 @@
   document.querySelectorAll('a, button, [data-hover]').forEach(el => {
     el.addEventListener('mouseenter', () => {
       star.classList.add('big');
-      star.style.color = '#7c8ff7';
+      star.style.color = 'var(--cursor-hover)';
     });
     el.addEventListener('mouseleave', () => {
       star.classList.remove('big');
-      star.style.color = '#c8d0e8';
+      star.style.color = 'var(--cursor-idle)';
     });
   });
 
@@ -391,32 +203,8 @@
   });
 })();
 </script>
-<div id="social-bar">
-  <a href="https://www.linkedin.com/in/avneetkaur777/" target="_blank" rel="noopener" aria-label="LinkedIn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </svg>
-    <span class="social-tooltip">linkedin</span>
-  </a>
-  <a href="https://www.youtube.com/@avneetgrewal114" target="_blank" rel="noopener" aria-label="YouTube">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-    </svg>
-    <span class="social-tooltip">youtube</span>
-  </a>
-  <a href="https://www.instagram.com/avneeet.mp4/" target="_blank" rel="noopener" aria-label="Work Instagram">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-    </svg>
-    <span class="social-tooltip">work</span>
-  </a>
-  <a href="https://www.instagram.com/avneetgrewal114/" target="_blank" rel="noopener" aria-label="Personal Instagram">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-    </svg>
-    <span class="social-tooltip">personal</span>
-  </a>
-</div>
+  <!-- Social bar removed Aug 1, 2026 -> _archive PIECE 8.
+       NOTE: LinkedIn + GitHub + email now live in #site-header instead. -->
 
 <script>
 (function() {
@@ -622,6 +410,100 @@
         });
       }, 400);
     });
+  });
+})();
+</script>
+
+<!-- ============================================================
+     QUICK RECAP OVERLAY — progressive enhancement over a real page.
+     recap.html is a full, crawlable page on its own (Layer 1: works
+     with JS off, works for search engines, works if this script
+     throws). With JS on, clicking "Quick recap" HERE instead fetches
+     that same page and lifts its #recap-content into a slide-over
+     panel, so a recruiter never leaves the globe. Same content either
+     way — only the presentation differs.
+     ============================================================ -->
+<script>
+(function() {
+  var trigger = document.querySelector('#site-header .header-recap');
+  if (!trigger) return;
+
+  var overlay, panel, closeBtn, cachedHTML = null, lastFocused = null;
+
+  function buildOverlay() {
+    overlay = document.createElement('div');
+    overlay.id = 'recap-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Quick recap');
+
+    var scrim = document.createElement('div');
+    scrim.className = 'recap-scrim';
+    scrim.addEventListener('click', closeOverlay);
+
+    panel = document.createElement('div');
+    panel.className = 'recap-panel';
+    panel.innerHTML = '<div class="recap-panel-inner"></div>';
+
+    closeBtn = document.createElement('button');
+    closeBtn.className = 'recap-close';
+    closeBtn.setAttribute('aria-label', 'Close quick recap');
+    closeBtn.textContent = '✕';
+    closeBtn.addEventListener('click', closeOverlay);
+
+    overlay.appendChild(scrim);
+    overlay.appendChild(panel);
+    overlay.appendChild(closeBtn);
+    document.body.appendChild(overlay);
+  }
+
+  function openOverlay(html) {
+    if (!overlay) buildOverlay();
+    panel.querySelector('.recap-panel-inner').innerHTML = html;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lastFocused = document.activeElement;
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeOverlay() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') closeOverlay();
+  }
+
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    if (cachedHTML) {
+      openOverlay(cachedHTML);
+      return;
+    }
+
+    fetch('/recap.html')
+      .then(function(res) {
+        if (!res.ok) throw new Error('recap fetch failed: ' + res.status);
+        return res.text();
+      })
+      .then(function(text) {
+        var doc = new DOMParser().parseFromString(text, 'text/html');
+        var content = doc.getElementById('recap-content');
+        if (!content) throw new Error('recap-content not found');
+        cachedHTML = content.innerHTML;
+        openOverlay(cachedHTML);
+      })
+      .catch(function() {
+        // Fetch failed (offline, blocked, markup changed) — fall back to a
+        // real navigation rather than leaving the click doing nothing.
+        window.location.href = '/recap.html';
+      });
   });
 })();
 </script>

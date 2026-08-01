@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Palette options — day & night</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #1a1a1a; padding: 40px 20px 100px; }
+  h1 { color: #fff; text-align: center; font-size: 1rem; opacity: 0.7; margin-bottom: 10px; }
+  h2 { color: #fff; text-align: center; font-size: 0.85rem; opacity: 0.5; margin-bottom: 36px; font-weight: 400; }
+  .section-title { max-width: 1000px; margin: 50px auto 20px; color: #fff; font-size: 1.1rem; }
+  .theme { max-width: 1000px; margin: 0 auto 40px; }
+  .theme-label { font-size: 0.78rem; margin-bottom: 8px; display: flex; justify-content: space-between; gap: 12px; }
+  .theme-label b { color: #fff; font-size: 0.9rem; }
+  .theme-label span { color: #aaa; text-align: right; }
+
+  .stage { border-radius: 4px; overflow: hidden; border: 2px solid; }
+
+  .bar { display: flex; align-items: center; gap: 14px; height: 54px; padding: 0 20px; border-bottom: 2px solid; }
+  .name { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 0.95rem; white-space: nowrap; }
+  .id { font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 0.68rem; padding-left: 12px; border-left: 2px solid; white-space: nowrap; opacity: 0.85; }
+  .actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .recap { font-family: 'Unbounded', sans-serif; font-size: 0.64rem; font-weight: 700; padding: 5px 11px; border: 2px solid; border-radius: 3px; white-space: nowrap; }
+  .resume { font-family: 'Unbounded', sans-serif; font-size: 0.64rem; font-weight: 700; padding: 6px 14px; border-radius: 3px; white-space: nowrap; border: 2px solid; }
+
+  .body-strip { height: 46px; display: flex; align-items: center; padding: 0 20px; gap: 10px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .body-text { font-size: 0.72rem; font-family: monospace; }
+
+  .swatches { display: flex; gap: 8px; margin-top: 10px; }
+  .swatch { flex: 1; border-radius: 3px; padding: 8px 10px; font-size: 0.66rem; font-family: monospace; }
+  .swatch b { display: block; font-family: system-ui, sans-serif; font-size: 0.62rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.7; }
+
+  .note { max-width: 1000px; margin: 40px auto; color: #bbb; font-size: 0.8rem; line-height: 1.6; }
+  .note code { background: #000; padding: 1px 5px; border-radius: 3px; color: #7be; }
+</style>
+</head>
+<body>
+  <h1>day & night — four options each</h1>
+  <h2>same header layout every time, only the palette changes</h2>
+
+  <div class="section-title">🌙 NIGHT</div>
+
+  <!-- N1 -->
+  <div class="theme">
+    <div class="theme-label"><b>N1 — current (live)</b><span>navy · cream · teal · tomato</span></div>
+    <div class="stage" style="border-color:#218380;">
+      <div class="bar" style="background:#0d1b2a;border-color:#218380;">
+        <span class="name" style="color:#f4f1de;">Avneet Kaur</span>
+        <span class="id" style="color:#93a7b0;border-color:#218380;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#f4f1de;border-color:#218380;">Quick recap</span>
+          <span class="resume" style="background:#f4f1de;color:#0d1b2a;border-color:#0d1b2a;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#0d1b2a;">
+        <span class="dot" style="background:#e94f37;"></span>
+        <span class="body-text" style="color:#b9c8ce;">hover / pop accent = tomato</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#0d1b2a;color:#f4f1de;"><b>bg</b>#0d1b2a</div>
+      <div class="swatch" style="background:#f4f1de;color:#0d1b2a;"><b>ink</b>#f4f1de</div>
+      <div class="swatch" style="background:#218380;color:#fff;"><b>structural</b>#218380</div>
+      <div class="swatch" style="background:#e94f37;color:#fff;"><b>accent</b>#e94f37</div>
+    </div>
+  </div>
+
+  <!-- N2 -->
+  <div class="theme">
+    <div class="theme-label"><b>N2 — indigo sunset</b><span>indigo · sand · burnt orange · mustard</span></div>
+    <div class="stage" style="border-color:#f77f00;">
+      <div class="bar" style="background:#1b1b3a;border-color:#f77f00;">
+        <span class="name" style="color:#f2e8cf;">Avneet Kaur</span>
+        <span class="id" style="color:#a9a4c7;border-color:#f77f00;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#f2e8cf;border-color:#f77f00;">Quick recap</span>
+          <span class="resume" style="background:#fcbf49;color:#1b1b3a;border-color:#1b1b3a;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#1b1b3a;">
+        <span class="dot" style="background:#f77f00;"></span>
+        <span class="body-text" style="color:#c7c2e0;">warmer, more "golden hour" than current navy</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#1b1b3a;color:#f2e8cf;"><b>bg</b>#1b1b3a</div>
+      <div class="swatch" style="background:#f2e8cf;color:#1b1b3a;"><b>ink</b>#f2e8cf</div>
+      <div class="swatch" style="background:#f77f00;color:#fff;"><b>structural</b>#f77f00</div>
+      <div class="swatch" style="background:#fcbf49;color:#1b1b3a;"><b>resume fill</b>#fcbf49</div>
+    </div>
+  </div>
+
+  <!-- N3 -->
+  <div class="theme">
+    <div class="theme-label"><b>N3 — WPA travel-poster (forest)</b><span>pine green · cream · gold · rust</span></div>
+    <div class="stage" style="border-color:#e9c46a;">
+      <div class="bar" style="background:#14342b;border-color:#e9c46a;">
+        <span class="name" style="color:#f4f1de;">Avneet Kaur</span>
+        <span class="id" style="color:#9db8ac;border-color:#e9c46a;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#f4f1de;border-color:#e9c46a;">Quick recap</span>
+          <span class="resume" style="background:#e9c46a;color:#14342b;border-color:#14342b;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#14342b;">
+        <span class="dot" style="background:#bc4749;"></span>
+        <span class="body-text" style="color:#c3d4cb;">National-parks poster energy — earthy, not neon</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#14342b;color:#f4f1de;"><b>bg</b>#14342b</div>
+      <div class="swatch" style="background:#f4f1de;color:#14342b;"><b>ink</b>#f4f1de</div>
+      <div class="swatch" style="background:#e9c46a;color:#14342b;"><b>structural / resume</b>#e9c46a</div>
+      <div class="swatch" style="background:#bc4749;color:#fff;"><b>accent</b>#bc4749</div>
+    </div>
+  </div>
+
+  <!-- N4 -->
+  <div class="theme">
+    <div class="theme-label"><b>N4 — stark charcoal</b><span>near-black · off-white · cobalt · crimson</span></div>
+    <div class="stage" style="border-color:#3a6ea5;">
+      <div class="bar" style="background:#16181d;border-color:#3a6ea5;">
+        <span class="name" style="color:#eef0f2;">Avneet Kaur</span>
+        <span class="id" style="color:#8b93a0;border-color:#3a6ea5;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#eef0f2;border-color:#3a6ea5;">Quick recap</span>
+          <span class="resume" style="background:#eef0f2;color:#16181d;border-color:#16181d;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#16181d;">
+        <span class="dot" style="background:#d7263d;"></span>
+        <span class="body-text" style="color:#c4c8cf;">drops "travel poster" warmth for pure brutalism</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#16181d;color:#eef0f2;"><b>bg</b>#16181d</div>
+      <div class="swatch" style="background:#eef0f2;color:#16181d;"><b>ink</b>#eef0f2</div>
+      <div class="swatch" style="background:#3a6ea5;color:#fff;"><b>structural</b>#3a6ea5</div>
+      <div class="swatch" style="background:#d7263d;color:#fff;"><b>accent</b>#d7263d</div>
+    </div>
+  </div>
+
+  <div class="section-title">☀️ DAY</div>
+
+  <!-- D1 -->
+  <div class="theme">
+    <div class="theme-label"><b>D1 — inverse of current (proposed earlier)</b><span>cream · navy · teal · mustard</span></div>
+    <div class="stage" style="border-color:#218380;">
+      <div class="bar" style="background:#f4f1de;border-color:#218380;">
+        <span class="name" style="color:#0d1b2a;">Avneet Kaur</span>
+        <span class="id" style="color:#4a5a63;border-color:#218380;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#0d1b2a;border-color:#218380;">Quick recap</span>
+          <span class="resume" style="background:#f4d35e;color:#0d1b2a;border-color:#0d1b2a;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#f4f1de;">
+        <span class="dot" style="background:#f4d35e;"></span>
+        <span class="body-text" style="color:#4a5a63;">teal is the constant thread between day & night</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#f4f1de;color:#0d1b2a;"><b>bg</b>#f4f1de</div>
+      <div class="swatch" style="background:#0d1b2a;color:#f4f1de;"><b>ink</b>#0d1b2a</div>
+      <div class="swatch" style="background:#218380;color:#fff;"><b>structural</b>#218380</div>
+      <div class="swatch" style="background:#f4d35e;color:#0d1b2a;"><b>resume fill</b>#f4d35e</div>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="theme">
+    <div class="theme-label"><b>D2 — parchment map</b><span>paper · ink brown · teal · terracotta</span></div>
+    <div class="stage" style="border-color:#218380;">
+      <div class="bar" style="background:#f7ecd9;border-color:#218380;">
+        <span class="name" style="color:#2b2118;">Avneet Kaur</span>
+        <span class="id" style="color:#6b5c4a;border-color:#218380;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#2b2118;border-color:#218380;">Quick recap</span>
+          <span class="resume" style="background:#cc5b45;color:#f7ecd9;border-color:#2b2118;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#f7ecd9;">
+        <span class="dot" style="background:#cc5b45;"></span>
+        <span class="body-text" style="color:#6b5c4a;">warmer & more "aged map" than plain cream</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#f7ecd9;color:#2b2118;"><b>bg</b>#f7ecd9</div>
+      <div class="swatch" style="background:#2b2118;color:#f7ecd9;"><b>ink</b>#2b2118</div>
+      <div class="swatch" style="background:#218380;color:#fff;"><b>structural</b>#218380</div>
+      <div class="swatch" style="background:#cc5b45;color:#fff;"><b>resume fill / accent</b>#cc5b45</div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="theme">
+    <div class="theme-label"><b>D3 — literal sky</b><span>pale sky blue · navy · tomato · mustard</span></div>
+    <div class="stage" style="border-color:#0d1b2a;">
+      <div class="bar" style="background:#e8f1f2;border-color:#0d1b2a;">
+        <span class="name" style="color:#0d1b2a;">Avneet Kaur</span>
+        <span class="id" style="color:#4a6068;border-color:#0d1b2a;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#0d1b2a;border-color:#0d1b2a;">Quick recap</span>
+          <span class="resume" style="background:#e94f37;color:#fff;border-color:#0d1b2a;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#e8f1f2;">
+        <span class="dot" style="background:#f4d35e;"></span>
+        <span class="body-text" style="color:#4a6068;">bg literally matches a daytime sky, not just "not-navy"</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#e8f1f2;color:#0d1b2a;"><b>bg</b>#e8f1f2</div>
+      <div class="swatch" style="background:#0d1b2a;color:#f4f1de;"><b>ink / border</b>#0d1b2a</div>
+      <div class="swatch" style="background:#e94f37;color:#fff;"><b>resume fill</b>#e94f37</div>
+      <div class="swatch" style="background:#f4d35e;color:#0d1b2a;"><b>accent</b>#f4d35e</div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div class="theme">
+    <div class="theme-label"><b>D4 — bright minimal</b><span>off-white · navy · one bold accent, nothing else</span></div>
+    <div class="stage" style="border-color:#0d1b2a;">
+      <div class="bar" style="background:#faf9f6;border-color:#0d1b2a;">
+        <span class="name" style="color:#0d1b2a;">Avneet Kaur</span>
+        <span class="id" style="color:#5c5c56;border-color:#0d1b2a;">cs & business @ lehigh</span>
+        <div class="actions">
+          <span class="recap" style="color:#0d1b2a;border-color:#0d1b2a;">Quick recap</span>
+          <span class="resume" style="background:#e63946;color:#fff;border-color:#0d1b2a;">RESUME</span>
+        </div>
+      </div>
+      <div class="body-strip" style="background:#faf9f6;">
+        <span class="dot" style="background:#e63946;"></span>
+        <span class="body-text" style="color:#5c5c56;">most "modern SaaS" of the eight — least "travel poster"</span>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch" style="background:#faf9f6;color:#0d1b2a;"><b>bg</b>#faf9f6</div>
+      <div class="swatch" style="background:#0d1b2a;color:#f4f1de;"><b>ink / border</b>#0d1b2a</div>
+      <div class="swatch" style="background:#e63946;color:#fff;"><b>only accent</b>#e63946</div>
+      <div class="swatch" style="background:#faf9f6;color:#faf9f6;"><b>(no 4th color)</b>—</div>
+    </div>
+  </div>
+
+  <p class="note">
+    N1 and D1 are what I'd already shown you — kept here as the baseline to compare against.
+    N2–N4 and D2–D4 are new directions. Note which night option and which day option you'd want to
+    actually <i>pair</i> — they don't have to be N1+D1; e.g. N3 (WPA forest) pairs naturally with D2
+    (parchment map) since both lean "old poster/map" rather than "flat modern." Open this file directly,
+    or via localhost. Nothing in the real site has changed.
+  </p>
+</body>
+</html>
