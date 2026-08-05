@@ -24,14 +24,17 @@
   <!-- Twemoji — renders flag emojis on Windows -->
   <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
-  <!-- Hero intro should only ever play once per visitor, not every time
-       they land back on "/" (e.g. clicking the header logo). Runs
-       synchronously before paint — same reasoning as the old day/night
-       init script had — so there's no flash of the intro for returning
-       visitors. Sets the class on <html>, not <body> (body doesn't exist
-       yet this early in <head>). -->
+  <!-- Hero intro plays once per browser session — every fresh visit
+       (new tab, reopening the browser) shows it again, but navigating
+       back to "/" within the same tab (e.g. clicking the header logo)
+       doesn't replay it. sessionStorage, not localStorage, is what
+       gives that: cleared on a new session, kept across navigations
+       within one. Runs synchronously before paint — same reasoning as
+       the old day/night init script had — so there's no flash of the
+       intro for a same-session return. Sets the class on <html>, not
+       <body> (body doesn't exist yet this early in <head>). -->
   <script>
-    if (!localStorage.getItem('introSeen')) {
+    if (!sessionStorage.getItem('introSeen')) {
       document.documentElement.classList.add('intro-active');
     }
   </script>
@@ -189,7 +192,7 @@
   <!-- Hero intro bubble sequence — one line at a time, auto-advancing
        every 2s or on click/Enter/Space. The last line is the CTA;
        advancing past it removes .intro-active from <html> and sets
-       localStorage so it doesn't play again on future visits (see the
+       sessionStorage so it doesn't replay again this session (see the
        early script in <head>). -->
   <script>
     (function() {
@@ -251,7 +254,7 @@
       function dismiss() {
         clearTimeout(autoTimer);
         document.documentElement.classList.remove('intro-active');
-        localStorage.setItem('introSeen', '1');
+        sessionStorage.setItem('introSeen', '1');
       }
 
       function advance() {
