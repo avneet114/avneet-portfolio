@@ -481,9 +481,13 @@
 (function() {
   const clickSound = new Audio('../assets/click.mp3');
   clickSound.preload = 'auto';
-  document.addEventListener('click', function() {
-    clickSound.currentTime = 0;
-    clickSound.play();
+  // Only real controls make noise — clicking empty page background
+  // stays silent, not every click on the page.
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('button, a, [role="button"]')) {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
   });
 })();
 </script>

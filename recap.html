@@ -11,8 +11,9 @@
   <link rel="apple-touch-icon" href="assets/favicon.png" />
 
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="recap-page">
 
@@ -54,176 +55,154 @@
        slide-over panel — see the script at the bottom of index.html.
        This page must also stand on its own: it is the real, crawlable
        URL for recruiters, search engines and anyone with JS off. -->
-  <main class="term" id="recap-content">
+  <main class="recap-main" id="recap-content">
 
-    <!-- ============================================================
-         BOOT LINE — a query, not a headline. Sets the terminal frame
-         without copying anyone's literal chrome.
-         ============================================================ -->
-    <p class="term-line term-boot">
-      <span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span>
-      locate --now<span class="term-cursor" aria-hidden="true"></span>
-    </p>
+    <div class="recap-header">
+      <h1>Quick Recap</h1>
+      <p class="recap-subtitle">Experience, projects, and education — straight from the source.</p>
 
-    <section class="term-block" aria-label="Current position">
-      <p class="term-out">
-        <b>Software Engineer / PM Intern</b> — Place Beyond Bytes,
-        University of Duisburg-Essen<br>
-        <span class="term-dim">51.4556&deg;N 7.0116&deg;E · Essen, Germany · since Jun 2026</span>
-      </p>
-      <!-- TODO (Avneet): the most valuable line on this whole site is what
-           you are LOOKING FOR next — e.g. "seeking: Summer 2027, product /
-           AI strategy". Recruiters filter on timing before anything else.
-           Add it as a second term-out line here. -->
-    </section>
+      <section class="recap-current" aria-label="Current position">
+        <div class="recap-current-label">Currently</div>
+        <p>
+          <b>Software Engineer / PM Intern</b> — Place Beyond Bytes, University of Duisburg-Essen
+          <span class="recap-dim">Essen, Germany · since June 2026</span>
+        </p>
+        <!-- TODO (Avneet): the most valuable line on this whole site is what
+             you are LOOKING FOR next — e.g. "seeking: Summer 2027, product /
+             AI strategy". Recruiters filter on timing before anything else.
+             Add it as a second line here. -->
+      </section>
+    </div>
 
     <!-- ============================================================
          EXPERIENCE
          ============================================================ -->
-    <p class="term-line"><span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span> cat experience.log</p>
+    <h2 class="recap-section-title">Experience</h2>
 
-    <section class="term-sec" aria-label="Experience">
-      <ol class="bd-rows">
-        <li class="bd-row">
-          <span class="bd-yr">26</span>
-          <div class="bd-main">
-            <h3>Software Engineer / PM Intern <span class="term-at">@ Place Beyond Bytes</span></h3>
-            <p class="bd-org">University of Duisburg-Essen</p>
-            <ul>
-              <li>Ran an <b>80-participant startup hackathon</b> with a 22-person team, coordinating sponsors and logistics.</li>
-              <li>Conducted <b>12+ founder discovery interviews</b> to scope needs and define project requirements.</li>
-              <li>Built reusable AI templates for market research, customer discovery and pitch prep.</li>
-            </ul>
-          </div>
-          <span class="bd-st">Essen<i>Germany</i></span>
-        </li>
+    <ol class="recap-cards" aria-label="Experience">
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">Software Engineer / PM Intern <span class="recap-at">@ Place Beyond Bytes</span></div>
+          <span class="recap-date">2026</span>
+        </div>
+        <p class="recap-org">University of Duisburg-Essen · Essen, Germany</p>
+        <ul class="recap-bullets">
+          <li>Ran an <b>80-participant startup hackathon</b> with a 22-person team, coordinating sponsors and logistics.</li>
+          <li>Conducted <b>12+ founder discovery interviews</b> to scope needs and define project requirements.</li>
+          <li>Built reusable AI templates for market research, customer discovery and pitch prep.</li>
+        </ul>
+      </li>
 
-        <li class="bd-row">
-          <span class="bd-yr">25</span>
-          <div class="bd-main">
-            <h3>Business Communication Consultant <span class="term-at">@ Lehigh University</span></h3>
-            <p class="bd-org">College of Business</p>
-            <ul>
-              <li>Coach <b>45+ business students</b> on professional writing, one-on-one.</li>
-              <li>Write with faculty for the alumni newsletter — audience of <b>12,000+</b>.</li>
-            </ul>
-          </div>
-          <span class="bd-st">Bethlehem<i>Pennsylvania</i></span>
-        </li>
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">Business Communication Consultant <span class="recap-at">@ Lehigh University</span></div>
+          <span class="recap-date">2025</span>
+        </div>
+        <p class="recap-org">College of Business · Bethlehem, Pennsylvania</p>
+        <ul class="recap-bullets">
+          <li>Coach <b>45+ business students</b> on professional writing, one-on-one.</li>
+          <li>Write with faculty for the alumni newsletter — audience of <b>12,000+</b>.</li>
+        </ul>
+      </li>
 
-        <li class="bd-row">
-          <span class="bd-yr">25</span>
-          <div class="bd-main">
-            <h3>Strategy &amp; Operations Intern <span class="term-at">@ WatGen</span></h3>
-            <p class="bd-org">climate tech start-up</p>
-            <ul>
-              <li>Built the carbon-credits marketplace front end and <b>demoed it to Chile's Ministry of Energy</b> for a grant proposal.</li>
-              <li>Evaluated tire pyrolysis feasibility across <b>3 vendor quotes</b> to guide a major equipment purchase.</li>
-              <li>Built a monthly OPEX model for cost per ton processed.</li>
-            </ul>
-          </div>
-          <span class="bd-st">Santiago<i>Chile</i></span>
-        </li>
-      </ol>
-    </section>
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">Strategy &amp; Operations Intern <span class="recap-at">@ WatGen</span></div>
+          <span class="recap-date">2025</span>
+        </div>
+        <p class="recap-org">Climate tech start-up · Santiago, Chile</p>
+        <ul class="recap-bullets">
+          <li>Built the carbon-credits marketplace front end and <b>demoed it to Chile's Ministry of Energy</b> for a grant proposal.</li>
+          <li>Evaluated tire pyrolysis feasibility across <b>3 vendor quotes</b> to guide a major equipment purchase.</li>
+          <li>Built a monthly OPEX model for cost per ton processed.</li>
+        </ul>
+      </li>
+    </ol>
 
     <!-- ============================================================
          PROJECTS
          ============================================================ -->
-    <p class="term-line"><span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span> ls ./projects</p>
+    <h2 class="recap-section-title">Projects</h2>
 
-    <section class="term-sec" aria-label="Projects">
-      <ol class="bd-rows">
-        <li class="bd-row">
-          <span class="bd-yr">21</span>
-          <div class="bd-main">
-            <h3>Content Creator <span class="term-at">@ YouTube &amp; Instagram</span></h3>
-            <ul>
-              <li>Built a community of <b>5,300+</b> with <b>3M+ total views</b> through consistent storytelling.</li>
-              <li>Paid brand partnerships with College Essay Guy, Unacademy, Oswaal Books, Harnoor Singh.</li>
-            </ul>
-            <p class="bd-links">
-              <a href="https://www.youtube.com/@avneetgrewal114" target="_blank" rel="noopener">YouTube</a>
-              <a href="https://www.instagram.com/avneeet.mp4/" target="_blank" rel="noopener">Instagram / work</a>
-              <a href="https://www.instagram.com/avneetgrewal114/" target="_blank" rel="noopener">Instagram / personal</a>
-            </p>
-          </div>
-          <span class="bd-st">Online<i>since 2021</i></span>
-        </li>
+    <ol class="recap-cards" aria-label="Projects">
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">Content Creator <span class="recap-at">@ YouTube &amp; Instagram</span></div>
+          <span class="recap-date">since 2021</span>
+        </div>
+        <ul class="recap-bullets">
+          <li>Built a community of <b>5,300+</b> with <b>3M+ total views</b> through consistent storytelling.</li>
+          <li>Paid brand partnerships with College Essay Guy, Unacademy, Oswaal Books, Harnoor Singh.</li>
+        </ul>
+        <p class="recap-links">
+          <a href="https://www.youtube.com/@avneetgrewal114" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/avneeet.mp4/" target="_blank" rel="noopener">Instagram / work</a>
+          <a href="https://www.instagram.com/avneetgrewal114/" target="_blank" rel="noopener">Instagram / personal</a>
+        </p>
+      </li>
 
-        <li class="bd-row">
-          <span class="bd-yr">25</span>
-          <div class="bd-main">
-            <h3>Team Lead <span class="term-at">@ Evento AI</span></h3>
-            <p class="bd-org">Lehigh Valley Collegiate Hackathon</p>
-            <ul>
-              <li>Led 4 people building a serverless scheduler on <b>AWS Lambda, Gemini API, Google Calendar API</b>.</li>
-              <li>Turns GroupMe messages into calendar invites.</li>
-            </ul>
-          </div>
-          <span class="bd-st">Bethlehem<i>Pennsylvania</i></span>
-        </li>
-      </ol>
-    </section>
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">Team Lead <span class="recap-at">@ Evento AI</span></div>
+          <span class="recap-date">2025</span>
+        </div>
+        <p class="recap-org">Lehigh Valley Collegiate Hackathon · Bethlehem, Pennsylvania</p>
+        <ul class="recap-bullets">
+          <li>Led 4 people building a serverless scheduler on <b>AWS Lambda, Gemini API, Google Calendar API</b>.</li>
+          <li>Turns GroupMe messages into calendar invites.</li>
+        </ul>
+      </li>
+    </ol>
 
     <!-- ============================================================
          EDUCATION
          ============================================================ -->
-    <p class="term-line"><span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span> cat education.txt</p>
+    <h2 class="recap-section-title">Education</h2>
 
-    <section class="term-sec" aria-label="Education">
-      <ol class="bd-rows">
-        <li class="bd-row">
-          <span class="bd-yr">28</span>
-          <div class="bd-main">
-            <h3>B.S. Computer Science &amp; Business <span class="term-at">@ Lehigh University</span></h3>
-            <p class="bd-org">Minor in Entrepreneurship · GPA 3.72 · graduating May 2028</p>
-            <ul>
-              <li>3&times; Dean's List, Trustees' Scholarship, Williams Prize.</li>
-              <li>EY Expedition, Lehigh Silicon Valley, Goldman Sachs Possibilities Summit.</li>
-              <li>Certified: Customer Experience Foundations, CodePath Technical Interview Prep, CodePath Web Development.</li>
-            </ul>
-          </div>
-          <span class="bd-st">Bethlehem<i>Pennsylvania</i></span>
-        </li>
-      </ol>
-    </section>
+    <ol class="recap-cards" aria-label="Education">
+      <li class="recap-card">
+        <div class="recap-card-top">
+          <div class="recap-role">B.S. Computer Science &amp; Business <span class="recap-at">@ Lehigh University</span></div>
+          <span class="recap-date">2028</span>
+        </div>
+        <p class="recap-org">Minor in Entrepreneurship · GPA 3.72 · graduating May 2028 · Bethlehem, Pennsylvania</p>
+        <ul class="recap-bullets">
+          <li>3&times; Dean's List, Trustees' Scholarship, Williams Prize.</li>
+          <li>EY Expedition, Lehigh Silicon Valley, Goldman Sachs Possibilities Summit.</li>
+          <li>Certified: Customer Experience Foundations, CodePath Technical Interview Prep, CodePath Web Development.</li>
+        </ul>
+      </li>
+    </ol>
 
     <!-- ============================================================
          ROUTE MAP — the crawlable path to every chapter. Search
          engines cannot follow the LOCATIONS array in script.js.
          Never hide this list.
          ============================================================ -->
-    <p class="term-line"><span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span> ls ~/chapters</p>
+    <h2 class="recap-section-title">Chapters</h2>
 
-    <section class="term-sec" aria-label="Chapters">
-      <ul class="bd-route">
-        <li><a href="chapters/punjab.html"><span class="bd-route-pin" aria-hidden="true">🌱</span><span class="bd-route-name">Punjab, India</span><span class="bd-route-co">31.1471&deg; N, 75.3412&deg; E</span><span class="bd-route-yr">05–24</span></a></li>
-        <li><a href="chapters/cape-town.html"><span class="bd-route-pin" aria-hidden="true">🌍</span><span class="bd-route-name">Cape Town, South Africa</span><span class="bd-route-co">33.9249&deg; S, 18.4241&deg; E</span><span class="bd-route-yr">24</span></a></li>
-        <li><a href="chapters/bethlehem.html"><span class="bd-route-pin" aria-hidden="true">🎓</span><span class="bd-route-name">Bethlehem, Pennsylvania</span><span class="bd-route-co">40.6259&deg; N, 75.3705&deg; W</span><span class="bd-route-yr">24–28</span></a></li>
-        <li><a href="chapters/london.html"><span class="bd-route-pin" aria-hidden="true">🏰</span><span class="bd-route-name">England &amp; Scotland</span><span class="bd-route-co">51.5074&deg; N, 0.1278&deg; W</span><span class="bd-route-yr">25</span></a></li>
-        <li><a href="chapters/santiago.html"><span class="bd-route-pin" aria-hidden="true">🌶️</span><span class="bd-route-name">Santiago, Chile</span><span class="bd-route-co">33.4489&deg; S, 70.6693&deg; W</span><span class="bd-route-yr">25</span></a></li>
-        <li><a href="chapters/canada.html"><span class="bd-route-pin" aria-hidden="true">🍁</span><span class="bd-route-name">Montreal &amp; Toronto</span><span class="bd-route-co">43.6532&deg; N, 79.3832&deg; W</span><span class="bd-route-yr">25–26</span></a></li>
-      </ul>
-    </section>
+    <ul class="recap-chapters" aria-label="Chapters">
+      <li><a href="chapters/punjab.html"><span aria-hidden="true">🌱</span> Punjab, India <span class="recap-chip-year">'05–24</span></a></li>
+      <li><a href="chapters/cape-town.html"><span aria-hidden="true">🌍</span> Cape Town, South Africa <span class="recap-chip-year">'24</span></a></li>
+      <li><a href="chapters/bethlehem.html"><span aria-hidden="true">🎓</span> Bethlehem, Pennsylvania <span class="recap-chip-year">'24–28</span></a></li>
+      <li><a href="chapters/london.html"><span aria-hidden="true">🏰</span> England &amp; Scotland <span class="recap-chip-year">'25</span></a></li>
+      <li><a href="chapters/santiago.html"><span aria-hidden="true">🌶️</span> Santiago, Chile <span class="recap-chip-year">'25</span></a></li>
+      <li><a href="chapters/canada.html"><span aria-hidden="true">🍁</span> Montreal &amp; Toronto <span class="recap-chip-year">'25–26</span></a></li>
+      <li><a href="chapters/germany.html"><span aria-hidden="true">🇩🇪</span> Essen, Germany <span class="recap-chip-year">'26</span></a></li>
+      <li><a href="chapters/passport.html"><span aria-hidden="true">🎒</span> Euro Summer <span class="recap-chip-year">'26</span></a></li>
+    </ul>
 
     <!-- ============================================================
          CONTACT
          ============================================================ -->
-    <p class="term-line"><span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span> ./contact.sh</p>
-
-    <footer class="term-block term-foot">
-      <p class="term-out">
-        <a class="header-resume" href="Kaur_B26_Resume.pdf" target="_blank" rel="noopener">RESUME</a>
-        <a class="term-link" href="mailto:avk328@lehigh.edu">avk328@lehigh.edu</a>
-        <a class="term-link" href="https://www.linkedin.com/in/avneetkaur777/" target="_blank" rel="noopener">linkedin</a>
-        <a class="term-link" href="https://github.com/avneet114" target="_blank" rel="noopener">github</a>
-      </p>
-      <p class="term-line" style="margin-top:28px">
-        <span class="term-prompt">avneet@world</span><span class="term-colon">:~$</span>
-        <a class="term-link" href="/">cd ~/globe</a><span class="term-cursor" aria-hidden="true"></span>
-      </p>
+    <footer class="recap-footer">
+      <a class="header-resume" href="Kaur_B26_Resume.pdf" target="_blank" rel="noopener">RESUME</a>
+      <a class="recap-contact-link" href="mailto:avk328@lehigh.edu">Email</a>
+      <a class="recap-contact-link" href="https://www.linkedin.com/in/avneetkaur777/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="recap-contact-link" href="https://github.com/avneet114" target="_blank" rel="noopener">GitHub</a>
     </footer>
+
+    <p class="recap-back"><a href="/">← Back to the globe</a></p>
 
   </main>
 

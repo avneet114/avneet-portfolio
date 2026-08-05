@@ -18,17 +18,25 @@
   <!-- Unbounded — header wordmark + nav, chosen by Avneet Aug 2026 -->
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
 
-  <!-- Space Mono — terminal type for the recap slide-over panel -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
   <!-- Globe.gl via CDN -->
   <script src="https://unpkg.com/globe.gl"></script>
 
   <!-- Twemoji — renders flag emojis on Windows -->
   <script src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
+  <!-- Hero intro should only ever play once per visitor, not every time
+       they land back on "/" (e.g. clicking the header logo). Runs
+       synchronously before paint — same reasoning as the old day/night
+       init script had — so there's no flash of the intro for returning
+       visitors. Sets the class on <html>, not <body> (body doesn't exist
+       yet this early in <head>). -->
+  <script>
+    if (!localStorage.getItem('introSeen')) {
+      document.documentElement.classList.add('intro-active');
+    }
+  </script>
 </head>
-<body class="intro-active">
+<body>
 
   <!-- ============================================================
        SITE HEADER — Layer 1. Plain HTML, no JavaScript.
@@ -180,15 +188,27 @@
 
   <!-- Hero intro bubble sequence — one line at a time, auto-advancing
        every 2s or on click/Enter/Space. The last line is the CTA;
-       advancing past it removes .intro-active from <body>, which
-       drives the whole overlay's fade in style.css. -->
+       advancing past it removes .intro-active from <html> and sets
+       localStorage so it doesn't play again on future visits (see the
+       early script in <head>). -->
   <script>
     (function() {
       const intro   = document.getElementById('hero-intro');
+      const video   = document.getElementById('hero-intro-video');
       const bubble  = document.getElementById('hero-intro-bubble');
       const textEl  = document.getElementById('hero-intro-text');
       const hintEl  = document.getElementById('hero-intro-hint');
       const skipEl  = document.getElementById('hero-intro-skip');
+
+      // Returning visitor — <html> never got .intro-active, so there's
+      // nothing to sequence. Stop the video outright rather than let
+      // an autoplay+loop element burn bandwidth invisibly forever.
+      if (!document.documentElement.classList.contains('intro-active')) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        return;
+      }
 
       const LINES = [
         { text: "hi, i'm avneet", type: 'headline' },
@@ -230,7 +250,8 @@
 
       function dismiss() {
         clearTimeout(autoTimer);
-        document.body.classList.remove('intro-active');
+        document.documentElement.classList.remove('intro-active');
+        localStorage.setItem('introSeen', '1');
       }
 
       function advance() {
@@ -296,9 +317,14 @@
     if (e.target.closest('#tt-link')) return;
     // Header is Layer 1 — keep it silent so RESUME/email never make noise
     if (e.target.closest('#site-header')) return;
+    // Only real controls make noise — clicking empty globe/page
+    // background (e.g. dragging the globe) stays silent.
+    const isControl = e.target.closest('button, a, [role="button"], .globe-pin');
+    if (!isControl) return;
     // Apple Pay chime is reserved for actually clicking a country pin —
-    // everything else (tour panel, hero intro bubble, reopen button,
-    // any other button on the page) gets the lowkey click sound instead.
+    // every other control (tour panel, hero intro bubble, reopen
+    // button, any other button on the page) gets the lowkey click
+    // sound instead.
     if (e.target.closest('.globe-pin')) {
       applePaySound.currentTime = 0;
       applePaySound.play();
@@ -554,99 +580,6 @@
 })();
 </script>
 
-<!-- ============================================================
-     QUICK RECAP OVERLAY — progressive enhancement over a real page.
-     recap.html is a full, crawlable page on its own (Layer 1: works
-     with JS off, works for search engines, works if this script
-     throws). With JS on, clicking "Quick recap" HERE instead fetches
-     that same page and lifts its #recap-content into a slide-over
-     panel, so a recruiter never leaves the globe. Same content either
-     way — only the presentation differs.
-     ============================================================ -->
-<script>
-(function() {
-  var trigger = document.querySelector('#site-header .header-recap');
-  if (!trigger) return;
-
-  var overlay, panel, closeBtn, cachedHTML = null, lastFocused = null;
-
-  function buildOverlay() {
-    overlay = document.createElement('div');
-    overlay.id = 'recap-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Quick recap');
-
-    var scrim = document.createElement('div');
-    scrim.className = 'recap-scrim';
-    scrim.addEventListener('click', closeOverlay);
-
-    panel = document.createElement('div');
-    panel.className = 'recap-panel';
-    panel.innerHTML = '<div class="recap-panel-inner"></div>';
-
-    closeBtn = document.createElement('button');
-    closeBtn.className = 'recap-close';
-    closeBtn.setAttribute('aria-label', 'Close quick recap');
-    closeBtn.textContent = '✕';
-    closeBtn.addEventListener('click', closeOverlay);
-
-    overlay.appendChild(scrim);
-    overlay.appendChild(panel);
-    overlay.appendChild(closeBtn);
-    document.body.appendChild(overlay);
-  }
-
-  function openOverlay(html) {
-    if (!overlay) buildOverlay();
-    panel.querySelector('.recap-panel-inner').innerHTML = html;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lastFocused = document.activeElement;
-    closeBtn.focus();
-    document.addEventListener('keydown', onKeydown);
-  }
-
-  function closeOverlay() {
-    if (!overlay) return;
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    document.removeEventListener('keydown', onKeydown);
-    if (lastFocused) lastFocused.focus();
-  }
-
-  function onKeydown(e) {
-    if (e.key === 'Escape') closeOverlay();
-  }
-
-  trigger.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    if (cachedHTML) {
-      openOverlay(cachedHTML);
-      return;
-    }
-
-    fetch('/recap.html')
-      .then(function(res) {
-        if (!res.ok) throw new Error('recap fetch failed: ' + res.status);
-        return res.text();
-      })
-      .then(function(text) {
-        var doc = new DOMParser().parseFromString(text, 'text/html');
-        var content = doc.getElementById('recap-content');
-        if (!content) throw new Error('recap-content not found');
-        cachedHTML = content.innerHTML;
-        openOverlay(cachedHTML);
-      })
-      .catch(function() {
-        // Fetch failed (offline, blocked, markup changed) — fall back to a
-        // real navigation rather than leaving the click doing nothing.
-        window.location.href = '/recap.html';
-      });
-  });
-})();
-</script>
 <script>twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });</script>
 </body>
 </html>
