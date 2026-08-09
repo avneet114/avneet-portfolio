@@ -282,16 +282,18 @@ html:not(.intro-active) #hero-intro {
 
 /* One line at a time, chat-bubble styled — rounder than the site's
    usual sharp neobrutalist cards on purpose, to read as a bubble.
-   Same dark charcoal + cobalt look on every step including the CTA —
-   no light/dark flip between lines. Advances on click or automatically
-   every 2s (see the inline script in index.html); the last line is
-   the CTA and its own click handler dismisses instead of advancing. */
+   Every bubble uses the same white fill (same off-white as
+   RESUME/Explore elsewhere on the site), not just the headline/CTA
+   bookends — no greyish mid-story lines. Advances on click or
+   automatically every 2s (see the inline script in index.html); the
+   last line is the CTA and its own click handler dismisses instead
+   of advancing. */
 .hero-intro-bubble {
   position: relative;
   z-index: 2;
   max-width: 340px;
-  background: var(--theme-bg);
-  border: 2px solid var(--theme-structural);
+  background: var(--theme-resume-bg);
+  border: 2px solid var(--theme-resume-ink);
   border-radius: 18px;
   padding: 14px 18px;
   box-shadow: 4px 4px 0 var(--theme-structural);
@@ -303,19 +305,7 @@ html:not(.intro-active) #hero-intro {
   font-family: 'Outfit', sans-serif;
   font-size: 0.82rem;
   line-height: 1.5;
-  /* Bio lines read a touch dimmer than the greeting/CTA bookends below,
-     so those two moments pop instead of everything being flat white. */
-  color: var(--theme-ink-secondary);
-}
-
-/* Headline + CTA are the two "bookend" moments — whole button goes
-   white (same off-white fill + dark ink as RESUME/Explore elsewhere
-   on the site), not just white text, so it reads as a real button
-   rather than plain text on the dark bubble the bio lines use. */
-.hero-intro-bubble.headline,
-.hero-intro-bubble.cta {
-  background: var(--theme-resume-bg);
-  border-color: var(--theme-resume-ink);
+  color: var(--theme-resume-ink);
 }
 
 /* Playfair Display + Outfit — same pairing as every chapter page's
