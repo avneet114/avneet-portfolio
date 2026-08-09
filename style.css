@@ -1272,6 +1272,34 @@ body.recap-page::-webkit-scrollbar-thumb {
   margin: 48px 0 16px;
 }
 
+.recap-wip {
+  text-align: center;
+  margin: 48px 0;
+  padding: 32px 20px;
+  border: 2px dashed var(--theme-structural);
+  border-radius: 12px;
+}
+
+.recap-wip-emoji {
+  font-size: 1.8rem;
+  margin: 0 0 8px;
+}
+
+.recap-wip-text {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-ink);
+  margin: 0 0 6px;
+}
+
+.recap-wip-sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  color: var(--theme-ink-secondary);
+  margin: 0;
+}
+
 .recap-cards { list-style: none; }
 
 .recap-card {
