@@ -69,7 +69,7 @@ portfolio/
 ├── index.html            # Main homepage — globe
 ├── style.css             # All styles
 ├── script.js             # Globe logic
-├── Kaur_B26_Resume.pdf   # ✅ added Aug 1 — linked from the header
+├── Avneet_Res_YAYA.pdf   # current résumé — linked from every RESUME button
 ├── CNAME                 # www.avneetgrewal114.com (GitHub Pages)
 ├── _archive/             # ⚠️ removed-but-saved markup. Leading underscore
 │   └── removed-intro-2026-08-01.html   # keeps Jekyll from publishing it

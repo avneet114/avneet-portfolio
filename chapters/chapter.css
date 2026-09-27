@@ -836,6 +836,96 @@ h1, h2, h3, h4 {
   margin: 0 8px;
 }
 
+/* "Storyteller" → YouTube video, thumbnail pops up on hover.
+   The thumb is position:fixed with no left/right, so it sits horizontally
+   at its static position (under the word) — and fixed escapes the
+   overflow:hidden on .header-identity that would otherwise clip it. */
+.header-yt {
+  color: var(--theme-ink); /* brighter than the grey around it — reads as a link */
+  text-decoration: underline;
+  text-decoration-color: var(--theme-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.header-yt:hover,
+.header-yt:focus-visible {
+  color: var(--theme-accent);
+}
+
+/* Small YouTube logo before the word so it's clearly a video link. */
+.header-yt-icon {
+  width: 14px;
+  height: 10px;
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+
+.header-yt-thumb {
+  position: fixed;
+  top: 64px;
+  width: 260px;
+  border: 2px solid var(--theme-structural);
+  box-shadow: 4px 4px 0 var(--theme-structural);
+  background: var(--theme-bg);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.header-yt-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+}
+
+.header-yt-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keeps the thumbnail 16:9 */
+}
+
+.header-yt-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 37px;
+  transform: translate(-50%, -50%);
+}
+
+.header-yt-caption {
+  display: block;
+  padding: 8px 10px 9px;
+  border-top: 2px solid var(--theme-structural);
+  white-space: normal;
+}
+
+.header-yt-title {
+  display: block;
+  color: var(--theme-ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.header-yt-source {
+  display: block;
+  margin-top: 4px;
+  color: var(--theme-ink-secondary);
+  font-size: 0.62rem;
+}
+
+.header-yt:hover .header-yt-thumb,
+.header-yt:focus-visible .header-yt-thumb {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .header-identity-short {
   display: none;
 }

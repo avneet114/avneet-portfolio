@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="chapter.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* === ESSAY OVERRIDES === */
     body {
@@ -277,6 +277,179 @@
     }
 
     /* === MOBILE === */
+    /* === HOVER TRIGGER / POPUP — copied from cape-town.html === */
+    .hover-trigger {
+      color: var(--theme-structural);
+      border-bottom: 1px dashed var(--theme-structural);
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .hover-trigger:hover {
+      color: var(--theme-accent);
+    }
+
+    .hover-popup {
+      position: fixed;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .hover-popup.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Video popup */
+    .hover-popup.video-popup .video-card,
+    .hover-popup.photo-popup .photo-card {
+      width: 340px;
+      background: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 5px 5px 0 var(--theme-structural);
+    }
+
+    .hover-popup.video-popup iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+
+    .hover-popup.video-popup .video-card-label {
+      padding: 8px 14px;
+      text-align: center;
+    }
+
+    .hover-popup.video-popup .video-card-label a {
+      font-size: 0.82rem;
+      color: var(--theme-accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hover-popup.video-popup .video-card-label a:hover {
+      text-decoration: underline;
+    }
+
+    /* Photo popup (Mary) */
+    .hover-popup.photo-popup img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* === WORK TAB — BOARDING PASS (picked from _work-format-preview) === */
+    .bp {
+      display: flex;
+      margin-top: 8px;
+      background: var(--theme-ink);
+      color: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      box-shadow: 8px 8px 0 var(--theme-structural);
+      border-radius: 4px;
+    }
+    .bp-main { flex: 1; min-width: 0; }
+    .bp-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: var(--theme-structural);
+      color: var(--theme-ink);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .bp-body { padding: 18px 20px 20px; }
+    .bp-route {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .bp-code {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .bp-city { font-size: 0.75rem; color: #555b66; margin-top: 4px; }
+    .bp-plane {
+      flex: 1;
+      text-align: center;
+      color: var(--theme-structural);
+      font-size: 1.3rem;
+      line-height: 0.1;
+      border-bottom: 2px dashed var(--theme-structural);
+    }
+    .bp-plane span { background: var(--theme-ink); padding: 0 8px; }
+    .bp-fields {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px 16px;
+      padding: 12px 0;
+      margin-bottom: 14px;
+      border-top: 2px solid var(--theme-bg);
+      border-bottom: 2px solid var(--theme-bg);
+    }
+    .bp-k {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #555b66;
+      text-transform: uppercase;
+    }
+    .bp-v { font-weight: 700; font-size: 0.88rem; }
+    .bp-wide { grid-column: span 2; }
+    .bp-itin { list-style: none; margin: 6px 0 0; padding: 0; }
+    .bp-itin li { display: flex; gap: 12px; padding: 7px 0; font-size: 0.9rem; line-height: 1.4; }
+    .bp-itin li + li { border-top: 1px dashed #b8bec8; }
+    .bp-gate {
+      flex-shrink: 0;
+      height: fit-content;
+      padding: 3px 6px;
+      background: var(--theme-bg);
+      color: var(--theme-ink);
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    .bp-stub {
+      width: 150px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 52px 16px 16px;
+      border-left: 2px dashed var(--theme-bg);
+    }
+    .bp-stub .bp-code { font-size: 1.6rem; }
+    .bp-barcode {
+      margin-top: auto;
+      height: 46px;
+      background: repeating-linear-gradient(90deg, var(--theme-bg) 0 2px, transparent 2px 4px, var(--theme-bg) 4px 5px, transparent 5px 8px, var(--theme-bg) 8px 11px, transparent 11px 13px);
+    }
+    @media (max-width: 640px) {
+      .bp { flex-direction: column; }
+      .bp-stub {
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px 20px;
+        border-left: 0;
+        border-top: 2px dashed var(--theme-bg);
+      }
+      .bp-barcode { width: 120px; margin: 0 0 0 auto; }
+      .bp-fields { grid-template-columns: repeat(2, 1fr); }
+      .bp-code { font-size: 1.7rem; }
+    }
+
     @media (max-width: 768px) {
       .essay-header {
         padding: 48px 0 32px;
@@ -309,11 +482,13 @@
       <span class="header-name">Avneet Kaur</span>
     </a>
 
-    <span class="header-identity">CS &amp; Business Honors Junior at Lehigh University<span class="header-sep">|</span>Storyteller<span class="header-sep">|</span>Content Creator</span>
+    <!-- Full identity on wide screens; short version on medium; hidden on
+         phones (Task 1.5 — cut decoration, never the conversion path). -->
+    <span class="header-identity">CS &amp; Business Honors Junior at Lehigh University<span class="header-sep">|</span><a class="header-yt" href="https://youtu.be/nSOfD9fYZ_Y?si=tIUougJCTkbQMYiK" target="_blank" rel="noopener"><span class="header-yt-thumb" aria-hidden="true"><span class="header-yt-frame"><img src="https://i.ytimg.com/vi/nSOfD9fYZ_Y/maxresdefault.jpg" alt=""><svg class="header-yt-play" viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span><span class="header-yt-caption"><span class="header-yt-title">How i met my second mom in Chile 🇨🇱</span><span class="header-yt-source">▶ Watch on YouTube</span></span></span><svg class="header-yt-icon" viewBox="0 0 68 48" aria-hidden="true"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg>Storyteller</a><span class="header-sep">|</span>Content Creator</span>
     <span class="header-identity-short">CS &amp; Business @ Lehigh</span>
 
     <nav class="header-actions" aria-label="Primary">
-      <a class="header-recap" href="/recap.html">Quick recap</a>
+      <a class="header-recap" href="/recap.html">Recruiter? Click here</a>
       <a class="header-icon" href="https://github.com/avneet114"
          target="_blank" rel="noopener" aria-label="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -326,6 +501,18 @@
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
       </a>
+      <a class="header-icon" href="https://www.youtube.com/@avneetgrewal114"
+         target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </a>
+      <a class="header-icon" href="https://www.instagram.com/avneetgrewal114/"
+         target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+      </a>
       <a class="header-icon" href="mailto:avk328@lehigh.edu" aria-label="Email Avneet">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -333,7 +520,6 @@
           <path d="m2 7 10 7L22 7"/>
         </svg>
       </a>
-      <a class="header-resume" href="/Avneet_Kaur_ResSept26.pdf" target="_blank" rel="noopener">RESUME</a>
     </nav>
   </header>
 
@@ -361,7 +547,21 @@
 
     <!-- ESSAY BODY -->
     <div class="essay-body">
-      <p>This chapter is coming soon.</p>
+      <p>
+        My Chile chapter actually started in <a href="cape-town.html" style="color: var(--theme-structural); text-decoration: none; border-bottom: 1px solid var(--theme-structural);">Cape Town</a>. If you’ve read that chapter, you know how much the people there meant to me. A lot of my friends were from South America, and hearing them speak Spanish made me curious. There were entire conversations happening around me that I couldn’t be part of. I wanted to understand what they were saying, what was funny, what made them suddenly get so passionate about something. So I started learning on Duolingo. Then I moved to the U.S., and there were even more people who spoke Spanish. Learning it started to feel like a way of making my world bigger. I’d already experienced that with English, how a language that once made me uncomfortable eventually helped me make friends, study abroad, and build a life somewhere new. I wanted to see who Spanish might introduce me to. When I found out about <a href="https://global.lehigh.edu/internships" target="_blank" rel="noopener" style="color: var(--theme-structural); text-decoration: none; border-bottom: 1px solid var(--theme-structural);">Lehigh’s Iacocca International Internship Program</a>, I thought, okay, Chile is the country for me. I’d spend the summer doing an internship and immerse myself in Spanish. Surely living somewhere for two months would get me further than talking to a green owl every day.
+      </p>
+
+      <p>
+        I spent the summer in Santiago, working on web development and product management at Watgen, a climate-tech startup in the Start-Up Chile program. Outside work, I lived with my host mom, <a class="hover-trigger" data-popup="mary" href="../assets/con-mary.jpg" target="_blank" rel="noopener">Mary</a>. She’s 72 now. She barely spoke English, and I arrived with a 90-day Duolingo streak and considerably more enthusiasm than vocabulary. We used Google Translate a lot. Think about what it takes to get to know someone that way. You want to say something, but first you have to figure out how. The other person has to wait. Then it’s your turn to wait while they answer. A conversation you could have easily with someone back home suddenly takes effort from both of you. But every night, Mary and I sat down for dinner and did it again. That’s the part I keep coming back to when I think about us. How willing we both were to keep trying. It would have been easy to keep our conversations practical, to communicate what we needed and leave it there. We had enough words for that. But we wanted to know each other beyond what was easy to say.
+      </p>
+
+      <p>
+        Before Chile, I placed so much importance on being able to explain myself. I like talking. I like asking questions and hearing people’s stories. Words are how I let people into my life. So I think I assumed that without a shared language, there would always be a limit to how close I could feel to someone. With Mary, I had to get comfortable with being understood a little at a time. She didn’t have access to the version of me who could easily tell a whole story in English, make a joke, or explain exactly what she meant. I couldn’t give her every detail or every part of my personality right away. And somehow, I still felt loved. That was new to me: realizing I could struggle to express myself and still have a place in someone’s life. My Spanish improved, but by then, learning it had become personal. I wanted more words because I wanted more of our conversations. I wanted to understand her without a phone between us. There’s something really meaningful to me about that shift. A language I’d started learning out of curiosity became a way of getting closer to one particular person.
+      </p>
+
+      <p>
+        Somewhere in those ordinary evenings, Mary became my second mom. I know that’s a big thing to call someone you’ve known for two months. I’m still a little amazed by it myself. But I don’t know what else to call someone whose home began to feel like my own, someone I went abroad to meet as a host and came to love as family. It made me question how I thought about belonging, too. I grew up in Punjab, where so much of my life was connected to people who had known me since I was little. There’s comfort in that shared history. Mary and I had none of it. We were different ages, from different countries, with entire lives the other knew nothing about. We started with two months and a willingness to make room for each other. Knowing there was an end date makes those dinners feel even more precious to me now. When you’re living abroad, you know from the beginning that you’ll leave. But you can’t really plan how attached you’ll get before that happens. A temporary arrangement can become a relationship you want to keep for the rest of your life. I made <a class="hover-trigger" data-popup="llorona" href="https://youtu.be/nSOfD9fYZ_Y?si=tIUougJCTkbQMYiK" target="_blank" rel="noopener">LLORONA</a>, a film about Mary and me, because I wanted to hold on to that part of my time in Chile. If you’d like to meet her, you can <a href="https://youtu.be/nSOfD9fYZ_Y?si=tIUougJCTkbQMYiK" target="_blank" rel="noopener" style="color: var(--theme-structural); text-decoration: none; border-bottom: 1px solid var(--theme-structural);">watch it here</a>. I love exploring new places, but when I think about what makes living abroad meaningful to me, it’s the people. It’s realizing that somewhere you’ve never been, there could be a person you haven’t met yet who will eventually feel like home. And for me, that’s Mary 🩷
+      </p>
     </div>
 
     <!-- NEXT CHAPTER -->
@@ -379,13 +579,35 @@
 
     <!-- TAB 2: WORK & EXPERIENCE -->
     <div class="tab-panel" id="panel-work">
-      <div class="timeline">
-
-        <div class="timeline-card">
-          <div class="tl-role">More coming soon.</div>
+      <div class="bp">
+        <div class="bp-main">
+          <div class="bp-top"><span>BOARDING PASS</span><span>INTERNSHIP CLASS</span></div>
+          <div class="bp-body">
+            <div class="bp-route">
+              <div><div class="bp-code">ABE</div><div class="bp-city">Bethlehem, PA</div></div>
+              <div class="bp-plane" aria-hidden="true"><span>✈</span></div>
+              <div><div class="bp-code">SCL</div><div class="bp-city">Santiago, Chile</div></div>
+            </div>
+            <div class="bp-fields">
+              <div class="bp-wide"><div class="bp-k">Role</div><div class="bp-v">Web Developer &amp; PM Intern</div></div>
+              <div><div class="bp-k">Passenger</div><div class="bp-v">Avneet Kaur</div></div>
+              <div class="bp-wide"><div class="bp-k">Carrier</div><div class="bp-v">WatGen · Start-Up Chile</div></div>
+              <div><div class="bp-k">Dates</div><div class="bp-v">June 2025 – July 2025</div></div>
+            </div>
+            <div class="bp-k">Itinerary</div>
+            <ul class="bp-itin">
+              <li><span class="bp-gate">01</span><span>Developed front end for carbon credits marketplace; demoed it to Chile’s Ministry of Energy for a grant proposal</span></li>
+              <li><span class="bp-gate">02</span><span>Built a monthly OPEX model estimating energy, labor, and maintenance costs to calculate cost per ton processed</span></li>
+              <li><span class="bp-gate">03</span><span>Evaluated tire pyrolysis feasibility by comparing 3 vendor quotes to guide a major equipment purchasing decision</span></li>
+            </ul>
+          </div>
         </div>
-
-      </div><!-- /.timeline -->
+        <div class="bp-stub" aria-hidden="true">
+          <div><div class="bp-k">To</div><div class="bp-code">SCL</div></div>
+          <div><div class="bp-k">Seat</div><div class="bp-v">Dev + PM</div></div>
+          <div class="bp-barcode"></div>
+        </div>
+      </div>
 
       <!-- NEXT CHAPTER -->
       <div class="next-chapter">
@@ -401,7 +623,97 @@
 
   </div><!-- /.chapter-page -->
 
+  <!-- Mary photo popup -->
+  <div class="hover-popup photo-popup" id="popup-mary">
+    <div class="photo-card">
+      <img src="../assets/con-mary.jpg" alt="Avneet with Mary, her host mom in Santiago" width="1000" height="750">
+    </div>
+  </div>
+
+  <!-- LLORONA video popup -->
+  <div class="hover-popup video-popup" id="popup-llorona">
+    <div class="video-card">
+      <iframe
+        id="llorona-iframe"
+        src=""
+        title="LLORONA"
+        frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <div class="video-card-label">
+        <a href="https://youtu.be/nSOfD9fYZ_Y?si=tIUougJCTkbQMYiK" target="_blank" rel="noopener">watch on youtube ↗</a>
+      </div>
+    </div>
+  </div>
+
   <script src="chapter-shared.js"></script>
+  <script>
+    /* =====================================================
+       HOVER POPUP LOGIC — same behaviour as cape-town.html
+       ===================================================== */
+    (function() {
+      let showTimeout = null;
+      let hideTimeout = null;
+
+      function hidePopup(popup) {
+        popup.classList.remove('visible');
+        // Stop the video when its popup closes
+        if (popup.id === 'popup-llorona') {
+          document.getElementById('llorona-iframe').src = '';
+        }
+      }
+
+      function positionPopup(popup, e) {
+        const x = e.clientX + 20;
+        const y = e.clientY - 10;
+        const rect = popup.getBoundingClientRect();
+        const maxX = window.innerWidth - (rect.width || 300) - 20;
+        const maxY = window.innerHeight - (rect.height || 300) - 20;
+        popup.style.left = Math.min(x, maxX) + 'px';
+        popup.style.top = Math.max(10, Math.min(y, maxY)) + 'px';
+      }
+
+      function showPopup(popup, e) {
+        clearTimeout(hideTimeout);
+        document.querySelectorAll('.hover-popup.visible').forEach(p => {
+          if (p !== popup) hidePopup(p);
+        });
+        positionPopup(popup, e);
+        popup.classList.add('visible');
+      }
+
+      document.querySelectorAll('.hover-trigger').forEach(trigger => {
+        const popup = document.getElementById('popup-' + trigger.dataset.popup);
+        if (!popup) return;
+
+        trigger.addEventListener('mouseenter', (e) => {
+          clearTimeout(hideTimeout);
+          if (popup.id === 'popup-llorona') {
+            const iframe = document.getElementById('llorona-iframe');
+            if (!iframe.src.includes('youtube')) {
+              iframe.src = 'https://www.youtube.com/embed/nSOfD9fYZ_Y';
+            }
+          }
+          showTimeout = setTimeout(() => showPopup(popup, e), 150);
+        });
+
+        trigger.addEventListener('mousemove', (e) => {
+          if (popup.classList.contains('visible')) positionPopup(popup, e);
+        });
+
+        trigger.addEventListener('mouseleave', () => {
+          clearTimeout(showTimeout);
+          hideTimeout = setTimeout(() => hidePopup(popup), 300);
+        });
+
+        popup.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        popup.addEventListener('mouseleave', () => {
+          hideTimeout = setTimeout(() => hidePopup(popup), 300);
+        });
+      });
+    })();
+  </script>
   <script>
     /* =====================================================
        TAB SWITCHING

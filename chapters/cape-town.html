@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="chapter.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* === ESSAY OVERRIDES === */
     body {
@@ -229,6 +229,7 @@
     .hover-trigger {
       color: var(--theme-structural);
       border-bottom: 1px dashed var(--theme-structural);
+      text-decoration: none;
       cursor: pointer;
       position: relative;
       transition: color 0.2s;
@@ -283,6 +284,22 @@
 
     .hover-popup.video-popup .video-card-label a:hover {
       text-decoration: underline;
+    }
+
+    /* Photo popup (TV panel) — same as santiago.html's Mary popup */
+    .hover-popup.photo-popup .photo-card {
+      width: 340px;
+      background: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 5px 5px 0 var(--theme-structural);
+    }
+
+    .hover-popup.photo-popup img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* Instagram embed popup */
@@ -370,6 +387,123 @@
     }
 
     /* === MOBILE === */
+    /* === WORK TAB — BOARDING PASS (same as santiago.html) === */
+    .bp {
+      display: flex;
+      margin-top: 8px;
+      background: var(--theme-ink);
+      color: var(--theme-bg);
+      border: 2px solid var(--theme-structural);
+      box-shadow: 8px 8px 0 var(--theme-structural);
+      border-radius: 4px;
+    }
+    .bp-main { flex: 1; min-width: 0; }
+    .bp-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: var(--theme-structural);
+      color: var(--theme-ink);
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .bp-body { padding: 18px 20px 20px; }
+    .bp-route {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .bp-code {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .bp-city { font-size: 0.75rem; color: #555b66; margin-top: 4px; }
+    .bp-plane {
+      flex: 1;
+      text-align: center;
+      color: var(--theme-structural);
+      font-size: 1.3rem;
+      line-height: 0.1;
+      border-bottom: 2px dashed var(--theme-structural);
+    }
+    .bp-plane span { background: var(--theme-ink); padding: 0 8px; }
+    .bp-fields {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px 16px;
+      padding: 12px 0;
+      margin-bottom: 14px;
+      border-top: 2px solid var(--theme-bg);
+      border-bottom: 2px solid var(--theme-bg);
+    }
+    .bp-k {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: #555b66;
+      text-transform: uppercase;
+    }
+    .bp-v { font-weight: 700; font-size: 0.88rem; }
+    .bp-wide { grid-column: span 2; }
+    .bp-itin { list-style: none; margin: 6px 0 0; padding: 0; }
+    .bp-itin li { display: flex; gap: 12px; padding: 7px 0; font-size: 0.9rem; line-height: 1.4; }
+    .bp-itin li + li { border-top: 1px dashed #b8bec8; }
+    .bp-gate {
+      flex-shrink: 0;
+      height: fit-content;
+      padding: 3px 6px;
+      background: var(--theme-bg);
+      color: var(--theme-ink);
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    .bp-stub {
+      width: 150px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 52px 16px 16px;
+      border-left: 2px dashed var(--theme-bg);
+    }
+    .bp-stub .bp-code { font-size: 1.6rem; }
+    .bp-barcode {
+      margin-top: auto;
+      height: 46px;
+      background: repeating-linear-gradient(90deg, var(--theme-bg) 0 2px, transparent 2px 4px, var(--theme-bg) 4px 5px, transparent 5px 8px, var(--theme-bg) 8px 11px, transparent 11px 13px);
+    }
+    @media (max-width: 640px) {
+      .bp { flex-direction: column; }
+      .bp-stub {
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px 20px;
+        border-left: 0;
+        border-top: 2px dashed var(--theme-bg);
+      }
+      .bp-barcode { width: 120px; margin: 0 0 0 auto; }
+      .bp-fields { grid-template-columns: repeat(2, 1fr); }
+      .bp-code { font-size: 1.7rem; }
+    }
+
+    /* Cape Town extras: linked carrier + highlight "luggage tags" */
+    .bp-v a,
+    .bp-link { color: var(--theme-structural); text-decoration: none; border-bottom: 1px solid var(--theme-structural); }
+    .bp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .bp-tag {
+      padding: 4px 9px;
+      border: 2px solid var(--theme-bg);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
     @media (max-width: 768px) {
       .essay-header {
         padding: 48px 0 32px;
@@ -406,11 +540,13 @@
       <span class="header-name">Avneet Kaur</span>
     </a>
 
-    <span class="header-identity">CS &amp; Business Honors Junior at Lehigh University<span class="header-sep">|</span>Storyteller<span class="header-sep">|</span>Content Creator</span>
+    <!-- Full identity on wide screens; short version on medium; hidden on
+         phones (Task 1.5 — cut decoration, never the conversion path). -->
+    <span class="header-identity">CS &amp; Business Honors Junior at Lehigh University<span class="header-sep">|</span><a class="header-yt" href="https://youtu.be/nSOfD9fYZ_Y?si=tIUougJCTkbQMYiK" target="_blank" rel="noopener"><span class="header-yt-thumb" aria-hidden="true"><span class="header-yt-frame"><img src="https://i.ytimg.com/vi/nSOfD9fYZ_Y/maxresdefault.jpg" alt=""><svg class="header-yt-play" viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span><span class="header-yt-caption"><span class="header-yt-title">How i met my second mom in Chile 🇨🇱</span><span class="header-yt-source">▶ Watch on YouTube</span></span></span><svg class="header-yt-icon" viewBox="0 0 68 48" aria-hidden="true"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg>Storyteller</a><span class="header-sep">|</span>Content Creator</span>
     <span class="header-identity-short">CS &amp; Business @ Lehigh</span>
 
     <nav class="header-actions" aria-label="Primary">
-      <a class="header-recap" href="/recap.html">Quick recap</a>
+      <a class="header-recap" href="/recap.html">Recruiter? Click here</a>
       <a class="header-icon" href="https://github.com/avneet114"
          target="_blank" rel="noopener" aria-label="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -423,6 +559,18 @@
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
       </a>
+      <a class="header-icon" href="https://www.youtube.com/@avneetgrewal114"
+         target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </a>
+      <a class="header-icon" href="https://www.instagram.com/avneetgrewal114/"
+         target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+      </a>
       <a class="header-icon" href="mailto:avk328@lehigh.edu" aria-label="Email Avneet">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -430,7 +578,6 @@
           <path d="m2 7 10 7L22 7"/>
         </svg>
       </a>
-      <a class="header-resume" href="/Avneet_Kaur_ResSept26.pdf" target="_blank" rel="noopener">RESUME</a>
     </nav>
   </header>
 
@@ -459,7 +606,7 @@
     <!-- ESSAY BODY -->
     <div class="essay-body">
       <p>
-        I always joke that Cape Town is my <span class="hover-trigger" data-popup="romanempire">Roman Empire</span>, and honestly, it kind of is. That's where I first lived independently, far from my family, surrounded by people from all over the world. It was intense, messy, emotional, confusing, beautiful, exhausting, and unforgettable.
+        I always joke that Cape Town is my <a class="hover-trigger" data-popup="romanempire" href="https://www.linkedin.com/posts/avneetkaur777_cape-town-is-my-roman-empire-for-my-non-gen-activity-7267057553186971649-g76E" target="_blank" rel="noopener">Roman Empire</a>, and honestly, it kind of is. That's where I first lived independently, far from my family, surrounded by people from all over the world. It was intense, messy, emotional, confusing, beautiful, exhausting, and unforgettable.
       </p>
 
       <p>
@@ -467,7 +614,7 @@
       </p>
 
       <p>
-        Our cohort had <span class="hover-trigger" data-popup="cohort">52 people from 28 countries</span>, all living together, learning together, and trying to figure out life together. For many of us, it was the first time we had lived abroad and taken care of ourselves without family. I lived in what we called the Red House, 17 of us, each with our own room but shared bathrooms and kitchen. I cooked for myself for the first time. I learned to budget. I learned to handle conflict with people I didn't grow up with. I learned how to clean dishes without screaming.
+        Our cohort had <a class="hover-trigger" data-popup="cohortphoto" href="../assets/cohort.jpg" target="_blank" rel="noopener">52 people from 28 countries</a>, all living together, learning together, and trying to figure out life together. For many of us, it was the first time we had lived abroad and taken care of ourselves without family. I lived in what we called <a class="hover-trigger" data-popup="littlelife" href="https://www.instagram.com/p/C99Vwd2PQzF/?hl=en&img_index=2" target="_blank" rel="noopener">the Red House</a>, 17 of us, each with our own room but shared bathrooms and kitchen. I cooked for myself for the first time. I learned to budget. I learned to handle conflict with people I didn't grow up with. I learned how to clean dishes without screaming.
       </p>
 
       <p>
@@ -479,7 +626,7 @@
       </p>
 
       <p>
-        But the work wasn't the only thing that changed me. What really made the biggest impact were the people — my housemates, my cohort, the South Africans I met, and the mentors who challenged us to think deeper about history, identity, power, and community. I had conversations I'd never had before, about religion, language, inequality, education systems, justice, trauma, and privilege. I listened a lot, and I learned a lot. Some of it was uncomfortable. Some of it made me question things I'd taken for granted. Some of it made me rethink what success means.
+        But the work wasn't the only thing that changed me. What really made the biggest impact were <a class="hover-trigger" data-popup="cohort" href="https://www.instagram.com/p/DD3s7KaOqTc/?hl=en&img_index=2" target="_blank" rel="noopener">the people</a> — my housemates, my cohort, the South Africans I met, and the mentors who challenged us to think deeper about history, identity, power, and community. I had conversations I'd never had before, about religion, language, inequality, education systems, justice, trauma, and privilege. I listened a lot, and I learned a lot. Some of it was uncomfortable. Some of it made me question things I'd taken for granted. Some of it made me rethink what success means.
       </p>
 
       <p>
@@ -510,31 +657,44 @@
 
     <!-- TAB 2: WORK & EXPERIENCE -->
     <div class="tab-panel" id="panel-work">
-      <div class="timeline">
-
-        <div class="timeline-card">
-          <div class="tl-role">Eksé TV Production Apprentice | <a href="https://capetowntv.org/" target="_blank" rel="noopener">Cape Town TV</a></div>
-          <div class="tl-meta">
-            <span class="tl-company">Cape Town, South Africa</span>
-            <span class="tl-date">Mar 2024 – Jun 2024</span>
-          </div>
-          <ul class="tl-desc" style="padding-left: 18px; list-style: disc;">
-            <li>Managed social media, increasing impressions from ~9,000 to ~34,000 and expanding reach to Pretoria and Johannesburg</li>
-            <li>Produced and scripted the "What's Trending" segment highlighting Cape Town's culture</li>
-            <li>Led a live TV panel for International Workers' Day, amplifying youth voices</li>
-            <li>Conducted street interviews and vox pops that strengthened communication skills</li>
-            <li>Took photos during shows and supported presenters — real on-the-ground media experience</li>
-            <li>As the youngest member of the team and the only Indian intern, learned how to speak up in professional spaces, adapt quickly to new cultural contexts, and collaborate confidently with older, more experienced teammates</li>
-          </ul>
-          <div class="tl-highlights">
-            <span class="tl-pill">9K → 34K impressions</span>
-            <span class="tl-pill">Live TV panel</span>
-            <span class="tl-pill">Street interviews</span>
-            <span class="tl-pill">Content production</span>
+      <div class="bp">
+        <div class="bp-main">
+          <div class="bp-top"><span>BOARDING PASS</span><span>INTERNSHIP CLASS</span></div>
+          <div class="bp-body">
+            <div class="bp-route">
+              <div><div class="bp-code">IXC</div><div class="bp-city">Chandigarh, Punjab</div></div>
+              <div class="bp-plane" aria-hidden="true"><span>✈</span></div>
+              <div><div class="bp-code">CPT</div><div class="bp-city">Cape Town, South Africa</div></div>
+            </div>
+            <div class="bp-fields">
+              <div class="bp-wide"><div class="bp-k">Role</div><div class="bp-v">Eksé TV Production Apprentice</div></div>
+              <div><div class="bp-k">Passenger</div><div class="bp-v">Avneet Kaur</div></div>
+              <div class="bp-wide"><div class="bp-k">Carrier</div><div class="bp-v"><a href="https://capetowntv.org/" target="_blank" rel="noopener">Cape Town TV</a></div></div>
+              <div><div class="bp-k">Dates</div><div class="bp-v">Mar 2024 – Jun 2024</div></div>
+            </div>
+            <div class="bp-k">Itinerary</div>
+            <ul class="bp-itin">
+              <li><span class="bp-gate">01</span><span>Managed <a class="bp-link" href="https://www.instagram.com/capetowntv_/?hl=en" target="_blank" rel="noopener">social media</a>, increasing impressions from ~9,000 to ~34,000 and expanding reach to Pretoria and Johannesburg</span></li>
+              <li><span class="bp-gate">02</span><span>Produced and scripted the "What's Trending" segment highlighting Cape Town's culture</span></li>
+              <li><span class="bp-gate">03</span><span>Led a <a class="hover-trigger" data-popup="tvpanel" href="../assets/tvpanel.jpg" target="_blank" rel="noopener">live TV panel</a> for International Workers' Day, amplifying youth voices</span></li>
+              <li><span class="bp-gate">04</span><span>Conducted street interviews and vox pops that strengthened communication skills</span></li>
+              <li><span class="bp-gate">05</span><span>Took photos during shows and supported presenters — real on-the-ground media experience</span></li>
+              <li><span class="bp-gate">06</span><span>As the youngest member of the team, learned how to speak up in professional spaces, adapt quickly to new cultural contexts, and collaborate confidently with older, more experienced teammates</span></li>
+            </ul>
+            <div class="bp-tags">
+              <span class="bp-tag">9K → 34K impressions</span>
+              <span class="bp-tag">Live TV panel</span>
+              <span class="bp-tag">Street interviews</span>
+              <span class="bp-tag">Content production</span>
+            </div>
           </div>
         </div>
-
-      </div><!-- /.timeline -->
+        <div class="bp-stub" aria-hidden="true">
+          <div><div class="bp-k">To</div><div class="bp-code">CPT</div></div>
+          <div><div class="bp-k">Seat</div><div class="bp-v">Production</div></div>
+          <div class="bp-barcode"></div>
+        </div>
+      </div>
 
       <!-- NEXT CHAPTER (duplicated for work tab) -->
       <div class="next-chapter">
@@ -550,13 +710,29 @@
 
   </div><!-- /.chapter-page -->
 
-  <!-- Roman Empire Instagram popup -->
+  <!-- Roman Empire LinkedIn popup -->
   <div class="hover-popup insta-embed-popup" id="popup-romanempire">
     <div class="insta-embed-card">
       <iframe
         id="romanempire-iframe"
         src=""
-        title="Cape Town Roman Empire"
+        title="Cape Town is my Roman Empire (LinkedIn post)"
+        frameborder="0"
+        allowtransparency="true"
+      ></iframe>
+      <div class="insta-embed-label">
+        <a href="https://www.linkedin.com/posts/avneetkaur777_cape-town-is-my-roman-empire-for-my-non-gen-activity-7267057553186971649-g76E" target="_blank" rel="noopener">view on linkedin ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Red House Instagram popup ("i love this little life") -->
+  <div class="hover-popup insta-embed-popup" id="popup-littlelife">
+    <div class="insta-embed-card">
+      <iframe
+        id="littlelife-iframe"
+        src=""
+        title="Life in Cape Town (Instagram post)"
         frameborder="0"
         scrolling="no"
         allowtransparency="true"
@@ -581,6 +757,20 @@
       <div class="insta-embed-label">
         <a href="https://www.instagram.com/p/DD3s7KaOqTc/?hl=en&img_index=2" target="_blank" rel="noopener">view on instagram ↗</a>
       </div>
+    </div>
+  </div>
+
+  <!-- Cohort photo popup ("52 people from 28 countries") -->
+  <div class="hover-popup photo-popup" id="popup-cohortphoto">
+    <div class="photo-card">
+      <img src="../assets/cohort.jpg" alt="Avneet's Take Action Lab cohort in Cape Town — 52 people from 28 countries" width="1000" height="802">
+    </div>
+  </div>
+
+  <!-- TV panel photo popup -->
+  <div class="hover-popup photo-popup" id="popup-tvpanel">
+    <div class="photo-card">
+      <img src="../assets/tvpanel.jpg" alt="Avneet leading a live TV panel on Cape Town TV for International Workers' Day" width="1000" height="587">
     </div>
   </div>
 
@@ -667,6 +857,10 @@
         const iframe = document.getElementById('cohort-iframe');
         if (iframe) iframe.src = '';
       }
+      if (popup.id === 'popup-littlelife') {
+        const iframe = document.getElementById('littlelife-iframe');
+        if (iframe) iframe.src = '';
+      }
     }
 
     function positionPopup(popup, e) {
@@ -696,6 +890,13 @@
 
         if (popupId === 'popup-romanempire') {
           const iframe = document.getElementById('romanempire-iframe');
+          if (iframe && !iframe.src.includes('linkedin')) {
+            iframe.src = 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7267057553186971649';
+          }
+        }
+
+        if (popupId === 'popup-littlelife') {
+          const iframe = document.getElementById('littlelife-iframe');
           if (iframe && !iframe.src.includes('instagram')) {
             iframe.src = 'https://www.instagram.com/p/C99Vwd2PQzF/embed/';
           }
