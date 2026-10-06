@@ -1285,7 +1285,7 @@ body.recap-page::-webkit-scrollbar-thumb {
 }
 
 .recap-main {
-  max-width: 780px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: calc(56px + 52px) 28px 110px;
   position: relative;
@@ -1340,6 +1340,196 @@ body.recap-page::-webkit-scrollbar-thumb {
   margin-top: 4px;
   font-size: 0.78rem;
   color: var(--theme-ink-secondary);
+}
+
+/* Big résumé button right under the greeting — first thing a recruiter
+   can click. Reuses .header-resume's look, just larger. */
+.recap-resume-cta {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 22px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Quick facts: résumé-style education lines ---------- */
+.facts-card {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+  box-shadow: 4px 4px 0 var(--theme-structural);
+  font-family: 'Outfit', sans-serif;
+  color: var(--theme-ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.facts-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--theme-structural);
+}
+
+.facts-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 16px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.facts-row + .facts-row { margin-top: 4px; }
+.facts-school { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; }
+.facts-dim { color: var(--theme-ink-secondary); font-size: 0.85rem; white-space: nowrap; }
+.facts-pipe { color: var(--theme-structural); margin: 0 4px; }
+
+.facts-looking {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 2px dashed var(--theme-structural);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.facts-label {
+  display: block;
+  margin-bottom: 4px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--theme-accent);
+}
+
+/* ---------- Project + leadership cards ----------
+   Each card sets its own --card-accent inline. Hover lifts the card into
+   a coloured offset shadow, tilts it slightly and nudges the arrow. */
+.fun-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.fun-card {
+  --card-accent: var(--theme-structural);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 22px 20px;
+  background: var(--theme-bg);
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+  color: var(--theme-ink);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.fun-card:hover,
+.fun-card:focus-visible {
+  transform: translate(-4px, -4px) rotate(-0.6deg);
+  border-color: var(--card-accent);
+  box-shadow: 8px 8px 0 var(--card-accent);
+}
+
+.fun-card-wide { grid-column: 1 / -1; }
+
+.fun-tag {
+  align-self: flex-start;
+  padding: 3px 9px;
+  border: 2px solid var(--card-accent);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.fun-card:hover .fun-tag {
+  background: var(--card-accent);
+  color: var(--theme-bg);
+}
+
+.fun-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.fun-blurb {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: #c8c8d4;
+}
+
+.fun-cta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--card-accent);
+}
+
+.fun-arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.fun-card:hover .fun-arrow { transform: translateX(6px); }
+
+.fun-hint {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.62rem;
+  color: var(--theme-ink-secondary);
+}
+
+/* ---------- Bhangra: text on top, photos in a straight row below ---------- */
+.bhangra-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.bhangra-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fan {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.fan a {
+  display: block;
+  overflow: hidden;
+  border: 2px solid var(--theme-structural);
+  border-radius: 3px;
+}
+
+.fan img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.fan a:hover img { transform: scale(1.06); }
+
+/* Keep the photo card level — lift only, no tilt. */
+.bhangra-card:hover { transform: translate(-4px, -4px); }
+
+@media (max-width: 640px) {
+  .fun-cards { grid-template-columns: 1fr; }
+  .fan { grid-template-columns: repeat(2, 1fr); }
 }
 
 .recap-section-title {

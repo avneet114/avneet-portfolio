@@ -72,41 +72,83 @@
   <main class="recap-main" id="recap-content">
 
     <div class="recap-header">
-      <h1>Quick Recap</h1>
-      <p class="recap-subtitle">Experience, projects, and education — straight from the source.</p>
+      <h1>Hi, I’m so glad you’re here.</h1>
+      <p class="recap-subtitle">Thank you for taking the time to get to know me beyond my resume. And if the resume is what you’re after, here it is.</p>
+      <a class="header-resume recap-resume-cta" href="Avneet_Res_YAYA.pdf" target="_blank" rel="noopener">View my resume ↗</a>
 
-      <section class="recap-current" aria-label="Current position">
-        <div class="recap-current-label">Currently</div>
-        <p>
-          <b>Software Engineer / PM Intern</b> — Place Beyond Bytes, University of Duisburg-Essen
-          <span class="recap-dim">Essen, Germany · since June 2026</span>
-        </p>
-        <!-- TODO (Avneet): the most valuable line on this whole site is what
-             you are LOOKING FOR next — e.g. "seeking: Summer 2027, product /
-             AI strategy". Recruiters filter on timing before anything else.
-             Add it as a second line here. -->
+      <!-- Quick facts, laid out like the education line on the résumé -->
+      <section class="facts-card" aria-label="Quick facts">
+        <div class="facts-row">
+          <span class="facts-school">Lehigh University</span>
+          <span class="facts-dim">Bethlehem, PA</span>
+        </div>
+        <div class="facts-row">
+          <span>B.S. Computer Science and Business <span class="facts-pipe">|</span> Minor in Entrepreneurship <span class="facts-pipe">|</span> GPA 3.72</span>
+          <span class="facts-dim">May 2028</span>
+        </div>
+        <div class="facts-looking">
+          <span class="facts-label">Looking for</span>
+          Summer 2027 software engineering or product management internships, or any role where I can bring my technical, creative, and people skills together.
+        </div>
       </section>
     </div>
 
     <!-- ============================================================
-         WORK IN PROGRESS — Experience/Projects/Education content
-         pulled while this section gets rebuilt. Chapter links below
-         stay up (CLAUDE.md: never hide the crawlable link list), and
-         resume/contact stay reachable so the page doesn't dead-end.
+         PROJECTS
          ============================================================ -->
-    <div class="recap-wip" role="status">
-      <p class="recap-wip-emoji" aria-hidden="true">🚧</p>
-      <p class="recap-wip-text">This section is being rebuilt — check back soon.</p>
-      <p class="recap-wip-sub">In the meantime, grab the resume below or explore a chapter.</p>
+    <h2 class="recap-section-title">What I’m building</h2>
+
+    <div class="fun-cards">
+      <a class="fun-card" style="--card-accent: #f2b134;" href="https://boba.up.railway.app/" target="_blank" rel="noopener">
+        <span class="fun-tag">AI news over text</span>
+        <span class="fun-title">Boba</span>
+        <span class="fun-blurb">Your AI news bestie. Boba reads everything that happened in AI overnight and texts you the five stories that actually matter, every morning, straight to iMessage. Nobody is reading the newsletters anyway, so Boba meets you where you already are.</span>
+        <span class="fun-cta">Text Boba <span class="fun-arrow">→</span></span>
+      </a>
+
+      <a class="fun-card" style="--card-accent: #3a6ea5;" href="https://orbiting.life/" target="_blank" rel="noopener">
+        <span class="fun-tag">Personal CRM</span>
+        <span class="fun-title">Orbit</span>
+        <span class="fun-blurb">Ever met someone great and forgotten what you talked about a week later? Orbit remembers who you met, what you discussed, and nudges you when it’s time to reach out again.</span>
+        <span class="fun-cta">Visit Orbit <span class="fun-arrow">→</span></span>
+      </a>
     </div>
+
+    <!-- ============================================================
+         LEADERSHIP
+         ============================================================ -->
+    <h2 class="recap-section-title">Leadership</h2>
+
+    <div class="fun-cards">
+      <a class="fun-card fun-card-wide" style="--card-accent: #d7263d;" href="https://ai-club-website-three.vercel.app/" target="_blank" rel="noopener">
+        <span class="fun-tag">Vice President</span>
+        <span class="fun-title">Lehigh AI Club</span>
+        <span class="fun-blurb">I help run the biggest community on campus, a student-run club of builders learning how to use AI to solve real problems. We host hands-on workshops and industry speakers, and run the AI Builder Society, where students work on real projects with weekly check-ins and demo their wins.</span>
+        <span class="fun-cta">See the club <span class="fun-arrow">→</span></span>
+      </a>
+
+      <div class="fun-card fun-card-wide bhangra-card" style="--card-accent: #d7263d;">
+        <div class="bhangra-text">
+          <span class="fun-tag">Team Captain</span>
+          <span class="fun-title">Bhangra</span>
+          <span class="fun-blurb">Other than coding and filmmaking, I dance. Bhangra is a traditional folk dance from Punjab, full of energy, big jumps, and dhol beats you can feel in your chest. I joined the team my freshman year, and being so far from home, getting to share my culture with campus means a lot to me. Leading the team has been my favorite part of all.</span>
+        </div>
+        <div class="fan">
+          <a href="assets/bhangra-4.jpg" target="_blank" rel="noopener"><img style="object-position: center 18%;" src="assets/bhangra-4.jpg" alt="Avneet and a teammate mid-performance on stage in red and blue bhangra outfits" width="763" height="900" loading="lazy"></a>
+          <a href="assets/bhangra-3.jpg" target="_blank" rel="noopener"><img style="object-position: center 65%;" src="assets/bhangra-3.jpg" alt="The bhangra team in traditional outfits sitting together on a staircase" width="600" height="900" loading="lazy"></a>
+          <a href="assets/bhangra-1.jpg" target="_blank" rel="noopener"><img src="assets/bhangra-1.jpg" alt="The bhangra team in red and black sitting on a stone wall at Lehigh" width="900" height="600" loading="lazy"></a>
+          <a href="assets/bhangra-2.jpg" target="_blank" rel="noopener"><img src="assets/bhangra-2.jpg" alt="The bhangra team posing in front of the Lehigh University gates" width="900" height="519" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="recap-section-title">Or explore my story, chapter by chapter</h2>
 
     <!-- ============================================================
          ROUTE MAP — the crawlable path to every chapter. Search
          engines cannot follow the LOCATIONS array in script.js.
          Never hide this list.
          ============================================================ -->
-    <h2 class="recap-section-title">Chapters</h2>
-
     <ul class="recap-chapters" aria-label="Chapters">
       <li><a href="chapters/punjab.html"><span aria-hidden="true">🌱</span> Punjab, India <span class="recap-chip-year">'05–24</span></a></li>
       <li><a href="chapters/cape-town.html"><span aria-hidden="true">🌍</span> Cape Town, South Africa <span class="recap-chip-year">'24</span></a></li>
