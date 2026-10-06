@@ -1033,3 +1033,38 @@ h1, h2, h3, h4 {
     gap: 12px;
   }
 }
+
+/* Small phones: the header needs ~500px at full size. Shrink it to fit
+   without dropping any link — "Click here" and the 🌍 go, the name and
+   icons get smaller, and recap.html's header RESUME hides because the
+   page opens with its own big résumé button. */
+@media (max-width: 640px) {
+  #site-header {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .header-globe,
+  .recruiter-more,
+  #site-header .header-resume {
+    display: none;
+  }
+
+  .header-name {
+    font-size: 0.8rem;
+  }
+
+  .header-recap {
+    padding: 6px 9px;
+    font-size: 0.62rem;
+  }
+
+  .header-actions {
+    gap: 9px;
+  }
+
+  .header-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
